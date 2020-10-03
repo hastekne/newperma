@@ -1,0 +1,131 @@
+
+@page { 
+  margin: 0.3in 0.40in 0.25in;
+}
+
+div.page { 
+writing-mode: tb-rl;
+height: 80%;
+margin: 10% 0%;
+}
+
+body {
+  font-family: sans-serif;
+	margin: 1.5cm 0;
+	text-align: justify;
+	padding-bottom: 20px;
+
+}
+
+#header,
+#footer {
+  position: fixed;
+  left: 0;
+	right: 0;
+	color: #aaa;
+	font-size: 1.0em;
+	background-color: #FFFFFF;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	
+}
+
+
+
+
+#footer {
+  bottom: -6px;
+  border-top: 0.1pt solid #aaa;
+  text-align: center;
+
+}
+
+#header table,
+#footer table {
+	width: 100%;
+	border-collapse: collapse;
+	border: none;
+}
+
+#header td,
+#footer td {
+  padding: 0;
+	width: 50%;
+}
+
+
+
+h1{
+	display: block;
+	font-size: 1.5em;
+    font-weight: 700;
+   color: #003A7D;
+    text-transform: uppercase;
+   font-family: 'Carrois Gothic', sans-serif;
+	text-align: justify !important;
+}
+
+	
+.topTabla{
+	
+	font-family: 'Roboto', sans-serif;
+	margin-top: -45px;
+ 	font-size : 1rem !important;
+	color : #FFFFFF !important;
+	
+}
+
+
+
+
+ 
+#pageCounter {
+  counter-reset: pageTotal;
+}
+#pageCounter span {
+  counter-increment: pageTotal; 
+}
+#pageNumbers {
+  counter-reset: currentPage;
+}
+#pageNumbers div:before { 
+  counter-increment: currentPage; 
+  content: "Pág. " counter(currentPage) " de "; 
+	align-content: center;
+}
+#pageNumbers div:after { 
+  content: counter(pageTotal); 
+}
+
+/* CSS Document */
+
+
+
+
+
+/* avoid page breaks in tables */
+@media print {
+   
+  .salto_tabla table, tr, tb {
+        page-break-inside:avoid;
+	 	border: 2px;
+	
+    }
+	
+	table{
+		
+		border: 2px;
+	}
+	h1{
+	margin-top: -60px;
+	font-size: 1.5em;
+    font-weight: 700;
+   color: #003A7D;
+    text-transform: uppercase;
+   font-family: 'Carrois Gothic', sans-serif;
+	text-align: justify !important;
+}
+
+	 }
+
+

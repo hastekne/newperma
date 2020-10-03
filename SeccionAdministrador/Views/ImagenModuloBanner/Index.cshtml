@@ -1,0 +1,16 @@
+﻿@model SeccionAdministrador.Models.ImagenModuloBannerViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<br/><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+<select id="Imagenes" name="Imagenes">
+@foreach(var item in Model.listaImagenes)
+{
+    <option id="@item.idImgBanner" name="@item.idImgBanner">@item.imagen</option>
+}
+</select>
+

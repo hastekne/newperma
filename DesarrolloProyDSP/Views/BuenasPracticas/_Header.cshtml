@@ -1,0 +1,125 @@
+﻿
+<div class="header-main">
+
+                <div class="row header-content">
+
+                    <div>
+
+                        <a href="http://www.seg.guanajuato.gob.mx">
+                            <img src=@Url.Content("~/image/editable_logo.png") width="130" alt="SEG" />
+
+                        </a> 	 <div style="margin-top: -60px; color: #FFFFFF" align="center" class="chit-chat-heading" id="titulo">
+                            <p>Permanencia Escolar en la Educación Media Superior</p><br>
+
+                        </div>
+
+
+                        <nav id="main-nav-wrap" class="main-nav-wrap">
+                            <ul class="main-navigation">
+                                <li><a href="index.html" title="">Inicio</a></li>
+                                <li class="has-children">
+                                    <a href="Administrador/category.html" title="">Recursos Educativos</a>
+                                    <!--SUB MENU  <ul class="sub-menu">
+           <li><a href="category.html">Wordpress</a></li>
+           <li><a href="category.html">HTML</a></li>
+           <li><a href="category.html">Photography</a></li>
+           <li><a href="category.html">UI</a></li>
+           <li><a href="category.html">Mockups</a></li>
+           <li><a href="category.html">Branding</a></li>
+        </ul>-->
+                                </li>
+                                <li id="menuBP"> <!--class="current"-->
+                                    <a href="@Url.Action("Practicas")" title="">Buenas pr&aacute;cticas</a>
+                                    <!--SUB MENU    <ul class="sub-menu">
+       <li><a href="single-video.html">Video Post</a></li>
+       <li><a href="single-audio.html">Audio Post</a></li>
+       <li><a href="single-gallery.html">Gallery Post</a></li>
+       <li><a href="single-standard.html">Standard Post</a></li>
+    </ul>-->
+                                </li>
+                                <li><a href="Administrador/style-guide.html" title="">Becas y Apoyos</a></li>
+                                <li><a href="ActividadesA.html" title="">Actividades Acad&eacute;micas</a></li>
+                                <li><a href="Administrador/contact.html" title="">Contacto</a></li>
+                                <li id="menuUser" class="hvr-icon-user" style="background:none; color: #FFFCFC; height: auto; margin-top: -13px; margin-bottom: -20px; margin-right: -20px">
+                                   
+                                        <a title="" onclick="IrSesion()">Usuario</a>
+                                    
+                                </li>
+                                @if (Request.Cookies["CookieUsuario"] == null)
+                                {
+                                    <li><a class="popup-with-zoom-anim" href="#loging">Login</a></li>
+                                }
+                                else
+                                {
+                                    <li class="hvr-icon-buzz-out" style="background:none; color: #FFFCFC; height: auto; margin-top: -13px; margin-bottom: -20px"><a href="@Url.Action("CerrarSesion","BuenasPracticas")">Cerrar sesión</a></li>
+                                }
+                            </ul>
+                        </nav> <!-- end main-nav-wrap -->
+
+
+
+                    </div>
+                </div>
+
+
+
+                <!--search-box <div class="header-left">
+
+
+
+                               <div class="search-box">&shy;
+                                 <form>
+                                       &shy;<input type="text" placeholder="Buscar..." required="">
+                                       &shy;<input type="submit" value="">
+                                   </form>
+                               </div>
+
+                   <div class="clearfix"> </div>
+                        </div>-->
+
+
+                <div class="clearfix"> </div>
+            </div>
+
+<script type="text/javascript">
+
+    function IrSesion() {
+         $.ajax({
+        type: "POST",
+        url: '@Url.Action("PerfilUsuario", "BuenasPracticas")', // don't hard code url's
+         datatype: "json",
+             success: function (data) {
+                 if (data == "Colaborador") {
+                     window.location.assign("Sesion");
+                 } else {
+                     window.location.assign("SesionRevisor");
+                 }
+
+
+
+             }
+           
+        });
+    }
+    
+    $(document).ready(function () {
+        switch ('@ViewBag.menu') {
+            case "Sesion":
+                var li = document.getElementById("menuUser");
+                //li.setAttribute("class", "current");
+                break;
+            case "BP":
+                var li = document.getElementById("menuBP");
+                li.setAttribute("class", "current");
+                break;
+            
+        }
+
+        if ('@Request.Cookies["CookieUsuario"]' == "") {
+            var li = document.getElementById("menuUser");
+            li.setAttribute("class", "hide");
+           
+        } 
+    })
+</script>
+

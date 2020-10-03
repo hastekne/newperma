@@ -1,0 +1,168 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<BusinessModel.Models.ModuloEvento.MisRegistros>
+
+<link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet" type="text/css" media="all">
+<!-- Custom Theme files -->
+<!--<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />-->
+<link href="@Url.Content("~/css/style.css")" rel="stylesheet" type="text/css" media="all">
+<style>
+    .sinformato {
+        text-decoration: none !important;
+        background-color: transparent !important;
+        color: #3e5569 !important;
+        text-align: left !important;
+        padding: 0px 0px 0px 0px !important;
+        font-size: 1em !important;
+        display: none;
+    }
+
+    .container-4 {
+        width: 800px;
+        text-align: left;
+    }
+
+    .search1 {
+        border-radius: 15px;
+    }
+
+    .sinformatoboton {
+        color: #797878;
+        text-decoration: none;
+        background: none;
+        border-radius: none;
+    }
+</style>
+<body>
+<div class="float-right" align="right" style="margin-right:18px">
+    <span class="text-muted m-r-sm" style="z-index:auto;">
+        Mostrar @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        de @Model.PageCount
+    </span>
+
+    <div class="btn-group" style="z-index:auto;" id="contentPager">
+        @*@Html.PagedListPager(Model, page => Url.Action("VistaEventoFiltro", "ModuloEventoAdmin", new { page = page ,palabraclave = ViewBag.palabraClave}), PagedListRenderOptions.OnlyShowFivePagesAtATime)*@
+
+        @*@Html.PagedListPager(Model, page => Url.Action("VistaEvento", "ModuloEventoAdmin",
+            new { page, palabraclave = ViewBag.palabraClave }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions.PageNumbersOnly,
+            new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "GET",
+                UpdateTargetId = "vpTablaEventos"
+            }))*@
+
+
+        @Html.PagedListPager(Model, page => Url.Action("VistaMisRegistrosFiltro", new { page , palabraclave = ViewBag.palabraClaveMR }),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "vpTablaRegistros" }))
+
+    </div>
+</div>
+
+
+<div class="compose compose-block" style="background-color: #FFFFFF">
+
+
+    <div align="center" id="TablaregistrosDIV" style="pointer-events: auto;">
+        <table class="table tab-border" style="text-decoration-color: #000000" align="center">
+
+            <tr class="unread checked">
+
+                <th align="center" style="text-align: center">Evento</th>
+
+
+                <th align="center" style="text-align: center">Descargar</th>
+
+            </tr>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="unread checked">
+                        <td class="hidden-xs" align="left">
+                            <div>@item.nomEvento</div>
+                        </td>
+
+                        <td align="center" width="20%">
+                            <a onclick="DescargaZip(@item.idEvento,'@item.idTipoRegistro')" class="sinformatoboton" style=" text-decoration: none !important; background-color: transparent !important;" tooltip="Descargar masiva de constancias"><img src="@Url.Content("~/image/icon_R-01.png")" alt="" style="align-content: center; width:20px" /></a>
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on("click", "#contentPager a[href]", function () {
+            $.ajax({
+                url: $(this).attr("href"),
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $('#vpTablaRegistros').html(result);
+                }
+            });
+            return false;
+        });
+    });
+
+    function DescargaZip(evento,tipoR) {
+        //alert(evento.toString() + " " + tipoR);
+         @*$.ajax({
+        type: "POST",
+        url: '@Url.Action("PDFtoZIP", "ModuloEventoAdmin")',
+        //data: { palabraclave: $('#palabraClaveMR').val()},
+        //dataType: "html",
+            success: function (response)
+            {
+                alert(evento.toString() + " " + tipoR);
+
+             },
+            error: function (response) {
+                alert("Error en descargar .zip");
+            }
+        });*@
+        @*var url = "@Url.Action("PDFtoZIP", "ModuloEventoAdmin",new {tr="2",evento="1"})";//, new { nombreEve = "nomEvent" }
+        url = url.replace("2", tipoR);
+        url = url.replace("1", evento);
+
+        window.location.href = url;*@
+       // alert("entro");
+        //$.blockUI({
+        //    message: "Espere por favor...", css: {
+        //        border: "none",
+        //        padding:"15px",
+        //        backgroundColor:"#000",
+        //        "-webkit-border-radius": "10px",
+        //        "-moz-border-radius": "10px",
+        //        opacity: 5,
+        //        color: "#fff"
+        //    }
+        //});
+
+        //$.blockUI({
+        //    message: "<h3>Processing, Please Wait...</h3>",
+        //    css: {
+        //        border: 'none',
+        //        padding: '15px',
+        //        backgroundColor: '#000',
+        //        '-webkit-border-radius': '10px',
+        //        '-moz-border-radius': '10px',
+        //        opacity: .5,
+        //        color: '#fff'
+        //    }
+        //});
+        //$.blockUI();
+        //document.getElementById("vpTablaRegistros").style.pointerEvents = "none";
+        document.getElementById("TablaregistrosDIV").style.pointerEvents = "none";
+        document.body.style.cursor = 'wait';
+        window.location.href = '@Url.Action("PDFtoZIP", "ModuloEventoAdmin")?evento=' + evento + '&tr=' + tipoR;
+        setTimeout(function () { document.getElementById("TablaregistrosDIV").style.pointerEvents = "auto"; document.body.style.cursor = 'default';},5000);
+
+            }
+
+</script>

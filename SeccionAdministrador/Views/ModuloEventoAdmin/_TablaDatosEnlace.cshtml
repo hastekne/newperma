@@ -1,0 +1,108 @@
+﻿@model Tuple<SeccionAdministrador.Models.UsuarioViewModel, BusinessModel.Models.Usuario.UsuariosRBP>
+
+<style>
+    .sinformato {
+        text-decoration: none !important;
+        background-color: transparent !important;
+        color: #3e5569 !important;
+        text-align: left !important;
+        padding: 0px 0px 0px 0px !important;
+        font-size: 1em !important;
+        display: none;
+    }
+</style>
+
+@Html.ValidationMessage("TabMsjEnlace", new { @class = "text-danger" })
+<table class="table tab-border" style="text-decoration-color: #000000" align="center">
+
+    <tr align="center">
+
+        <th>Nombre del Enlace</th>
+
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Subsistema</th>
+        <th align="center">Estado</th>
+
+    </tr>
+    <tbody>
+        @foreach (var item in Model.Item2.listaInfo)
+        {
+        <tr class="unread checked">
+            <td class="hidden-xs">
+                <a onclick="PopUpEnlace('@item.user')" class="popup-with-zoom-anim sinformato"><div>@item.nombre @item.apP @item.apM</div></a>
+                <!--Pop UP-->
+                <div id="PopEnlaceDiv" align="center">
+
+                </div>
+            </td>
+            <td>
+                @item.email
+            </td>
+            <td>
+                @item.tel
+            </td>
+            <td>
+                @item.instSub
+            </td>
+            <td align="center">
+                <ul>
+                    @if (item.estado == true)
+                    {
+                        <i onclick="EstadoEnlace('@item.user','false')" class="glyphicon glyphicon-ok-circle" aria-hidden="true" style="color:green;"></i>
+                    }
+                    else
+                    {
+                        <i onclick="EstadoEnlace('@item.user','true')" class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="color:red;"></i>
+                    }
+
+                </ul>
+            </td>
+        </tr>
+        }
+</tbody>
+</table>
+<div align="right"> <p style="font-size:9pt; color:dimgrey;">Doble clik sobre nombre para modificar datos del usuario enlace</p></div>
+<script>
+    function PopUpEnlace(u) {
+
+       $.ajax({
+        type: "POST",
+        url: '@Url.Action("_PopUpEnlace", "ModuloEventoAdmin")',
+        data: { usu: u},
+        dataType: "html",
+        success: function (response)
+        {
+            //document.getElementById("PopRevisorDiv").className = "popup-with-zoom-anim sinformato";
+            $('#PopEnlaceDiv').html(response);
+
+
+
+        },
+        error: function (response) {
+        alert("Error al cargar Pop-Up Revisor");
+        }
+        });
+    }
+
+    function EstadoEnlace(user,e) {
+        var es = false;
+        if (e == "true") {
+            es = true;
+        }
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("EstadoEnlace", "ModuloEventoAdmin")',
+        data: { usuario: user, estado:es},
+        dataType: "html",
+        success: function (response)
+        {
+            $('#TablaDatosEnlace').html(response);
+            //alert("actualizado");
+        },
+        error: function (response) {
+        alert("Error al actualizar estado del revisor.");
+        }
+        });
+    }
+</script>

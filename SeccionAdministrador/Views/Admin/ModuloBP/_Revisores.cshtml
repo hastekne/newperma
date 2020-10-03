@@ -1,0 +1,133 @@
+﻿@model Tuple<SeccionAdministrador.Models.UsuarioViewModel,BusinessModel.Models.Usuario.UsuariosRBP>
+
+<div class="compose-block" style="background-color: #FFFFFF">
+
+    <div class="compose-bottom">
+        <br>
+
+        <div style="padding-top: 20px; padding-left: 10px; text-align: left" class="chit-chat-heading"> Nuevo Revisor </div><br>
+
+
+        <div class="inner-wrap" align="left">
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>&nbsp;<label>Nombre: <input maxlength="50" id="txtNewName" class="autor" style="border: none; resize: none; width: 100%" type="text" required /></label></td>
+                        <td>&nbsp;<label>Primer Apellido: <input maxlength="30" id="txtNewPA" class="autor" style="border: none; resize: none; width: 100%" type="text" required /></label></td>
+                    </tr>
+                    <tr>
+                        <td><label>Segundo Apellido: <input maxlength="30" id="txtNewSA" class="autor" style="border: none; resize: none; width: 100%" type="text" required /></label></td>
+                        <td><label>Correo electr&oacute;nico: <input maxlength="50" id="txtNewEmail" class="autor" style="border: none; resize: none; width: 100%" type="email" required /></label></td>
+                    </tr>
+
+                    <tr>
+
+                        <td>
+                            <label>Telefono: <input maxlength="10" id="txtNewTel" class="autor" style="border: none; resize: none; width: 100%" type="tel" pattern="(\[0-9]{10}\) " title="El número de telefono es invalido, recuerde sólo teclear los 10 dígitos sin ningun otro signo" required /></label>
+
+                        </td>
+                        <td>
+                            <label>
+                                Institución / Subsistema: <select id="cbxNewInsSis" class="autor" style="border: none; resize: none; width: 100%">
+
+
+   
+    @foreach (var item in Model.Item1.listaInsSis)
+    {
+        <option value="">@item</option>
+    }
+</select>
+
+
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>&nbsp; </td>
+
+                        <td align="right" id="aAddRev">
+                            <button onclick="NuevoRevisor()" class="right" id="linkAddRev">Agregar revisor</button>
+                        </td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+</div>
+
+
+
+<div id="TabRevisoresBP">
+    @Html.Partial("ModuloBP/_TablaRevisores",Tuple.Create(Model.Item1,Model.Item2))
+</div>
+
+<script type="text/javascript">
+    function NuevoRevisor()
+    {
+        document.getElementById("linkAddRev").disabled = true;
+        $("body").css("cursor", "progress");
+        $("button").css("cursor", "progress");
+        $('button').prop('disabled', true);
+        var nomA = document.getElementById("txtNewName").value;
+        var apeP = document.getElementById("txtNewPA").value;
+        var apeM = document.getElementById("txtNewSA").value;
+        var email = document.getElementById("txtNewEmail").value;
+        var tel = document.getElementById("txtNewTel").value;
+        var e = document.getElementById("cbxNewInsSis");
+        var insSub = e.options[e.selectedIndex].text;
+
+        if (nomA != "" && apeP != "" && email != "" && tel != "") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("NuevoRevisor", "Admin")',
+                data: { nomU: nomA, apPU: apeP, apMU: apeM, emailU: email, telU: tel, insSu: insSub },
+                //dataType: "html",
+                success: function (data) {
+                    //$('#TabRevisoresBP').html(response);
+                    if (data == "true") {
+                        document.getElementById("txtNewName").value = "";
+                        document.getElementById("txtNewPA").value = "";
+                        document.getElementById("txtNewSA").value = "";
+                        document.getElementById("txtNewEmail").value = "";
+                        document.getElementById("txtNewTel").value = "";
+                        nomU = ""; nomA = ""; apeP = ""; apeM = ""; email = ""; telU = "";
+                    }
+                    $("#TabRevisoresBP").load("@Url.Action("_TablaRevisores","Admin")");
+                    $("body").css("cursor", "default");
+                    $("button").css("cursor", "pointer");
+                    $('button').prop('disabled', false);
+                    document.getElementById("linkAddRev").disabled = false;
+
+                },
+                error: function () {
+                    alert("Error al actualizar datos del Revisor.");
+                    $("body").css("cursor", "default");
+                    $("button").css("cursor", "pointer");
+                    $('button').prop('disabled', false);
+                    document.getElementById("linkAddRev").disabled = false;
+                }
+            });
+        } else {
+            alert("Campos obligatorios vacíos.");
+            $("body").css("cursor", "default");
+            $("button").css("cursor", "pointer");
+            $('button').prop('disabled', true);
+            document.getElementById("linkAddRev").disabled = false
+        }
+        
+        
+        
+    }
+   
+</script>

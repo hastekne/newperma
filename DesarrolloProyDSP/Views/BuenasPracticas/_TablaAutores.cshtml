@@ -1,0 +1,97 @@
+﻿@model Tuple<DesarrolloProyDSP.Models.Usuario.UsuarioViewModel, DesarrolloProyDSP.Models.ModuloBP.AutoresViewModel>
+@{
+    Layout = null;
+    ViewBag.Title = "_TablaAutores";
+
+}
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div>
+
+
+
+    <div class="clearfix"> </div>
+    <div style="padding-top: 8px; padding-left: 10px; text-align: left" class="chit-chat-heading"> Autores Registrados</div>
+
+
+    <div class="clearfix"> </div>
+</div>
+<table class="table tab-border" style="text-decoration-color: #000000" align="center">
+
+    <tr align="center">
+
+        <th>Nombre completo del Autor</th>
+
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Eliminar</th>
+
+    </tr>
+    <tbody>
+        @foreach (var item in Model.Item1.listaUsuario)
+        {
+            <tr class="unread checked">
+                <td>
+                    <ul>
+                        <i class="glyphicon_y glyphicon-star" aria-hidden="true">&shy;</i> &shy; @item.nombre @item.pApellido @item.sApellido
+                    </ul>
+
+                </td>
+                <td>
+                    @item.correoElectronico
+                </td>
+                <td>
+                    @item.telefono
+                </td>
+                <td>
+                    @*<ul>
+                            <i class="glyphicon_x glyphicon-trash" aria-hidden="true"></i>
+
+                        </ul>*@
+                </td>
+            </tr>
+        }
+
+        @foreach (var item in Model.Item2.listAutores)
+        {
+            <tr class="unread checked">
+                <td class="hidden-xs">
+                    @item.nombreA @item.pApellidoA @item.mApellidoA
+                </td>
+                <td>
+                    @item.correoElectronicoA
+                </td>
+                <td>
+                    @item.telefonoA
+                </td>
+                <td>
+                    <ul>
+
+                        <i class="glyphicon_x glyphicon-trash" aria-hidden="true" onclick="EliminarRow(@item.idAutor)"></i>
+
+                    </ul>
+                </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>
+<script>
+    function EliminarRow(idAutor) {
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("EliminarAutor", "BuenasPracticas")', // don't hard code url's
+            data: { idA:idAutor},
+        dataType: "html",
+            success: function (response) // lowercase (not Success)
+            {
+                $('#tablaAutores').html(response);
+
+             },
+            error: function (response) {
+                alert("Error al eliminar el Autor, vuelva a intentar.");
+            }
+        });
+    }
+</script>

@@ -1,0 +1,2190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SeguimientoPermanenciaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAutores">
+          <Key>
+            <PropertyRef Name="idAutor" />
+          </Key>
+          <Property Name="idAutor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="buenaPractica" Type="int" Nullable="false" />
+          <Property Name="nombreA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pApellidoA" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="mApellidoA" Type="varchar" MaxLength="30" />
+          <Property Name="correoElectronicoA" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefonoA" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBuenaPractica">
+          <Key>
+            <PropertyRef Name="idBuenaPractica" />
+          </Key>
+          <Property Name="idBuenaPractica" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="eje" Type="int" Nullable="false" />
+          <Property Name="usuarioColaborador" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="municipio" Type="int" Nullable="false" />
+          <Property Name="idCEO" Type="int" Nullable="false" />
+          <Property Name="idFuncionD" Type="int" Nullable="false" />
+          <Property Name="idPlantilla" Type="int" Nullable="false" />
+          <Property Name="tituloBP" Type="varchar" MaxLength="100" />
+          <Property Name="situacionMejora" Type="varchar" MaxLength="1500" />
+          <Property Name="diagnosticoRealizo" Type="varchar" MaxLength="3000" />
+          <Property Name="caracteristicasContexto" Type="varchar" MaxLength="3000" />
+          <Property Name="descripcionActividadesRealizadas" Type="text" />
+          <Property Name="elementoInnovador" Type="varchar" MaxLength="1500" />
+          <Property Name="resultadosObtenidos" Type="varchar" MaxLength="3000" />
+          <Property Name="observacionesBP" Type="varchar" MaxLength="1500" />
+          <Property Name="fuentesInformacion" Type="varchar" MaxLength="3000" />
+          <Property Name="estado" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCampoBP">
+          <Key>
+            <PropertyRef Name="idCampo" />
+          </Key>
+          <Property Name="idCampo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="subeArchivo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCampoEvento">
+          <Key>
+            <PropertyRef Name="idCampoEvento" />
+          </Key>
+          <Property Name="idCampoEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEvento" Type="int" Nullable="false" />
+          <Property Name="CCT" Type="bit" Nullable="false" />
+          <Property Name="nombrePlantel" Type="bit" Nullable="false" />
+          <Property Name="municipio" Type="bit" Nullable="false" />
+          <Property Name="regionSEG" Type="bit" Nullable="false" />
+          <Property Name="nivel" Type="bit" Nullable="false" />
+          <Property Name="instiSubsis" Type="bit" Nullable="false" />
+          <Property Name="CURP" Type="bit" Nullable="false" />
+          <Property Name="nombre" Type="bit" Nullable="false" />
+          <Property Name="apellidoPat" Type="bit" Nullable="false" />
+          <Property Name="apellidoMat" Type="bit" Nullable="false" />
+          <Property Name="correoElectronico" Type="bit" Nullable="false" />
+          <Property Name="telefono" Type="bit" Nullable="false" />
+          <Property Name="sexo" Type="bit" Nullable="false" />
+          <Property Name="funcion" Type="bit" Nullable="false" />
+          <Property Name="mesaTrabajo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCEO">
+          <Key>
+            <PropertyRef Name="idCEO" />
+          </Key>
+          <Property Name="idCEO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="claveCentroTrabajo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nombreCentroTrabajo" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="municipio" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="regionSEG" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="nivel" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="instiSubsis" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEje">
+          <Key>
+            <PropertyRef Name="idEje" />
+          </Key>
+          <Property Name="idEje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEscuelaEvento">
+          <Key>
+            <PropertyRef Name="idEscuela" />
+          </Key>
+          <Property Name="idEscuela" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCCT" Type="int" Nullable="false" />
+          <Property Name="idEvento" Type="int" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEvento">
+          <Key>
+            <PropertyRef Name="idEvento" />
+          </Key>
+          <Property Name="idEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="objetivo" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="rutaIcono" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="fVigenciaInicio" Type="date" Nullable="false" />
+          <Property Name="fVigenciaFin" Type="date" Nullable="false" />
+          <Property Name="fRegistroInicio" Type="date" Nullable="false" />
+          <Property Name="fRegistroFin" Type="date" Nullable="false" />
+          <Property Name="rutaPlantillaExcel" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="tipoEvento" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFuncionDesarrolloP">
+          <Key>
+            <PropertyRef Name="idFuncionD" />
+          </Key>
+          <Property Name="idFuncionD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreFunc" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFuncionParticipante">
+          <Key>
+            <PropertyRef Name="idFuncionPart" />
+          </Key>
+          <Property Name="idFuncionPart" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEvento" Type="int" Nullable="false" />
+          <Property Name="nomFuncion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblImagenBP">
+          <Key>
+            <PropertyRef Name="idImagen" />
+          </Key>
+          <Property Name="idImagen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="buenaPractica" Type="int" Nullable="false" />
+          <Property Name="campoBP" Type="int" Nullable="false" />
+          <Property Name="imagen" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="enumeracion" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblImagenModuloBanner">
+          <Key>
+            <PropertyRef Name="idImgBanner" />
+          </Key>
+          <Property Name="idImgBanner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="modulo" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="imagen" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblImagenRevision">
+          <Key>
+            <PropertyRef Name="idImagenComen" />
+          </Key>
+          <Property Name="idImagenComen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idRevision" Type="int" Nullable="false" />
+          <Property Name="campoPlantilla" Type="int" Nullable="false" />
+          <Property Name="imagen" Type="varchar" MaxLength="150" />
+          <Property Name="titulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="enumeracion" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMesaTrabEvento">
+          <Key>
+            <PropertyRef Name="idMesaTrab" />
+          </Key>
+          <Property Name="idMesaTrab" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEvento" Type="int" Nullable="false" />
+          <Property Name="nombreMT" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMesaTrabParticipante">
+          <Key>
+            <PropertyRef Name="idMesaTrabParti" />
+          </Key>
+          <Property Name="idMesaTrabParti" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="folioParticipante" Type="int" Nullable="false" />
+          <Property Name="idMesaTrab" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblModulo">
+          <Key>
+            <PropertyRef Name="idModulo" />
+          </Key>
+          <Property Name="idModulo" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="nombreModulo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="250" />
+          <Property Name="archivoIntroduccion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblMunicipio">
+          <Key>
+            <PropertyRef Name="idMunicipio" />
+          </Key>
+          <Property Name="idMunicipio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreMunicipio" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMunicipioEvento">
+          <Key>
+            <PropertyRef Name="idMunicipioEvento" />
+          </Key>
+          <Property Name="idMunicipioEvento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEvento" Type="int" Nullable="false" />
+          <Property Name="idMunicipio" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPerfil">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+          </Key>
+          <Property Name="idPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="perfil" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPermisoModulo">
+          <Key>
+            <PropertyRef Name="idPermisoMod" />
+          </Key>
+          <Property Name="idPermisoMod" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuario" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="modulo" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="permiso" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPerteneceInsSis">
+          <Key>
+            <PropertyRef Name="idPertenece" />
+          </Key>
+          <Property Name="idPertenece" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUserRevisor" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="institucionSistema" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPlantilla">
+          <Key>
+            <PropertyRef Name="idPlantilla" />
+          </Key>
+          <Property Name="idPlantilla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblRegistroEvento">
+          <Key>
+            <PropertyRef Name="folio" />
+          </Key>
+          <Property Name="folio" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEvento" Type="int" Nullable="false" />
+          <Property Name="idTipoRegistro" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="CCT" Type="varchar" MaxLength="15" />
+          <Property Name="nombrePlantel" Type="varchar" MaxLength="150" />
+          <Property Name="municipio" Type="varchar" MaxLength="150" />
+          <Property Name="regionSEG" Type="varchar" MaxLength="150" />
+          <Property Name="nivel" Type="varchar" MaxLength="150" />
+          <Property Name="instiSubsis" Type="varchar" MaxLength="150" />
+          <Property Name="CURP" Type="varchar" MaxLength="18" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoPat" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoMat" Type="varchar" MaxLength="50" />
+          <Property Name="correoElectronico" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" />
+          <Property Name="sexo" Type="varchar" MaxLength="15" />
+          <Property Name="funcion" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="tblRevisionBP">
+          <Key>
+            <PropertyRef Name="idRevision" />
+          </Key>
+          <Property Name="idRevision" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="usuarioRevisor" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="buenaPractica" Type="int" Nullable="false" />
+          <Property Name="fechaSoliRevi" Type="date" Nullable="false" />
+          <Property Name="fechaListaPubli" Type="date" />
+          <Property Name="comentarioTituloBP" Type="varchar" MaxLength="3000" />
+          <Property Name="comentarioSituacionMejora" Type="varchar" MaxLength="3000" />
+          <Property Name="comentarioDiagnosticoRealizo" Type="varchar" MaxLength="3000" />
+          <Property Name="comentarioCaracteristicasContexto" Type="varchar" MaxLength="3000" />
+          <Property Name="comentarioDescripcionActividadesRealizadas" Type="varchar" MaxLength="3000" />
+          <Property Name="comentarioElementoInnovador" Type="varchar" MaxLength="3000" />
+          <Property Name="comentarioResultadosObtenidos" Type="varchar" MaxLength="3000" />
+          <Property Name="comentarioObservacionesBP" Type="varchar" MaxLength="3000" />
+          <Property Name="comentarioFuenteInformacion" Type="varchar" MaxLength="3000" />
+          <Property Name="comentarioGeneral" Type="varchar" MaxLength="3000" />
+        </EntityType>
+        <EntityType Name="tblSubsistemaEvento">
+          <Key>
+            <PropertyRef Name="idSubsistemaEv" />
+          </Key>
+          <Property Name="idSubsistemaEv" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idEvento" Type="int" Nullable="false" />
+          <Property Name="nombreSubsistema" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTipoRegistro">
+          <Key>
+            <PropertyRef Name="idTipoRegistro" />
+          </Key>
+          <Property Name="idTipoRegistro" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUserEnlaceEvento">
+          <Key>
+            <PropertyRef Name="idUserEnlaceEve" />
+          </Key>
+          <Property Name="idUserEnlaceEve" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoRegistro" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="idEvento" Type="int" Nullable="false" />
+          <Property Name="idUserEnlace" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tblUsuario">
+          <Key>
+            <PropertyRef Name="nombreUsuario" />
+          </Key>
+          <Property Name="nombreUsuario" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pApellido" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sApellido" Type="varchar" MaxLength="30" />
+          <Property Name="contrasenia" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correoElectronico" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="estado" Type="bit" Nullable="false" />
+          <Property Name="perfil" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblAutore__buena__6477ECF3">
+          <End Role="tblBuenaPractica" Type="Self.tblBuenaPractica" Multiplicity="1" />
+          <End Role="tblAutores" Type="Self.tblAutores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuenaPractica">
+              <PropertyRef Name="idBuenaPractica" />
+            </Principal>
+            <Dependent Role="tblAutores">
+              <PropertyRef Name="buenaPractica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaP__idCEO__5BE2A6F2">
+          <End Role="tblCEO" Type="Self.tblCEO" Multiplicity="1" />
+          <End Role="tblBuenaPractica" Type="Self.tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCEO">
+              <PropertyRef Name="idCEO" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="idCEO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaP__idFun__5CD6CB2B">
+          <End Role="tblFuncionDesarrolloP" Type="Self.tblFuncionDesarrolloP" Multiplicity="1" />
+          <End Role="tblBuenaPractica" Type="Self.tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionDesarrolloP">
+              <PropertyRef Name="idFuncionD" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="idFuncionD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaP__idPla__5DCAEF64">
+          <End Role="tblPlantilla" Type="Self.tblPlantilla" Multiplicity="1" />
+          <End Role="tblBuenaPractica" Type="Self.tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlantilla">
+              <PropertyRef Name="idPlantilla" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="idPlantilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaP__munic__5AEE82B9">
+          <End Role="tblMunicipio" Type="Self.tblMunicipio" Multiplicity="1" />
+          <End Role="tblBuenaPractica" Type="Self.tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMunicipio">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="municipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaP__usuar__59FA5E80">
+          <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblBuenaPractica" Type="Self.tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="usuarioColaborador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaPra__eje__59063A47">
+          <End Role="tblEje" Type="Self.tblEje" Multiplicity="1" />
+          <End Role="tblBuenaPractica" Type="Self.tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEje">
+              <PropertyRef Name="idEje" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="eje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblCampoE__idEve__7A3223E8">
+          <End Role="tblEvento" Type="Self.tblEvento" Multiplicity="1" />
+          <End Role="tblCampoEvento" Type="Self.tblCampoEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblCampoEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblEscuel__idCCT__6CD828CA">
+          <End Role="tblCEO" Type="Self.tblCEO" Multiplicity="1" />
+          <End Role="tblEscuelaEvento" Type="Self.tblEscuelaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCEO">
+              <PropertyRef Name="idCEO" />
+            </Principal>
+            <Dependent Role="tblEscuelaEvento">
+              <PropertyRef Name="idCCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblEscuel__idEve__6DCC4D03">
+          <End Role="tblEvento" Type="Self.tblEvento" Multiplicity="1" />
+          <End Role="tblEscuelaEvento" Type="Self.tblEscuelaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblEscuelaEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFuncio__idEve__74794A92">
+          <End Role="tblEvento" Type="Self.tblEvento" Multiplicity="1" />
+          <End Role="tblFuncionParticipante" Type="Self.tblFuncionParticipante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblFuncionParticipante">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblImagen__buena__60A75C0F">
+          <End Role="tblBuenaPractica" Type="Self.tblBuenaPractica" Multiplicity="1" />
+          <End Role="tblImagenBP" Type="Self.tblImagenBP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuenaPractica">
+              <PropertyRef Name="idBuenaPractica" />
+            </Principal>
+            <Dependent Role="tblImagenBP">
+              <PropertyRef Name="buenaPractica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblImagen__campo__619B8048">
+          <End Role="tblCampoBP" Type="Self.tblCampoBP" Multiplicity="1" />
+          <End Role="tblImagenBP" Type="Self.tblImagenBP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCampoBP">
+              <PropertyRef Name="idCampo" />
+            </Principal>
+            <Dependent Role="tblImagenBP">
+              <PropertyRef Name="campoBP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblImagen__campo__6C190EBB">
+          <End Role="tblCampoBP" Type="Self.tblCampoBP" Multiplicity="1" />
+          <End Role="tblImagenRevision" Type="Self.tblImagenRevision" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCampoBP">
+              <PropertyRef Name="idCampo" />
+            </Principal>
+            <Dependent Role="tblImagenRevision">
+              <PropertyRef Name="campoPlantilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblImagen__idRev__6B24EA82">
+          <End Role="tblRevisionBP" Type="Self.tblRevisionBP" Multiplicity="1" />
+          <End Role="tblImagenRevision" Type="Self.tblImagenRevision" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRevisionBP">
+              <PropertyRef Name="idRevision" />
+            </Principal>
+            <Dependent Role="tblImagenRevision">
+              <PropertyRef Name="idRevision" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblImagen__modul__4D94879B">
+          <End Role="tblModulo" Type="Self.tblModulo" Multiplicity="1" />
+          <End Role="tblImagenModuloBanner" Type="Self.tblImagenModuloBanner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblModulo">
+              <PropertyRef Name="idModulo" />
+            </Principal>
+            <Dependent Role="tblImagenModuloBanner">
+              <PropertyRef Name="modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMesaTr__folio__05A3D694">
+          <End Role="tblRegistroEvento" Type="Self.tblRegistroEvento" Multiplicity="1" />
+          <End Role="tblMesaTrabParticipante" Type="Self.tblMesaTrabParticipante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRegistroEvento">
+              <PropertyRef Name="folio" />
+            </Principal>
+            <Dependent Role="tblMesaTrabParticipante">
+              <PropertyRef Name="folioParticipante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMesaTr__idEve__719CDDE7">
+          <End Role="tblEvento" Type="Self.tblEvento" Multiplicity="1" />
+          <End Role="tblMesaTrabEvento" Type="Self.tblMesaTrabEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblMesaTrabEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMesaTr__idMes__0697FACD">
+          <End Role="tblMesaTrabEvento" Type="Self.tblMesaTrabEvento" Multiplicity="1" />
+          <End Role="tblMesaTrabParticipante" Type="Self.tblMesaTrabParticipante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMesaTrabEvento">
+              <PropertyRef Name="idMesaTrab" />
+            </Principal>
+            <Dependent Role="tblMesaTrabParticipante">
+              <PropertyRef Name="idMesaTrab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMunici__idEve__690797E6">
+          <End Role="tblEvento" Type="Self.tblEvento" Multiplicity="1" />
+          <End Role="tblMunicipioEvento" Type="Self.tblMunicipioEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblMunicipioEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMunici__idMun__69FBBC1F">
+          <End Role="tblMunicipio" Type="Self.tblMunicipio" Multiplicity="1" />
+          <End Role="tblMunicipioEvento" Type="Self.tblMunicipioEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMunicipio">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="tblMunicipioEvento">
+              <PropertyRef Name="idMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__modul__5535A963">
+          <End Role="tblModulo" Type="Self.tblModulo" Multiplicity="1" />
+          <End Role="tblPermisoModulo" Type="Self.tblPermisoModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblModulo">
+              <PropertyRef Name="idModulo" />
+            </Principal>
+            <Dependent Role="tblPermisoModulo">
+              <PropertyRef Name="modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__usuar__5441852A">
+          <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblPermisoModulo" Type="Self.tblPermisoModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblPermisoModulo">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPerten__idUse__5070F446">
+          <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblPerteneceInsSis" Type="Self.tblPerteneceInsSis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblPerteneceInsSis">
+              <PropertyRef Name="idUserRevisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRegist__idEve__7D0E9093">
+          <End Role="tblEvento" Type="Self.tblEvento" Multiplicity="1" />
+          <End Role="tblRegistroEvento" Type="Self.tblRegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblRegistroEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRegist__idTip__7E02B4CC">
+          <End Role="tblTipoRegistro" Type="Self.tblTipoRegistro" Multiplicity="1" />
+          <End Role="tblRegistroEvento" Type="Self.tblRegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTipoRegistro">
+              <PropertyRef Name="idTipoRegistro" />
+            </Principal>
+            <Dependent Role="tblRegistroEvento">
+              <PropertyRef Name="idTipoRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRevisi__buena__68487DD7">
+          <End Role="tblBuenaPractica" Type="Self.tblBuenaPractica" Multiplicity="1" />
+          <End Role="tblRevisionBP" Type="Self.tblRevisionBP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuenaPractica">
+              <PropertyRef Name="idBuenaPractica" />
+            </Principal>
+            <Dependent Role="tblRevisionBP">
+              <PropertyRef Name="buenaPractica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRevisi__usuar__6754599E">
+          <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="1" />
+          <End Role="tblRevisionBP" Type="Self.tblRevisionBP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblRevisionBP">
+              <PropertyRef Name="usuarioRevisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSubsis__idEve__7755B73D">
+          <End Role="tblEvento" Type="Self.tblEvento" Multiplicity="1" />
+          <End Role="tblSubsistemaEvento" Type="Self.tblSubsistemaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblSubsistemaEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserEn__idEve__01D345B0">
+          <End Role="tblEvento" Type="Self.tblEvento" Multiplicity="1" />
+          <End Role="tblUserEnlaceEvento" Type="Self.tblUserEnlaceEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblUserEnlaceEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserEn__idTip__00DF2177">
+          <End Role="tblTipoRegistro" Type="Self.tblTipoRegistro" Multiplicity="1" />
+          <End Role="tblUserEnlaceEvento" Type="Self.tblUserEnlaceEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTipoRegistro">
+              <PropertyRef Name="idTipoRegistro" />
+            </Principal>
+            <Dependent Role="tblUserEnlaceEvento">
+              <PropertyRef Name="idTipoRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserEn__idUse__02C769E9">
+          <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="0..1" />
+          <End Role="tblUserEnlaceEvento" Type="Self.tblUserEnlaceEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblUserEnlaceEvento">
+              <PropertyRef Name="idUserEnlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsuari__perfi__47DBAE45">
+          <End Role="tblPerfil" Type="Self.tblPerfil" Multiplicity="1" />
+          <End Role="tblUsuario" Type="Self.tblUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerfil">
+              <PropertyRef Name="idPerfil" />
+            </Principal>
+            <Dependent Role="tblUsuario">
+              <PropertyRef Name="perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SeguimientoPermanenciaModelStoreContainer">
+          <EntitySet Name="tblAutores" EntityType="Self.tblAutores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBuenaPractica" EntityType="Self.tblBuenaPractica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCampoBP" EntityType="Self.tblCampoBP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCampoEvento" EntityType="Self.tblCampoEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCEO" EntityType="Self.tblCEO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEje" EntityType="Self.tblEje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEscuelaEvento" EntityType="Self.tblEscuelaEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEvento" EntityType="Self.tblEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFuncionDesarrolloP" EntityType="Self.tblFuncionDesarrolloP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFuncionParticipante" EntityType="Self.tblFuncionParticipante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblImagenBP" EntityType="Self.tblImagenBP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblImagenModuloBanner" EntityType="Self.tblImagenModuloBanner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblImagenRevision" EntityType="Self.tblImagenRevision" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMesaTrabEvento" EntityType="Self.tblMesaTrabEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMesaTrabParticipante" EntityType="Self.tblMesaTrabParticipante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblModulo" EntityType="Self.tblModulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMunicipio" EntityType="Self.tblMunicipio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMunicipioEvento" EntityType="Self.tblMunicipioEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPerfil" EntityType="Self.tblPerfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPermisoModulo" EntityType="Self.tblPermisoModulo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPerteneceInsSis" EntityType="Self.tblPerteneceInsSis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPlantilla" EntityType="Self.tblPlantilla" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRegistroEvento" EntityType="Self.tblRegistroEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRevisionBP" EntityType="Self.tblRevisionBP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSubsistemaEvento" EntityType="Self.tblSubsistemaEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTipoRegistro" EntityType="Self.tblTipoRegistro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserEnlaceEvento" EntityType="Self.tblUserEnlaceEvento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsuario" EntityType="Self.tblUsuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblAutore__buena__6477ECF3" Association="Self.FK__tblAutore__buena__6477ECF3">
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+            <End Role="tblAutores" EntitySet="tblAutores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaP__idCEO__5BE2A6F2" Association="Self.FK__tblBuenaP__idCEO__5BE2A6F2">
+            <End Role="tblCEO" EntitySet="tblCEO" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaP__idFun__5CD6CB2B" Association="Self.FK__tblBuenaP__idFun__5CD6CB2B">
+            <End Role="tblFuncionDesarrolloP" EntitySet="tblFuncionDesarrolloP" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaP__idPla__5DCAEF64" Association="Self.FK__tblBuenaP__idPla__5DCAEF64">
+            <End Role="tblPlantilla" EntitySet="tblPlantilla" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaP__munic__5AEE82B9" Association="Self.FK__tblBuenaP__munic__5AEE82B9">
+            <End Role="tblMunicipio" EntitySet="tblMunicipio" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaP__usuar__59FA5E80" Association="Self.FK__tblBuenaP__usuar__59FA5E80">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaPra__eje__59063A47" Association="Self.FK__tblBuenaPra__eje__59063A47">
+            <End Role="tblEje" EntitySet="tblEje" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblCampoE__idEve__7A3223E8" Association="Self.FK__tblCampoE__idEve__7A3223E8">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblCampoEvento" EntitySet="tblCampoEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblEscuel__idCCT__6CD828CA" Association="Self.FK__tblEscuel__idCCT__6CD828CA">
+            <End Role="tblCEO" EntitySet="tblCEO" />
+            <End Role="tblEscuelaEvento" EntitySet="tblEscuelaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblEscuel__idEve__6DCC4D03" Association="Self.FK__tblEscuel__idEve__6DCC4D03">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblEscuelaEvento" EntitySet="tblEscuelaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFuncio__idEve__74794A92" Association="Self.FK__tblFuncio__idEve__74794A92">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblFuncionParticipante" EntitySet="tblFuncionParticipante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblImagen__buena__60A75C0F" Association="Self.FK__tblImagen__buena__60A75C0F">
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+            <End Role="tblImagenBP" EntitySet="tblImagenBP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblImagen__campo__619B8048" Association="Self.FK__tblImagen__campo__619B8048">
+            <End Role="tblCampoBP" EntitySet="tblCampoBP" />
+            <End Role="tblImagenBP" EntitySet="tblImagenBP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblImagen__campo__6C190EBB" Association="Self.FK__tblImagen__campo__6C190EBB">
+            <End Role="tblCampoBP" EntitySet="tblCampoBP" />
+            <End Role="tblImagenRevision" EntitySet="tblImagenRevision" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblImagen__idRev__6B24EA82" Association="Self.FK__tblImagen__idRev__6B24EA82">
+            <End Role="tblRevisionBP" EntitySet="tblRevisionBP" />
+            <End Role="tblImagenRevision" EntitySet="tblImagenRevision" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblImagen__modul__4D94879B" Association="Self.FK__tblImagen__modul__4D94879B">
+            <End Role="tblModulo" EntitySet="tblModulo" />
+            <End Role="tblImagenModuloBanner" EntitySet="tblImagenModuloBanner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMesaTr__folio__05A3D694" Association="Self.FK__tblMesaTr__folio__05A3D694">
+            <End Role="tblRegistroEvento" EntitySet="tblRegistroEvento" />
+            <End Role="tblMesaTrabParticipante" EntitySet="tblMesaTrabParticipante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMesaTr__idEve__719CDDE7" Association="Self.FK__tblMesaTr__idEve__719CDDE7">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblMesaTrabEvento" EntitySet="tblMesaTrabEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMesaTr__idMes__0697FACD" Association="Self.FK__tblMesaTr__idMes__0697FACD">
+            <End Role="tblMesaTrabEvento" EntitySet="tblMesaTrabEvento" />
+            <End Role="tblMesaTrabParticipante" EntitySet="tblMesaTrabParticipante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMunici__idEve__690797E6" Association="Self.FK__tblMunici__idEve__690797E6">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblMunicipioEvento" EntitySet="tblMunicipioEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMunici__idMun__69FBBC1F" Association="Self.FK__tblMunici__idMun__69FBBC1F">
+            <End Role="tblMunicipio" EntitySet="tblMunicipio" />
+            <End Role="tblMunicipioEvento" EntitySet="tblMunicipioEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__modul__5535A963" Association="Self.FK__tblPermis__modul__5535A963">
+            <End Role="tblModulo" EntitySet="tblModulo" />
+            <End Role="tblPermisoModulo" EntitySet="tblPermisoModulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__usuar__5441852A" Association="Self.FK__tblPermis__usuar__5441852A">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblPermisoModulo" EntitySet="tblPermisoModulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPerten__idUse__5070F446" Association="Self.FK__tblPerten__idUse__5070F446">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblPerteneceInsSis" EntitySet="tblPerteneceInsSis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRegist__idEve__7D0E9093" Association="Self.FK__tblRegist__idEve__7D0E9093">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblRegistroEvento" EntitySet="tblRegistroEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRegist__idTip__7E02B4CC" Association="Self.FK__tblRegist__idTip__7E02B4CC">
+            <End Role="tblTipoRegistro" EntitySet="tblTipoRegistro" />
+            <End Role="tblRegistroEvento" EntitySet="tblRegistroEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRevisi__buena__68487DD7" Association="Self.FK__tblRevisi__buena__68487DD7">
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+            <End Role="tblRevisionBP" EntitySet="tblRevisionBP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRevisi__usuar__6754599E" Association="Self.FK__tblRevisi__usuar__6754599E">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblRevisionBP" EntitySet="tblRevisionBP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSubsis__idEve__7755B73D" Association="Self.FK__tblSubsis__idEve__7755B73D">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblSubsistemaEvento" EntitySet="tblSubsistemaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserEn__idEve__01D345B0" Association="Self.FK__tblUserEn__idEve__01D345B0">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblUserEnlaceEvento" EntitySet="tblUserEnlaceEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserEn__idTip__00DF2177" Association="Self.FK__tblUserEn__idTip__00DF2177">
+            <End Role="tblTipoRegistro" EntitySet="tblTipoRegistro" />
+            <End Role="tblUserEnlaceEvento" EntitySet="tblUserEnlaceEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserEn__idUse__02C769E9" Association="Self.FK__tblUserEn__idUse__02C769E9">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblUserEnlaceEvento" EntitySet="tblUserEnlaceEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsuari__perfi__47DBAE45" Association="Self.FK__tblUsuari__perfi__47DBAE45">
+            <End Role="tblPerfil" EntitySet="tblPerfil" />
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SeguimientoPermanenciaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblAutores">
+          <Key>
+            <PropertyRef Name="idAutor" />
+          </Key>
+          <Property Name="idAutor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="buenaPractica" Type="Int32" Nullable="false" />
+          <Property Name="nombreA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pApellidoA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mApellidoA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="correoElectronicoA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefonoA" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblBuenaPractica" Relationship="SeguimientoPermanenciaModel.FK__tblAutore__buena__619B8048" FromRole="tblAutores" ToRole="tblBuenaPractica" />
+        </EntityType>
+        <EntityType Name="tblCampoBP">
+          <Key>
+            <PropertyRef Name="idCampo" />
+          </Key>
+          <Property Name="idCampo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="subeArchivo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblImagenBP" Relationship="SeguimientoPermanenciaModel.FK__tblImagen__campo__619B8048" FromRole="tblCampoBP" ToRole="tblImagenBP" />
+          <NavigationProperty Name="tblImagenRevision" Relationship="SeguimientoPermanenciaModel.FK__tblImagen__campo__6EF57B66" FromRole="tblCampoBP" ToRole="tblImagenRevision" />
+        </EntityType>
+        <EntityType Name="tblCEO">
+          <Key>
+            <PropertyRef Name="idCEO" />
+          </Key>
+          <Property Name="idCEO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="claveCentroTrabajo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreCentroTrabajo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblBuenaPractica" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__idCEO__5AEE82B9" FromRole="tblCEO" ToRole="tblBuenaPractica" />
+          <Property Name="municipio" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="regionSEG" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="nivel" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="instiSubsis" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblEscuelaEvento" Relationship="SeguimientoPermanenciaModel.FK__tblEscuel__idCCT__787EE5A0" FromRole="tblCEO" ToRole="tblEscuelaEvento" />
+        </EntityType>
+        <EntityType Name="tblImagenBP">
+          <Key>
+            <PropertyRef Name="idImagen" />
+          </Key>
+          <Property Name="idImagen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="buenaPractica" Type="Int32" Nullable="false" />
+          <Property Name="campoBP" Type="Int32" Nullable="false" />
+          <Property Name="imagen" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblBuenaPractica" Relationship="SeguimientoPermanenciaModel.FK__tblImagen__buena__5EBF139D" FromRole="tblImagenBP" ToRole="tblBuenaPractica" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enumeracion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblCampoBP" Relationship="SeguimientoPermanenciaModel.FK__tblImagen__campo__619B8048" FromRole="tblImagenBP" ToRole="tblCampoBP" />
+        </EntityType>
+        <EntityType Name="tblImagenModuloBanner">
+          <Key>
+            <PropertyRef Name="idImgBanner" />
+          </Key>
+          <Property Name="idImgBanner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="modulo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="imagen" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblModulo" Relationship="Self.FK__tblImagen__modul__44FF419A" FromRole="tblImagenModuloBanner" ToRole="tblModulo" />
+        </EntityType>
+        <EntityType Name="tblModulo">
+          <Key>
+            <PropertyRef Name="idModulo" />
+          </Key>
+          <Property Name="idModulo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreModulo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="archivoIntroduccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblImagenModuloBanner" Relationship="Self.FK__tblImagen__modul__44FF419A" FromRole="tblModulo" ToRole="tblImagenModuloBanner" />
+          <NavigationProperty Name="tblPermisoModulo" Relationship="Self.FK__tblPermis__modul__4F7CD00D" FromRole="tblModulo" ToRole="tblPermisoModulo" />
+        </EntityType>
+        <EntityType Name="tblMunicipio">
+          <Key>
+            <PropertyRef Name="idMunicipio" />
+          </Key>
+          <Property Name="idMunicipio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreMunicipio" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblBuenaPractica" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__munic__59FA5E80" FromRole="tblMunicipio" ToRole="tblBuenaPractica" />
+          <NavigationProperty Name="tblMunicipioEvento" Relationship="SeguimientoPermanenciaModel.FK__tblMunici__idMun__75A278F5" FromRole="tblMunicipio" ToRole="tblMunicipioEvento" />
+        </EntityType>
+        <EntityType Name="tblPerfil">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+          </Key>
+          <Property Name="idPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="perfil" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblUsuario" Relationship="SeguimientoPermanenciaModel.FK__tblUsuari__perfi__47DBAE45" FromRole="tblPerfil" ToRole="tblUsuario" />
+        </EntityType>
+        <EntityType Name="tblPermisoModulo">
+          <Key>
+            <PropertyRef Name="idPermisoMod" />
+          </Key>
+          <Property Name="idPermisoMod" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuario" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modulo" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="permiso" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblModulo" Relationship="Self.FK__tblPermis__modul__4F7CD00D" FromRole="tblPermisoModulo" ToRole="tblModulo" />
+          <NavigationProperty Name="tblUsuario" Relationship="SeguimientoPermanenciaModel.FK__tblPermis__usuar__5441852A" FromRole="tblPermisoModulo" ToRole="tblUsuario" />
+        </EntityType>
+        <EntityType Name="tblPerteneceInsSis">
+          <Key>
+            <PropertyRef Name="idPertenece" />
+          </Key>
+          <Property Name="idPertenece" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUserRevisor" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="institucionSistema" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblUsuario" Relationship="SeguimientoPermanenciaModel.FK__tblPerten__idUse__5070F446" FromRole="tblPerteneceInsSis" ToRole="tblUsuario" />
+        </EntityType>
+        <EntityType Name="tblPlantilla">
+          <Key>
+            <PropertyRef Name="idPlantilla" />
+          </Key>
+          <Property Name="idPlantilla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblBuenaPractica" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__idPla__5CD6CB2B" FromRole="tblPlantilla" ToRole="tblBuenaPractica" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblImagen__modul__44FF419A">
+          <End Role="tblModulo" Type="Self.tblModulo" Multiplicity="1" />
+          <End Role="tblImagenModuloBanner" Type="Self.tblImagenModuloBanner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblModulo">
+              <PropertyRef Name="idModulo" />
+            </Principal>
+            <Dependent Role="tblImagenModuloBanner">
+              <PropertyRef Name="modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__modul__4F7CD00D">
+          <End Role="tblModulo" Type="Self.tblModulo" Multiplicity="1" />
+          <End Role="tblPermisoModulo" Type="Self.tblPermisoModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblModulo">
+              <PropertyRef Name="idModulo" />
+            </Principal>
+            <Dependent Role="tblPermisoModulo">
+              <PropertyRef Name="modulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SeguimientoPermanenciaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAutores" EntityType="Self.tblAutores" />
+          <EntitySet Name="tblCampoBP" EntityType="Self.tblCampoBP" />
+          <EntitySet Name="tblCEO" EntityType="Self.tblCEO" />
+          <EntitySet Name="tblImagenBP" EntityType="Self.tblImagenBP" />
+          <EntitySet Name="tblImagenModuloBanner" EntityType="Self.tblImagenModuloBanner" />
+          <EntitySet Name="tblModulo" EntityType="Self.tblModulo" />
+          <EntitySet Name="tblMunicipio" EntityType="Self.tblMunicipio" />
+          <EntitySet Name="tblPerfil" EntityType="Self.tblPerfil" />
+          <EntitySet Name="tblPermisoModulo" EntityType="Self.tblPermisoModulo" />
+          <EntitySet Name="tblPerteneceInsSis" EntityType="Self.tblPerteneceInsSis" />
+          <EntitySet Name="tblPlantilla" EntityType="Self.tblPlantilla" />
+          <AssociationSet Name="FK__tblImagen__modul__44FF419A" Association="Self.FK__tblImagen__modul__44FF419A">
+            <End Role="tblModulo" EntitySet="tblModulo" />
+            <End Role="tblImagenModuloBanner" EntitySet="tblImagenModuloBanner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__modul__4F7CD00D" Association="Self.FK__tblPermis__modul__4F7CD00D">
+            <End Role="tblModulo" EntitySet="tblModulo" />
+            <End Role="tblPermisoModulo" EntitySet="tblPermisoModulo" />
+          </AssociationSet>
+          <EntitySet Name="tblFuncionDesarrolloP" EntityType="SeguimientoPermanenciaModel.tblFuncionDesarrolloP" />
+          <EntitySet Name="tblBuenaPractica" EntityType="SeguimientoPermanenciaModel.tblBuenaPractica" />
+          <AssociationSet Name="FK__tblAutore__buena__619B8048" Association="SeguimientoPermanenciaModel.FK__tblAutore__buena__619B8048">
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+            <End Role="tblAutores" EntitySet="tblAutores" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaP__idCEO__5AEE82B9" Association="SeguimientoPermanenciaModel.FK__tblBuenaP__idCEO__5AEE82B9">
+            <End Role="tblCEO" EntitySet="tblCEO" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaP__idFun__5BE2A6F2" Association="SeguimientoPermanenciaModel.FK__tblBuenaP__idFun__5BE2A6F2">
+            <End Role="tblFuncionDesarrolloP" EntitySet="tblFuncionDesarrolloP" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaP__munic__59FA5E80" Association="SeguimientoPermanenciaModel.FK__tblBuenaP__munic__59FA5E80">
+            <End Role="tblMunicipio" EntitySet="tblMunicipio" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblImagen__buena__5EBF139D" Association="SeguimientoPermanenciaModel.FK__tblImagen__buena__5EBF139D">
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+            <End Role="tblImagenBP" EntitySet="tblImagenBP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblBuenaP__idPla__5CD6CB2B" Association="SeguimientoPermanenciaModel.FK__tblBuenaP__idPla__5CD6CB2B">
+            <End Role="tblPlantilla" EntitySet="tblPlantilla" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblImagen__campo__619B8048" Association="SeguimientoPermanenciaModel.FK__tblImagen__campo__619B8048">
+            <End Role="tblCampoBP" EntitySet="tblCampoBP" />
+            <End Role="tblImagenBP" EntitySet="tblImagenBP" />
+          </AssociationSet>
+          <EntitySet Name="tblImagenRevision" EntityType="SeguimientoPermanenciaModel.tblImagenRevision" />
+          <AssociationSet Name="FK__tblImagen__campo__6EF57B66" Association="SeguimientoPermanenciaModel.FK__tblImagen__campo__6EF57B66">
+            <End Role="tblCampoBP" EntitySet="tblCampoBP" />
+            <End Role="tblImagenRevision" EntitySet="tblImagenRevision" />
+          </AssociationSet>
+          <EntitySet Name="tblRevisionBP" EntityType="SeguimientoPermanenciaModel.tblRevisionBP" />
+          <AssociationSet Name="FK__tblRevisi__buena__6B24EA82" Association="SeguimientoPermanenciaModel.FK__tblRevisi__buena__6B24EA82">
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+            <End Role="tblRevisionBP" EntitySet="tblRevisionBP" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblImagen__idRev__6E01572D" Association="SeguimientoPermanenciaModel.FK__tblImagen__idRev__6E01572D">
+            <End Role="tblRevisionBP" EntitySet="tblRevisionBP" />
+            <End Role="tblImagenRevision" EntitySet="tblImagenRevision" />
+          </AssociationSet>
+          <EntitySet Name="tblEje" EntityType="SeguimientoPermanenciaModel.tblEje" />
+          <AssociationSet Name="FK__tblBuenaPra__eje__59063A47" Association="SeguimientoPermanenciaModel.FK__tblBuenaPra__eje__59063A47">
+            <End Role="tblEje" EntitySet="tblEje" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <EntitySet Name="tblUsuario" EntityType="SeguimientoPermanenciaModel.tblUsuario" />
+          <AssociationSet Name="FK__tblBuenaP__usuar__59FA5E80" Association="SeguimientoPermanenciaModel.FK__tblBuenaP__usuar__59FA5E80">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblBuenaPractica" EntitySet="tblBuenaPractica" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsuari__perfi__47DBAE45" Association="SeguimientoPermanenciaModel.FK__tblUsuari__perfi__47DBAE45">
+            <End Role="tblPerfil" EntitySet="tblPerfil" />
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPermis__usuar__5441852A" Association="SeguimientoPermanenciaModel.FK__tblPermis__usuar__5441852A">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblPermisoModulo" EntitySet="tblPermisoModulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblPerten__idUse__5070F446" Association="SeguimientoPermanenciaModel.FK__tblPerten__idUse__5070F446">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblPerteneceInsSis" EntitySet="tblPerteneceInsSis" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRevisi__usuar__6754599E" Association="SeguimientoPermanenciaModel.FK__tblRevisi__usuar__6754599E">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblRevisionBP" EntitySet="tblRevisionBP" />
+          </AssociationSet>
+          <EntitySet Name="tblCampoEvento" EntityType="SeguimientoPermanenciaModel.tblCampoEvento" />
+          <EntitySet Name="tblEscuelaEvento" EntityType="SeguimientoPermanenciaModel.tblEscuelaEvento" />
+          <EntitySet Name="tblEvento" EntityType="SeguimientoPermanenciaModel.tblEvento" />
+          <EntitySet Name="tblFuncionParticipante" EntityType="SeguimientoPermanenciaModel.tblFuncionParticipante" />
+          <EntitySet Name="tblMesaTrabEvento" EntityType="SeguimientoPermanenciaModel.tblMesaTrabEvento" />
+          <EntitySet Name="tblMesaTrabParticipante" EntityType="SeguimientoPermanenciaModel.tblMesaTrabParticipante" />
+          <EntitySet Name="tblMunicipioEvento" EntityType="SeguimientoPermanenciaModel.tblMunicipioEvento" />
+          <EntitySet Name="tblSubsistemaEvento" EntityType="SeguimientoPermanenciaModel.tblSubsistemaEvento" />
+          <AssociationSet Name="FK__tblCampoE__idEve__04E4BC85" Association="SeguimientoPermanenciaModel.FK__tblCampoE__idEve__04E4BC85">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblCampoEvento" EntitySet="tblCampoEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblEscuel__idCCT__787EE5A0" Association="SeguimientoPermanenciaModel.FK__tblEscuel__idCCT__787EE5A0">
+            <End Role="tblCEO" EntitySet="tblCEO" />
+            <End Role="tblEscuelaEvento" EntitySet="tblEscuelaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblEscuel__idEve__797309D9" Association="SeguimientoPermanenciaModel.FK__tblEscuel__idEve__797309D9">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblEscuelaEvento" EntitySet="tblEscuelaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblFuncio__idEve__7F2BE32F" Association="SeguimientoPermanenciaModel.FK__tblFuncio__idEve__7F2BE32F">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblFuncionParticipante" EntitySet="tblFuncionParticipante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMesaTr__idEve__7C4F7684" Association="SeguimientoPermanenciaModel.FK__tblMesaTr__idEve__7C4F7684">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblMesaTrabEvento" EntitySet="tblMesaTrabEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMunici__idEve__74AE54BC" Association="SeguimientoPermanenciaModel.FK__tblMunici__idEve__74AE54BC">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblMunicipioEvento" EntitySet="tblMunicipioEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblSubsis__idEve__02084FDA" Association="SeguimientoPermanenciaModel.FK__tblSubsis__idEve__02084FDA">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblSubsistemaEvento" EntitySet="tblSubsistemaEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMesaTr__idMes__114A936A" Association="SeguimientoPermanenciaModel.FK__tblMesaTr__idMes__114A936A">
+            <End Role="tblMesaTrabEvento" EntitySet="tblMesaTrabEvento" />
+            <End Role="tblMesaTrabParticipante" EntitySet="tblMesaTrabParticipante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMunici__idMun__75A278F5" Association="SeguimientoPermanenciaModel.FK__tblMunici__idMun__75A278F5">
+            <End Role="tblMunicipio" EntitySet="tblMunicipio" />
+            <End Role="tblMunicipioEvento" EntitySet="tblMunicipioEvento" />
+          </AssociationSet>
+          <EntitySet Name="tblRegistroEvento" EntityType="SeguimientoPermanenciaModel.tblRegistroEvento" />
+          <EntitySet Name="tblTipoRegistro" EntityType="SeguimientoPermanenciaModel.tblTipoRegistro" />
+          <EntitySet Name="tblUserEnlaceEvento" EntityType="SeguimientoPermanenciaModel.tblUserEnlaceEvento" />
+          <AssociationSet Name="FK__tblRegist__idEve__41EDCAC5" Association="SeguimientoPermanenciaModel.FK__tblRegist__idEve__41EDCAC5">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblRegistroEvento" EntitySet="tblRegistroEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserEn__idEve__46B27FE2" Association="SeguimientoPermanenciaModel.FK__tblUserEn__idEve__46B27FE2">
+            <End Role="tblEvento" EntitySet="tblEvento" />
+            <End Role="tblUserEnlaceEvento" EntitySet="tblUserEnlaceEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMesaTr__folio__4A8310C6" Association="SeguimientoPermanenciaModel.FK__tblMesaTr__folio__4A8310C6">
+            <End Role="tblRegistroEvento" EntitySet="tblRegistroEvento" />
+            <End Role="tblMesaTrabParticipante" EntitySet="tblMesaTrabParticipante" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblRegist__idTip__42E1EEFE" Association="SeguimientoPermanenciaModel.FK__tblRegist__idTip__42E1EEFE">
+            <End Role="tblTipoRegistro" EntitySet="tblTipoRegistro" />
+            <End Role="tblRegistroEvento" EntitySet="tblRegistroEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserEn__idTip__45BE5BA9" Association="SeguimientoPermanenciaModel.FK__tblUserEn__idTip__45BE5BA9">
+            <End Role="tblTipoRegistro" EntitySet="tblTipoRegistro" />
+            <End Role="tblUserEnlaceEvento" EntitySet="tblUserEnlaceEvento" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUserEn__idUse__47A6A41B" Association="SeguimientoPermanenciaModel.FK__tblUserEn__idUse__47A6A41B">
+            <End Role="tblUsuario" EntitySet="tblUsuario" />
+            <End Role="tblUserEnlaceEvento" EntitySet="tblUserEnlaceEvento" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="tblFuncionDesarrolloP">
+          <Key>
+            <PropertyRef Name="idFuncionD" />
+          </Key>
+          <Property Name="idFuncionD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreFunc" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblBuenaPractica" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__idFun__5BE2A6F2" FromRole="tblFuncionDesarrolloP" ToRole="tblBuenaPractica" />
+        </EntityType>
+        <EntityType Name="tblBuenaPractica">
+          <Key>
+            <PropertyRef Name="idBuenaPractica" />
+          </Key>
+          <Property Name="idBuenaPractica" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="eje" Type="Int32" Nullable="false" />
+          <Property Name="usuarioColaborador" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="Int32" Nullable="false" />
+          <Property Name="idCEO" Type="Int32" Nullable="false" />
+          <Property Name="idFuncionD" Type="Int32" Nullable="false" />
+          <Property Name="tituloBP" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="situacionMejora" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Name="diagnosticoRealizo" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="caracteristicasContexto" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="descripcionActividadesRealizadas" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="elementoInnovador" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Name="resultadosObtenidos" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="observacionesBP" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Name="fuentesInformacion" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblAutores" Relationship="SeguimientoPermanenciaModel.FK__tblAutore__buena__619B8048" FromRole="tblBuenaPractica" ToRole="tblAutores" />
+          <NavigationProperty Name="tblCEO" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__idCEO__5AEE82B9" FromRole="tblBuenaPractica" ToRole="tblCEO" />
+          <NavigationProperty Name="tblFuncionDesarrolloP" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__idFun__5BE2A6F2" FromRole="tblBuenaPractica" ToRole="tblFuncionDesarrolloP" />
+          <NavigationProperty Name="tblMunicipio" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__munic__59FA5E80" FromRole="tblBuenaPractica" ToRole="tblMunicipio" />
+          <NavigationProperty Name="tblImagenBP" Relationship="SeguimientoPermanenciaModel.FK__tblImagen__buena__5EBF139D" FromRole="tblBuenaPractica" ToRole="tblImagenBP" />
+          <Property Name="idPlantilla" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblPlantilla" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__idPla__5CD6CB2B" FromRole="tblBuenaPractica" ToRole="tblPlantilla" />
+          <NavigationProperty Name="tblRevisionBP" Relationship="SeguimientoPermanenciaModel.FK__tblRevisi__buena__6B24EA82" FromRole="tblBuenaPractica" ToRole="tblRevisionBP" />
+          <NavigationProperty Name="tblEje" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaPra__eje__59063A47" FromRole="tblBuenaPractica" ToRole="tblEje" />
+          <NavigationProperty Name="tblUsuario" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__usuar__59FA5E80" FromRole="tblBuenaPractica" ToRole="tblUsuario" />
+        </EntityType>
+        <Association Name="FK__tblAutore__buena__619B8048">
+          <End Type="SeguimientoPermanenciaModel.tblBuenaPractica" Role="tblBuenaPractica" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblAutores" Role="tblAutores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuenaPractica">
+              <PropertyRef Name="idBuenaPractica" />
+            </Principal>
+            <Dependent Role="tblAutores">
+              <PropertyRef Name="buenaPractica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaP__idCEO__5AEE82B9">
+          <End Type="SeguimientoPermanenciaModel.tblCEO" Role="tblCEO" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblBuenaPractica" Role="tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCEO">
+              <PropertyRef Name="idCEO" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="idCEO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaP__idFun__5BE2A6F2">
+          <End Type="SeguimientoPermanenciaModel.tblFuncionDesarrolloP" Role="tblFuncionDesarrolloP" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblBuenaPractica" Role="tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFuncionDesarrolloP">
+              <PropertyRef Name="idFuncionD" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="idFuncionD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaP__munic__59FA5E80">
+          <End Type="SeguimientoPermanenciaModel.tblMunicipio" Role="tblMunicipio" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblBuenaPractica" Role="tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMunicipio">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="municipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblImagen__buena__5EBF139D">
+          <End Type="SeguimientoPermanenciaModel.tblBuenaPractica" Role="tblBuenaPractica" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblImagenBP" Role="tblImagenBP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuenaPractica">
+              <PropertyRef Name="idBuenaPractica" />
+            </Principal>
+            <Dependent Role="tblImagenBP">
+              <PropertyRef Name="buenaPractica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblBuenaP__idPla__5CD6CB2B">
+          <End Type="SeguimientoPermanenciaModel.tblPlantilla" Role="tblPlantilla" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblBuenaPractica" Role="tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlantilla">
+              <PropertyRef Name="idPlantilla" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="idPlantilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblImagen__campo__619B8048">
+          <End Type="SeguimientoPermanenciaModel.tblCampoBP" Role="tblCampoBP" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblImagenBP" Role="tblImagenBP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCampoBP">
+              <PropertyRef Name="idCampo" />
+            </Principal>
+            <Dependent Role="tblImagenBP">
+              <PropertyRef Name="campoBP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblImagenRevision">
+          <Key>
+            <PropertyRef Name="idImagenComen" />
+          </Key>
+          <Property Name="idImagenComen" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idRevision" Type="Int32" Nullable="false" />
+          <Property Name="campoPlantilla" Type="Int32" Nullable="false" />
+          <Property Name="imagen" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblCampoBP" Relationship="SeguimientoPermanenciaModel.FK__tblImagen__campo__6EF57B66" FromRole="tblImagenRevision" ToRole="tblCampoBP" />
+          <NavigationProperty Name="tblRevisionBP" Relationship="SeguimientoPermanenciaModel.FK__tblImagen__idRev__6E01572D" FromRole="tblImagenRevision" ToRole="tblRevisionBP" />
+          <Property Name="titulo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enumeracion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__tblImagen__campo__6EF57B66">
+          <End Type="SeguimientoPermanenciaModel.tblCampoBP" Role="tblCampoBP" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblImagenRevision" Role="tblImagenRevision" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCampoBP">
+              <PropertyRef Name="idCampo" />
+            </Principal>
+            <Dependent Role="tblImagenRevision">
+              <PropertyRef Name="campoPlantilla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblRevisionBP">
+          <Key>
+            <PropertyRef Name="idRevision" />
+          </Key>
+          <Property Name="idRevision" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="usuarioRevisor" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="buenaPractica" Type="Int32" Nullable="false" />
+          <Property Name="fechaSoliRevi" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaListaPubli" Type="DateTime" Precision="0" />
+          <Property Name="comentarioTituloBP" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="comentarioSituacionMejora" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="comentarioDiagnosticoRealizo" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="comentarioCaracteristicasContexto" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="comentarioDescripcionActividadesRealizadas" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="comentarioElementoInnovador" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="comentarioResultadosObtenidos" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="comentarioObservacionesBP" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="comentarioFuenteInformacion" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="comentarioGeneral" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblBuenaPractica" Relationship="SeguimientoPermanenciaModel.FK__tblRevisi__buena__6B24EA82" FromRole="tblRevisionBP" ToRole="tblBuenaPractica" />
+          <NavigationProperty Name="tblImagenRevision" Relationship="SeguimientoPermanenciaModel.FK__tblImagen__idRev__6E01572D" FromRole="tblRevisionBP" ToRole="tblImagenRevision" />
+          <NavigationProperty Name="tblUsuario" Relationship="SeguimientoPermanenciaModel.FK__tblRevisi__usuar__6754599E" FromRole="tblRevisionBP" ToRole="tblUsuario" />
+        </EntityType>
+        <Association Name="FK__tblRevisi__buena__6B24EA82">
+          <End Type="SeguimientoPermanenciaModel.tblBuenaPractica" Role="tblBuenaPractica" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblRevisionBP" Role="tblRevisionBP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBuenaPractica">
+              <PropertyRef Name="idBuenaPractica" />
+            </Principal>
+            <Dependent Role="tblRevisionBP">
+              <PropertyRef Name="buenaPractica" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblImagen__idRev__6E01572D">
+          <End Type="SeguimientoPermanenciaModel.tblRevisionBP" Role="tblRevisionBP" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblImagenRevision" Role="tblImagenRevision" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRevisionBP">
+              <PropertyRef Name="idRevision" />
+            </Principal>
+            <Dependent Role="tblImagenRevision">
+              <PropertyRef Name="idRevision" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblEje">
+          <Key>
+            <PropertyRef Name="idEje" />
+          </Key>
+          <Property Name="idEje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblBuenaPractica" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaPra__eje__59063A47" FromRole="tblEje" ToRole="tblBuenaPractica" />
+        </EntityType>
+        <Association Name="FK__tblBuenaPra__eje__59063A47">
+          <End Type="SeguimientoPermanenciaModel.tblEje" Role="tblEje" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblBuenaPractica" Role="tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEje">
+              <PropertyRef Name="idEje" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="eje" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblUsuario">
+          <Key>
+            <PropertyRef Name="nombreUsuario" />
+          </Key>
+          <Property Name="nombreUsuario" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="pApellido" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sApellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="contrasenia" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correoElectronico" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+          <Property Name="perfil" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblBuenaPractica" Relationship="SeguimientoPermanenciaModel.FK__tblBuenaP__usuar__59FA5E80" FromRole="tblUsuario" ToRole="tblBuenaPractica" />
+          <NavigationProperty Name="tblPerfil" Relationship="SeguimientoPermanenciaModel.FK__tblUsuari__perfi__47DBAE45" FromRole="tblUsuario" ToRole="tblPerfil" />
+          <NavigationProperty Name="tblPermisoModulo" Relationship="SeguimientoPermanenciaModel.FK__tblPermis__usuar__5441852A" FromRole="tblUsuario" ToRole="tblPermisoModulo" />
+          <NavigationProperty Name="tblPerteneceInsSis" Relationship="SeguimientoPermanenciaModel.FK__tblPerten__idUse__5070F446" FromRole="tblUsuario" ToRole="tblPerteneceInsSis" />
+          <NavigationProperty Name="tblRevisionBP" Relationship="SeguimientoPermanenciaModel.FK__tblRevisi__usuar__6754599E" FromRole="tblUsuario" ToRole="tblRevisionBP" />
+          <NavigationProperty Name="tblUserEnlaceEvento" Relationship="SeguimientoPermanenciaModel.FK__tblUserEn__idUse__47A6A41B" FromRole="tblUsuario" ToRole="tblUserEnlaceEvento" />
+        </EntityType>
+        <Association Name="FK__tblBuenaP__usuar__59FA5E80">
+          <End Type="SeguimientoPermanenciaModel.tblUsuario" Role="tblUsuario" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblBuenaPractica" Role="tblBuenaPractica" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblBuenaPractica">
+              <PropertyRef Name="usuarioColaborador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsuari__perfi__47DBAE45">
+          <End Type="SeguimientoPermanenciaModel.tblPerfil" Role="tblPerfil" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblUsuario" Role="tblUsuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPerfil">
+              <PropertyRef Name="idPerfil" />
+            </Principal>
+            <Dependent Role="tblUsuario">
+              <PropertyRef Name="perfil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPermis__usuar__5441852A">
+          <End Type="SeguimientoPermanenciaModel.tblUsuario" Role="tblUsuario" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblPermisoModulo" Role="tblPermisoModulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblPermisoModulo">
+              <PropertyRef Name="usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblPerten__idUse__5070F446">
+          <End Type="SeguimientoPermanenciaModel.tblUsuario" Role="tblUsuario" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblPerteneceInsSis" Role="tblPerteneceInsSis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblPerteneceInsSis">
+              <PropertyRef Name="idUserRevisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRevisi__usuar__6754599E">
+          <End Type="SeguimientoPermanenciaModel.tblUsuario" Role="tblUsuario" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblRevisionBP" Role="tblRevisionBP" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblRevisionBP">
+              <PropertyRef Name="usuarioRevisor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblCampoEvento">
+          <Key>
+            <PropertyRef Name="idCampoEvento" />
+          </Key>
+          <Property Name="idCampoEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEvento" Type="Int32" Nullable="false" />
+          <Property Name="CCT" Type="Boolean" Nullable="false" />
+          <Property Name="nombrePlantel" Type="Boolean" Nullable="false" />
+          <Property Name="municipio" Type="Boolean" Nullable="false" />
+          <Property Name="regionSEG" Type="Boolean" Nullable="false" />
+          <Property Name="nivel" Type="Boolean" Nullable="false" />
+          <Property Name="instiSubsis" Type="Boolean" Nullable="false" />
+          <Property Name="CURP" Type="Boolean" Nullable="false" />
+          <Property Name="nombre" Type="Boolean" Nullable="false" />
+          <Property Name="apellidoPat" Type="Boolean" Nullable="false" />
+          <Property Name="apellidoMat" Type="Boolean" Nullable="false" />
+          <Property Name="correoElectronico" Type="Boolean" Nullable="false" />
+          <Property Name="telefono" Type="Boolean" Nullable="false" />
+          <Property Name="sexo" Type="Boolean" Nullable="false" />
+          <Property Name="funcion" Type="Boolean" Nullable="false" />
+          <Property Name="mesaTrabajo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblEvento" Relationship="SeguimientoPermanenciaModel.FK__tblCampoE__idEve__04E4BC85" FromRole="tblCampoEvento" ToRole="tblEvento" />
+        </EntityType>
+        <EntityType Name="tblEscuelaEvento">
+          <Key>
+            <PropertyRef Name="idEscuela" />
+          </Key>
+          <Property Name="idEscuela" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCCT" Type="Int32" Nullable="false" />
+          <Property Name="idEvento" Type="Int32" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCEO" Relationship="SeguimientoPermanenciaModel.FK__tblEscuel__idCCT__787EE5A0" FromRole="tblEscuelaEvento" ToRole="tblCEO" />
+          <NavigationProperty Name="tblEvento" Relationship="SeguimientoPermanenciaModel.FK__tblEscuel__idEve__797309D9" FromRole="tblEscuelaEvento" ToRole="tblEvento" />
+        </EntityType>
+        <EntityType Name="tblEvento">
+          <Key>
+            <PropertyRef Name="idEvento" />
+          </Key>
+          <Property Name="idEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="objetivo" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="rutaIcono" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="fVigenciaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fVigenciaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fRegistroInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fRegistroFin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="rutaPlantillaExcel" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="tipoEvento" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblCampoEvento" Relationship="SeguimientoPermanenciaModel.FK__tblCampoE__idEve__04E4BC85" FromRole="tblEvento" ToRole="tblCampoEvento" />
+          <NavigationProperty Name="tblEscuelaEvento" Relationship="SeguimientoPermanenciaModel.FK__tblEscuel__idEve__797309D9" FromRole="tblEvento" ToRole="tblEscuelaEvento" />
+          <NavigationProperty Name="tblFuncionParticipante" Relationship="SeguimientoPermanenciaModel.FK__tblFuncio__idEve__7F2BE32F" FromRole="tblEvento" ToRole="tblFuncionParticipante" />
+          <NavigationProperty Name="tblMesaTrabEvento" Relationship="SeguimientoPermanenciaModel.FK__tblMesaTr__idEve__7C4F7684" FromRole="tblEvento" ToRole="tblMesaTrabEvento" />
+          <NavigationProperty Name="tblMunicipioEvento" Relationship="SeguimientoPermanenciaModel.FK__tblMunici__idEve__74AE54BC" FromRole="tblEvento" ToRole="tblMunicipioEvento" />
+          <NavigationProperty Name="tblSubsistemaEvento" Relationship="SeguimientoPermanenciaModel.FK__tblSubsis__idEve__02084FDA" FromRole="tblEvento" ToRole="tblSubsistemaEvento" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblRegistroEvento" Relationship="SeguimientoPermanenciaModel.FK__tblRegist__idEve__41EDCAC5" FromRole="tblEvento" ToRole="tblRegistroEvento" />
+          <NavigationProperty Name="tblUserEnlaceEvento" Relationship="SeguimientoPermanenciaModel.FK__tblUserEn__idEve__46B27FE2" FromRole="tblEvento" ToRole="tblUserEnlaceEvento" />
+        </EntityType>
+        <EntityType Name="tblFuncionParticipante">
+          <Key>
+            <PropertyRef Name="idFuncionPart" />
+          </Key>
+          <Property Name="idFuncionPart" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEvento" Type="Int32" Nullable="false" />
+          <Property Name="nomFuncion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblEvento" Relationship="SeguimientoPermanenciaModel.FK__tblFuncio__idEve__7F2BE32F" FromRole="tblFuncionParticipante" ToRole="tblEvento" />
+        </EntityType>
+        <EntityType Name="tblMesaTrabEvento">
+          <Key>
+            <PropertyRef Name="idMesaTrab" />
+          </Key>
+          <Property Name="idMesaTrab" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEvento" Type="Int32" Nullable="false" />
+          <Property Name="nombreMT" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblEvento" Relationship="SeguimientoPermanenciaModel.FK__tblMesaTr__idEve__7C4F7684" FromRole="tblMesaTrabEvento" ToRole="tblEvento" />
+          <NavigationProperty Name="tblMesaTrabParticipante" Relationship="SeguimientoPermanenciaModel.FK__tblMesaTr__idMes__114A936A" FromRole="tblMesaTrabEvento" ToRole="tblMesaTrabParticipante" />
+          <Property Name="estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMesaTrabParticipante">
+          <Key>
+            <PropertyRef Name="idMesaTrabParti" />
+          </Key>
+          <Property Name="idMesaTrabParti" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="folioParticipante" Type="Int32" Nullable="false" />
+          <Property Name="idMesaTrab" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblMesaTrabEvento" Relationship="SeguimientoPermanenciaModel.FK__tblMesaTr__idMes__114A936A" FromRole="tblMesaTrabParticipante" ToRole="tblMesaTrabEvento" />
+          <NavigationProperty Name="tblRegistroEvento" Relationship="SeguimientoPermanenciaModel.FK__tblMesaTr__folio__4A8310C6" FromRole="tblMesaTrabParticipante" ToRole="tblRegistroEvento" />
+        </EntityType>
+        <EntityType Name="tblMunicipioEvento">
+          <Key>
+            <PropertyRef Name="idMunicipioEvento" />
+          </Key>
+          <Property Name="idMunicipioEvento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEvento" Type="Int32" Nullable="false" />
+          <Property Name="idMunicipio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblEvento" Relationship="SeguimientoPermanenciaModel.FK__tblMunici__idEve__74AE54BC" FromRole="tblMunicipioEvento" ToRole="tblEvento" />
+          <NavigationProperty Name="tblMunicipio" Relationship="SeguimientoPermanenciaModel.FK__tblMunici__idMun__75A278F5" FromRole="tblMunicipioEvento" ToRole="tblMunicipio" />
+        </EntityType>
+        <EntityType Name="tblSubsistemaEvento">
+          <Key>
+            <PropertyRef Name="idSubsistemaEv" />
+          </Key>
+          <Property Name="idSubsistemaEv" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEvento" Type="Int32" Nullable="false" />
+          <Property Name="nombreSubsistema" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblEvento" Relationship="SeguimientoPermanenciaModel.FK__tblSubsis__idEve__02084FDA" FromRole="tblSubsistemaEvento" ToRole="tblEvento" />
+        </EntityType>
+        <Association Name="FK__tblCampoE__idEve__04E4BC85">
+          <End Type="SeguimientoPermanenciaModel.tblEvento" Role="tblEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblCampoEvento" Role="tblCampoEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblCampoEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblEscuel__idCCT__787EE5A0">
+          <End Type="SeguimientoPermanenciaModel.tblCEO" Role="tblCEO" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblEscuelaEvento" Role="tblEscuelaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCEO">
+              <PropertyRef Name="idCEO" />
+            </Principal>
+            <Dependent Role="tblEscuelaEvento">
+              <PropertyRef Name="idCCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblEscuel__idEve__797309D9">
+          <End Type="SeguimientoPermanenciaModel.tblEvento" Role="tblEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblEscuelaEvento" Role="tblEscuelaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblEscuelaEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblFuncio__idEve__7F2BE32F">
+          <End Type="SeguimientoPermanenciaModel.tblEvento" Role="tblEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblFuncionParticipante" Role="tblFuncionParticipante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblFuncionParticipante">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMesaTr__idEve__7C4F7684">
+          <End Type="SeguimientoPermanenciaModel.tblEvento" Role="tblEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblMesaTrabEvento" Role="tblMesaTrabEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblMesaTrabEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMunici__idEve__74AE54BC">
+          <End Type="SeguimientoPermanenciaModel.tblEvento" Role="tblEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblMunicipioEvento" Role="tblMunicipioEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblMunicipioEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblSubsis__idEve__02084FDA">
+          <End Type="SeguimientoPermanenciaModel.tblEvento" Role="tblEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblSubsistemaEvento" Role="tblSubsistemaEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblSubsistemaEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMesaTr__idMes__114A936A">
+          <End Type="SeguimientoPermanenciaModel.tblMesaTrabEvento" Role="tblMesaTrabEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblMesaTrabParticipante" Role="tblMesaTrabParticipante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMesaTrabEvento">
+              <PropertyRef Name="idMesaTrab" />
+            </Principal>
+            <Dependent Role="tblMesaTrabParticipante">
+              <PropertyRef Name="idMesaTrab" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMunici__idMun__75A278F5">
+          <End Type="SeguimientoPermanenciaModel.tblMunicipio" Role="tblMunicipio" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblMunicipioEvento" Role="tblMunicipioEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMunicipio">
+              <PropertyRef Name="idMunicipio" />
+            </Principal>
+            <Dependent Role="tblMunicipioEvento">
+              <PropertyRef Name="idMunicipio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblRegistroEvento">
+          <Key>
+            <PropertyRef Name="folio" />
+          </Key>
+          <Property Name="folio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idEvento" Type="Int32" Nullable="false" />
+          <Property Name="idTipoRegistro" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CCT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="nombrePlantel" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="regionSEG" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="nivel" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="instiSubsis" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CURP" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoPat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoMat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correoElectronico" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="sexo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="funcion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblEvento" Relationship="SeguimientoPermanenciaModel.FK__tblRegist__idEve__41EDCAC5" FromRole="tblRegistroEvento" ToRole="tblEvento" />
+          <NavigationProperty Name="tblMesaTrabParticipante" Relationship="SeguimientoPermanenciaModel.FK__tblMesaTr__folio__4A8310C6" FromRole="tblRegistroEvento" ToRole="tblMesaTrabParticipante" />
+          <NavigationProperty Name="tblTipoRegistro" Relationship="SeguimientoPermanenciaModel.FK__tblRegist__idTip__42E1EEFE" FromRole="tblRegistroEvento" ToRole="tblTipoRegistro" />
+        </EntityType>
+        <EntityType Name="tblTipoRegistro">
+          <Key>
+            <PropertyRef Name="idTipoRegistro" />
+          </Key>
+          <Property Name="idTipoRegistro" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblRegistroEvento" Relationship="SeguimientoPermanenciaModel.FK__tblRegist__idTip__42E1EEFE" FromRole="tblTipoRegistro" ToRole="tblRegistroEvento" />
+          <NavigationProperty Name="tblUserEnlaceEvento" Relationship="SeguimientoPermanenciaModel.FK__tblUserEn__idTip__45BE5BA9" FromRole="tblTipoRegistro" ToRole="tblUserEnlaceEvento" />
+        </EntityType>
+        <EntityType Name="tblUserEnlaceEvento">
+          <Key>
+            <PropertyRef Name="idUserEnlaceEve" />
+          </Key>
+          <Property Name="idUserEnlaceEve" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoRegistro" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idEvento" Type="Int32" Nullable="false" />
+          <Property Name="idUserEnlace" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblEvento" Relationship="SeguimientoPermanenciaModel.FK__tblUserEn__idEve__46B27FE2" FromRole="tblUserEnlaceEvento" ToRole="tblEvento" />
+          <NavigationProperty Name="tblTipoRegistro" Relationship="SeguimientoPermanenciaModel.FK__tblUserEn__idTip__45BE5BA9" FromRole="tblUserEnlaceEvento" ToRole="tblTipoRegistro" />
+          <NavigationProperty Name="tblUsuario" Relationship="SeguimientoPermanenciaModel.FK__tblUserEn__idUse__47A6A41B" FromRole="tblUserEnlaceEvento" ToRole="tblUsuario" />
+        </EntityType>
+        <Association Name="FK__tblRegist__idEve__41EDCAC5">
+          <End Type="SeguimientoPermanenciaModel.tblEvento" Role="tblEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblRegistroEvento" Role="tblRegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblRegistroEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserEn__idEve__46B27FE2">
+          <End Type="SeguimientoPermanenciaModel.tblEvento" Role="tblEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblUserEnlaceEvento" Role="tblUserEnlaceEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEvento">
+              <PropertyRef Name="idEvento" />
+            </Principal>
+            <Dependent Role="tblUserEnlaceEvento">
+              <PropertyRef Name="idEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMesaTr__folio__4A8310C6">
+          <End Type="SeguimientoPermanenciaModel.tblRegistroEvento" Role="tblRegistroEvento" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblMesaTrabParticipante" Role="tblMesaTrabParticipante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRegistroEvento">
+              <PropertyRef Name="folio" />
+            </Principal>
+            <Dependent Role="tblMesaTrabParticipante">
+              <PropertyRef Name="folioParticipante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblRegist__idTip__42E1EEFE">
+          <End Type="SeguimientoPermanenciaModel.tblTipoRegistro" Role="tblTipoRegistro" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblRegistroEvento" Role="tblRegistroEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTipoRegistro">
+              <PropertyRef Name="idTipoRegistro" />
+            </Principal>
+            <Dependent Role="tblRegistroEvento">
+              <PropertyRef Name="idTipoRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserEn__idTip__45BE5BA9">
+          <End Type="SeguimientoPermanenciaModel.tblTipoRegistro" Role="tblTipoRegistro" Multiplicity="1" />
+          <End Type="SeguimientoPermanenciaModel.tblUserEnlaceEvento" Role="tblUserEnlaceEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTipoRegistro">
+              <PropertyRef Name="idTipoRegistro" />
+            </Principal>
+            <Dependent Role="tblUserEnlaceEvento">
+              <PropertyRef Name="idTipoRegistro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUserEn__idUse__47A6A41B">
+          <End Type="SeguimientoPermanenciaModel.tblUsuario" Role="tblUsuario" Multiplicity="0..1" />
+          <End Type="SeguimientoPermanenciaModel.tblUserEnlaceEvento" Role="tblUserEnlaceEvento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsuario">
+              <PropertyRef Name="nombreUsuario" />
+            </Principal>
+            <Dependent Role="tblUserEnlaceEvento">
+              <PropertyRef Name="idUserEnlace" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SeguimientoPermanenciaModelStoreContainer" CdmEntityContainer="SeguimientoPermanenciaEntities">
+          <EntitySetMapping Name="tblAutores">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblAutores">
+              <MappingFragment StoreEntitySet="tblAutores">
+                <ScalarProperty Name="idAutor" ColumnName="idAutor" />
+                <ScalarProperty Name="buenaPractica" ColumnName="buenaPractica" />
+                <ScalarProperty Name="nombreA" ColumnName="nombreA" />
+                <ScalarProperty Name="pApellidoA" ColumnName="pApellidoA" />
+                <ScalarProperty Name="mApellidoA" ColumnName="mApellidoA" />
+                <ScalarProperty Name="correoElectronicoA" ColumnName="correoElectronicoA" />
+                <ScalarProperty Name="telefonoA" ColumnName="telefonoA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCampoBP">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblCampoBP">
+              <MappingFragment StoreEntitySet="tblCampoBP">
+                <ScalarProperty Name="subeArchivo" ColumnName="subeArchivo" />
+                <ScalarProperty Name="idCampo" ColumnName="idCampo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCEO">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblCEO">
+              <MappingFragment StoreEntitySet="tblCEO">
+                <ScalarProperty Name="instiSubsis" ColumnName="instiSubsis" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="regionSEG" ColumnName="regionSEG" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="idCEO" ColumnName="idCEO" />
+                <ScalarProperty Name="claveCentroTrabajo" ColumnName="claveCentroTrabajo" />
+                <ScalarProperty Name="nombreCentroTrabajo" ColumnName="nombreCentroTrabajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblImagenBP">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblImagenBP">
+              <MappingFragment StoreEntitySet="tblImagenBP">
+                <ScalarProperty Name="enumeracion" ColumnName="enumeracion" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="idImagen" ColumnName="idImagen" />
+                <ScalarProperty Name="buenaPractica" ColumnName="buenaPractica" />
+                <ScalarProperty Name="campoBP" ColumnName="campoBP" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblImagenModuloBanner">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblImagenModuloBanner">
+              <MappingFragment StoreEntitySet="tblImagenModuloBanner">
+                <ScalarProperty Name="idImgBanner" ColumnName="idImgBanner" />
+                <ScalarProperty Name="modulo" ColumnName="modulo" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblModulo">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblModulo">
+              <MappingFragment StoreEntitySet="tblModulo">
+                <ScalarProperty Name="idModulo" ColumnName="idModulo" />
+                <ScalarProperty Name="nombreModulo" ColumnName="nombreModulo" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="archivoIntroduccion" ColumnName="archivoIntroduccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMunicipio">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblMunicipio">
+              <MappingFragment StoreEntitySet="tblMunicipio">
+                <ScalarProperty Name="idMunicipio" ColumnName="idMunicipio" />
+                <ScalarProperty Name="nombreMunicipio" ColumnName="nombreMunicipio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPerfil">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblPerfil">
+              <MappingFragment StoreEntitySet="tblPerfil">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="perfil" ColumnName="perfil" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPermisoModulo">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblPermisoModulo">
+              <MappingFragment StoreEntitySet="tblPermisoModulo">
+                <ScalarProperty Name="idPermisoMod" ColumnName="idPermisoMod" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="modulo" ColumnName="modulo" />
+                <ScalarProperty Name="permiso" ColumnName="permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPerteneceInsSis">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblPerteneceInsSis">
+              <MappingFragment StoreEntitySet="tblPerteneceInsSis">
+                <ScalarProperty Name="idPertenece" ColumnName="idPertenece" />
+                <ScalarProperty Name="idUserRevisor" ColumnName="idUserRevisor" />
+                <ScalarProperty Name="institucionSistema" ColumnName="institucionSistema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPlantilla">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblPlantilla">
+              <MappingFragment StoreEntitySet="tblPlantilla">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idPlantilla" ColumnName="idPlantilla" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFuncionDesarrolloP">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblFuncionDesarrolloP">
+              <MappingFragment StoreEntitySet="tblFuncionDesarrolloP">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombreFunc" ColumnName="nombreFunc" />
+                <ScalarProperty Name="idFuncionD" ColumnName="idFuncionD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBuenaPractica">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblBuenaPractica">
+              <MappingFragment StoreEntitySet="tblBuenaPractica">
+                <ScalarProperty Name="idPlantilla" ColumnName="idPlantilla" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fuentesInformacion" ColumnName="fuentesInformacion" />
+                <ScalarProperty Name="observacionesBP" ColumnName="observacionesBP" />
+                <ScalarProperty Name="resultadosObtenidos" ColumnName="resultadosObtenidos" />
+                <ScalarProperty Name="elementoInnovador" ColumnName="elementoInnovador" />
+                <ScalarProperty Name="descripcionActividadesRealizadas" ColumnName="descripcionActividadesRealizadas" />
+                <ScalarProperty Name="caracteristicasContexto" ColumnName="caracteristicasContexto" />
+                <ScalarProperty Name="diagnosticoRealizo" ColumnName="diagnosticoRealizo" />
+                <ScalarProperty Name="situacionMejora" ColumnName="situacionMejora" />
+                <ScalarProperty Name="tituloBP" ColumnName="tituloBP" />
+                <ScalarProperty Name="idFuncionD" ColumnName="idFuncionD" />
+                <ScalarProperty Name="idCEO" ColumnName="idCEO" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="usuarioColaborador" ColumnName="usuarioColaborador" />
+                <ScalarProperty Name="eje" ColumnName="eje" />
+                <ScalarProperty Name="idBuenaPractica" ColumnName="idBuenaPractica" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblImagenRevision">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblImagenRevision">
+              <MappingFragment StoreEntitySet="tblImagenRevision">
+                <ScalarProperty Name="enumeracion" ColumnName="enumeracion" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="campoPlantilla" ColumnName="campoPlantilla" />
+                <ScalarProperty Name="idRevision" ColumnName="idRevision" />
+                <ScalarProperty Name="idImagenComen" ColumnName="idImagenComen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRevisionBP">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblRevisionBP">
+              <MappingFragment StoreEntitySet="tblRevisionBP">
+                <ScalarProperty Name="comentarioGeneral" ColumnName="comentarioGeneral" />
+                <ScalarProperty Name="comentarioFuenteInformacion" ColumnName="comentarioFuenteInformacion" />
+                <ScalarProperty Name="comentarioObservacionesBP" ColumnName="comentarioObservacionesBP" />
+                <ScalarProperty Name="comentarioResultadosObtenidos" ColumnName="comentarioResultadosObtenidos" />
+                <ScalarProperty Name="comentarioElementoInnovador" ColumnName="comentarioElementoInnovador" />
+                <ScalarProperty Name="comentarioDescripcionActividadesRealizadas" ColumnName="comentarioDescripcionActividadesRealizadas" />
+                <ScalarProperty Name="comentarioCaracteristicasContexto" ColumnName="comentarioCaracteristicasContexto" />
+                <ScalarProperty Name="comentarioDiagnosticoRealizo" ColumnName="comentarioDiagnosticoRealizo" />
+                <ScalarProperty Name="comentarioSituacionMejora" ColumnName="comentarioSituacionMejora" />
+                <ScalarProperty Name="comentarioTituloBP" ColumnName="comentarioTituloBP" />
+                <ScalarProperty Name="fechaListaPubli" ColumnName="fechaListaPubli" />
+                <ScalarProperty Name="fechaSoliRevi" ColumnName="fechaSoliRevi" />
+                <ScalarProperty Name="buenaPractica" ColumnName="buenaPractica" />
+                <ScalarProperty Name="usuarioRevisor" ColumnName="usuarioRevisor" />
+                <ScalarProperty Name="idRevision" ColumnName="idRevision" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEje">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblEje">
+              <MappingFragment StoreEntitySet="tblEje">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idEje" ColumnName="idEje" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsuario">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblUsuario">
+              <MappingFragment StoreEntitySet="tblUsuario">
+                <ScalarProperty Name="perfil" ColumnName="perfil" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="sApellido" ColumnName="sApellido" />
+                <ScalarProperty Name="pApellido" ColumnName="pApellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCampoEvento">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblCampoEvento">
+              <MappingFragment StoreEntitySet="tblCampoEvento">
+                <ScalarProperty Name="mesaTrabajo" ColumnName="mesaTrabajo" />
+                <ScalarProperty Name="funcion" ColumnName="funcion" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="apellidoMat" ColumnName="apellidoMat" />
+                <ScalarProperty Name="apellidoPat" ColumnName="apellidoPat" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+                <ScalarProperty Name="instiSubsis" ColumnName="instiSubsis" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="regionSEG" ColumnName="regionSEG" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="nombrePlantel" ColumnName="nombrePlantel" />
+                <ScalarProperty Name="CCT" ColumnName="CCT" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+                <ScalarProperty Name="idCampoEvento" ColumnName="idCampoEvento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEscuelaEvento">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblEscuelaEvento">
+              <MappingFragment StoreEntitySet="tblEscuelaEvento">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+                <ScalarProperty Name="idCCT" ColumnName="idCCT" />
+                <ScalarProperty Name="idEscuela" ColumnName="idEscuela" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEvento">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblEvento">
+              <MappingFragment StoreEntitySet="tblEvento">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="tipoEvento" ColumnName="tipoEvento" />
+                <ScalarProperty Name="rutaPlantillaExcel" ColumnName="rutaPlantillaExcel" />
+                <ScalarProperty Name="fRegistroFin" ColumnName="fRegistroFin" />
+                <ScalarProperty Name="fRegistroInicio" ColumnName="fRegistroInicio" />
+                <ScalarProperty Name="fVigenciaFin" ColumnName="fVigenciaFin" />
+                <ScalarProperty Name="fVigenciaInicio" ColumnName="fVigenciaInicio" />
+                <ScalarProperty Name="rutaIcono" ColumnName="rutaIcono" />
+                <ScalarProperty Name="objetivo" ColumnName="objetivo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFuncionParticipante">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblFuncionParticipante">
+              <MappingFragment StoreEntitySet="tblFuncionParticipante">
+                <ScalarProperty Name="nomFuncion" ColumnName="nomFuncion" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+                <ScalarProperty Name="idFuncionPart" ColumnName="idFuncionPart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMesaTrabEvento">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblMesaTrabEvento">
+              <MappingFragment StoreEntitySet="tblMesaTrabEvento">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="nombreMT" ColumnName="nombreMT" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+                <ScalarProperty Name="idMesaTrab" ColumnName="idMesaTrab" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMesaTrabParticipante">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblMesaTrabParticipante">
+              <MappingFragment StoreEntitySet="tblMesaTrabParticipante">
+                <ScalarProperty Name="idMesaTrab" ColumnName="idMesaTrab" />
+                <ScalarProperty Name="folioParticipante" ColumnName="folioParticipante" />
+                <ScalarProperty Name="idMesaTrabParti" ColumnName="idMesaTrabParti" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMunicipioEvento">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblMunicipioEvento">
+              <MappingFragment StoreEntitySet="tblMunicipioEvento">
+                <ScalarProperty Name="idMunicipio" ColumnName="idMunicipio" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+                <ScalarProperty Name="idMunicipioEvento" ColumnName="idMunicipioEvento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSubsistemaEvento">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblSubsistemaEvento">
+              <MappingFragment StoreEntitySet="tblSubsistemaEvento">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="nombreSubsistema" ColumnName="nombreSubsistema" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+                <ScalarProperty Name="idSubsistemaEv" ColumnName="idSubsistemaEv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRegistroEvento">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblRegistroEvento">
+              <MappingFragment StoreEntitySet="tblRegistroEvento">
+                <ScalarProperty Name="funcion" ColumnName="funcion" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correoElectronico" ColumnName="correoElectronico" />
+                <ScalarProperty Name="apellidoMat" ColumnName="apellidoMat" />
+                <ScalarProperty Name="apellidoPat" ColumnName="apellidoPat" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="CURP" ColumnName="CURP" />
+                <ScalarProperty Name="instiSubsis" ColumnName="instiSubsis" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="regionSEG" ColumnName="regionSEG" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="nombrePlantel" ColumnName="nombrePlantel" />
+                <ScalarProperty Name="CCT" ColumnName="CCT" />
+                <ScalarProperty Name="idTipoRegistro" ColumnName="idTipoRegistro" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+                <ScalarProperty Name="folio" ColumnName="folio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTipoRegistro">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblTipoRegistro">
+              <MappingFragment StoreEntitySet="tblTipoRegistro">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idTipoRegistro" ColumnName="idTipoRegistro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserEnlaceEvento">
+            <EntityTypeMapping TypeName="SeguimientoPermanenciaModel.tblUserEnlaceEvento">
+              <MappingFragment StoreEntitySet="tblUserEnlaceEvento">
+                <ScalarProperty Name="idUserEnlace" ColumnName="idUserEnlace" />
+                <ScalarProperty Name="idEvento" ColumnName="idEvento" />
+                <ScalarProperty Name="idTipoRegistro" ColumnName="idTipoRegistro" />
+                <ScalarProperty Name="idUserEnlaceEve" ColumnName="idUserEnlaceEve" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

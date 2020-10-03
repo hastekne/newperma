@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{84B4A438-712F-430C-A4A9-D269AA8C3C6C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BusinessModel</RootNamespace>
+    <AssemblyName>BusinessModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\Global\CEOBL.cs" />
+    <Compile Include="Business\Global\ImagenModuloBannerBL.cs" />
+    <Compile Include="Business\Global\ModuloBL.cs" />
+    <Compile Include="Business\Global\MunicipioBL.cs" />
+    <Compile Include="Business\Global\PermisoModuloBL.cs" />
+    <Compile Include="Business\ModuloBP\AutoresBL.cs" />
+    <Compile Include="Business\ModuloBP\BuenasPracticasBL.cs" />
+    <Compile Include="Business\ModuloBP\CampoBPBL.cs" />
+    <Compile Include="Business\ModuloBP\EjeBL.cs" />
+    <Compile Include="Business\ModuloBP\FuncionDesarrolloPBL.cs" />
+    <Compile Include="Business\ModuloBP\ImagenBPBL.cs" />
+    <Compile Include="Business\ModuloBP\ImagenRevisionBL.cs" />
+    <Compile Include="Business\ModuloBP\PlantillaBL.cs" />
+    <Compile Include="Business\ModuloBP\RevisionBPBL.cs" />
+    <Compile Include="Business\ModuloEvento\CampoEventoBL.cs" />
+    <Compile Include="Business\ModuloEvento\EscuelaEventoBL.cs" />
+    <Compile Include="Business\ModuloEvento\EventoBL.cs" />
+    <Compile Include="Business\ModuloEvento\FuncionParticipanteBL.cs" />
+    <Compile Include="Business\ModuloEvento\MesaEventoBL.cs" />
+    <Compile Include="Business\ModuloEvento\MesaParticipanteBL.cs" />
+    <Compile Include="Business\ModuloEvento\MunicipioEventoBL.cs" />
+    <Compile Include="Business\ModuloEvento\RegistroEventoBL.cs" />
+    <Compile Include="Business\ModuloEvento\SubsistemaEventoBL.cs" />
+    <Compile Include="Business\ModuloEvento\TipoRegistroBL.cs" />
+    <Compile Include="Business\ModuloEvento\UserEnlaceEventoBL.cs" />
+    <Compile Include="Business\Usuario\PerfilBL.cs" />
+    <Compile Include="Business\Usuario\PerteneceInsSisBL.cs" />
+    <Compile Include="Business\Usuario\UsuarioBL.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="DataAccess\Global\CEODAL.cs" />
+    <Compile Include="DataAccess\Global\ImagenModuloBannerDAL.cs" />
+    <Compile Include="DataAccess\Global\ModuloDAL.cs" />
+    <Compile Include="DataAccess\Global\MunicipioDAL.cs" />
+    <Compile Include="DataAccess\Global\PermisoModuloDAL.cs" />
+    <Compile Include="DataAccess\ModuloBP\AutoresDAL.cs" />
+    <Compile Include="DataAccess\ModuloBP\BuenasPracticasDAL.cs" />
+    <Compile Include="DataAccess\ModuloBP\CampoBPDAL.cs" />
+    <Compile Include="DataAccess\ModuloBP\EjeDAL.cs" />
+    <Compile Include="DataAccess\ModuloBP\FuncionDesarrolloPDAL.cs" />
+    <Compile Include="DataAccess\ModuloBP\ImagenBPDAL.cs" />
+    <Compile Include="DataAccess\ModuloBP\ImagenRevisionDAL.cs" />
+    <Compile Include="DataAccess\ModuloBP\PlantillaDAL.cs" />
+    <Compile Include="DataAccess\ModuloBP\RevisionBPDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\CampoEventoDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\EscuelaEventoDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\EventoDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\FuncionParticipanteDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\MesaEventoDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\MesaParticipanteDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\MunicipioEventoDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\RegistroEventoDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\SubsistemaEventoDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\TipoRegistroDAL.cs" />
+    <Compile Include="DataAccess\ModuloEvento\UserEnlaceEventoDAL.cs" />
+    <Compile Include="DataAccess\Usuario\PerfilDAL.cs" />
+    <Compile Include="DataAccess\Usuario\PerteneceInsSisDAL.cs" />
+    <Compile Include="DataAccess\Usuario\UsuarioDAL.cs" />
+    <Compile Include="MapperProfile\BusinessMapperProfile.cs" />
+    <Compile Include="Models\Global\CEOML.cs" />
+    <Compile Include="Models\Global\ImagenModuloBannerML.cs" />
+    <Compile Include="Models\Global\ModuloML.cs" />
+    <Compile Include="Models\Global\MunicipioML.cs" />
+    <Compile Include="Models\Global\PermisoModuloML.cs" />
+    <Compile Include="Models\ModuloBP\AutoresML.cs" />
+    <Compile Include="Models\ModuloBP\BuenasPracticasML.cs" />
+    <Compile Include="Models\ModuloBP\CampoBPML.cs" />
+    <Compile Include="Models\ModuloBP\EjeML.cs" />
+    <Compile Include="Models\ModuloBP\FuncionDesarrolloPML.cs" />
+    <Compile Include="Models\ModuloBP\ImagenBPML.cs" />
+    <Compile Include="Models\ModuloBP\ImagenRevisionML.cs" />
+    <Compile Include="Models\ModuloBP\PlantillaML.cs" />
+    <Compile Include="Models\ModuloBP\RevisionBPML.cs" />
+    <Compile Include="Models\ModuloEvento\CampoEventoML.cs" />
+    <Compile Include="Models\ModuloEvento\EscuelaEventoML.cs" />
+    <Compile Include="Models\ModuloEvento\EventoML.cs" />
+    <Compile Include="Models\ModuloEvento\FuncionParticipanteML.cs" />
+    <Compile Include="Models\ModuloEvento\MesaEventoML.cs" />
+    <Compile Include="Models\ModuloEvento\MesaParticipanteML.cs" />
+    <Compile Include="Models\ModuloEvento\MunicipioEventoML.cs" />
+    <Compile Include="Models\ModuloEvento\RegistroEventoML.cs" />
+    <Compile Include="Models\ModuloEvento\SubsistemaEventoML.cs" />
+    <Compile Include="Models\ModuloEvento\TipoRegistroML.cs" />
+    <Compile Include="Models\ModuloEvento\UserEnlaceEventoML.cs" />
+    <Compile Include="Models\Usuario\PerfilML.cs" />
+    <Compile Include="Models\Usuario\PerteneceInsSisML.cs" />
+    <Compile Include="Models\Usuario\UsuarioML.cs" />
+    <Compile Include="Persistence\BD\EntityBD.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityBD.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\EntityBD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\EntityBD.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityBD.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblAutores.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblBuenaPractica.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblCampoBP.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblCampoEvento.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblCEO.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblEje.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblEscuelaEvento.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblEvento.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblFuncionDesarrolloP.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblFuncionParticipante.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblImagenBP.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblImagenModuloBanner.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblImagenRevision.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblMesaTrabEvento.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblMesaTrabParticipante.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblModulo.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblMunicipio.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblMunicipioEvento.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblPerfil.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblPermisoModulo.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblPerteneceInsSis.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblPlantilla.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblRegistroEvento.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblRevisionBP.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblSubsistemaEvento.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblTipoRegistro.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblUserEnlaceEvento.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\BD\tblUsuario.cs">
+      <DependentUpon>EntityBD.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Persistence\BD\EntityBD.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityBD.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <None Include="Persistence\BD\EntityBD.edmx.diagram">
+      <DependentUpon>EntityBD.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Persistence\BD\EntityBD.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityBD.Context.cs</LastGenOutput>
+      <DependentUpon>EntityBD.edmx</DependentUpon>
+    </Content>
+    <Content Include="Persistence\BD\EntityBD.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntityBD.edmx</DependentUpon>
+      <LastGenOutput>EntityBD.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,932 @@
+﻿@model Tuple<SeccionAdministrador.Models.Eventos.EventoViewModel, SeccionAdministrador.Models.Global.MunicipioViewModel,SeccionAdministrador.Models.Eventos.SubsistemaEventoViewModel,SeccionAdministrador.Models.Eventos.EscuelaEventoViewModel>
+
+<!-- multiselector-->
+<script src="@Url.Content("~/Scripts/multi/jquery-3.4.1.min.js")"></script>
+<link rel="stylesheet" href="@Url.Content("~/Scripts/multi/multiple-select.min.css")">
+<script src="@Url.Content("~/Scripts/multi/multiple-select.min.js")"></script>
+<script src="@Url.Content("~/Scripts/multi/multipleselect.js")"></script>
+<!-- multiselector fin-->
+
+<style>
+    .sinformato {
+        text-decoration: none !important;
+        background-color: transparent !important;
+        color: #3e5569 !important;
+        text-align: left !important;
+        padding: 0px 0px 0px 0px !important;
+        font-size: 1em !important;
+        display: none;
+    }
+    .inputfile7 {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+    .inputfile8 {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        z-index: -1;
+    }
+</style>
+
+
+<script>
+    'use strict';
+    $(function () {
+        $('.inputfile7').each(function () {
+            var $input = $(this);
+            $input.on('change', function (e) {
+                var fileName = '';
+                if (e.target.value) {
+                    fileName = e.target.value.split('\\').pop();
+                }
+                if (fileName) {
+                    var $fileName = $('#file_name7');
+                    $fileName.html(fileName);
+                } else {
+                    $fileName.html('');
+                }
+            });
+        });
+    });</script>
+
+<script>
+    'use strict';
+    $(function () {
+        $('.inputfile8').each(function () {
+            var $input = $(this);
+            $input.on('change', function (e) {
+                var fileName = '';
+                if (e.target.value) {
+                    fileName = e.target.value.split('\\').pop();
+                }
+                if (fileName) {
+                    var $fileName = $('#file_name8');
+                    $fileName.html(fileName);
+                } else {
+                    $fileName.html('');
+                }
+            });
+        });
+    });</script>
+
+
+
+<div class="container">
+    <div style="padding-top: 20px; padding-left: 10px; text-align: left; margin-left: 15px; margin-right: 15px" class="chit-chat-heading">
+        <div class="box compose-block" style="background-color:#FFFFFF">
+            <br />
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td colspan="2" width="70%" align="left"> Modificar datos</td>
+                        <td width="30%">&shy;&shy;&shy;</td>
+                        <td width="5%" align="right"><div class="inner-wrap"><a class="compose compose-bottom" align="right" onclick="RegresarTablaE('Evento')">Regresar</a></div></td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+<div class="form-style-10" style="width: 100%; height:100%; padding-top: -80px;margin-top: -80px">
+
+    <br />
+
+    <br />
+    <div class="section">Nombre del Evento</div>
+
+    <div class="inner-wrap">
+        <input name="txtNewNomEvento" id="txtNewNomEventomod" type="text" required maxlength="100" value="@Model.Item1.nombre" />
+
+    </div>
+
+
+    <div class="section">Objetivo del Evento</div>
+
+    <div class="inner-wrap">
+        <textarea maxlength="500" id="txtANewobjemod">@Model.Item1.objetivo</textarea>
+
+    </div>
+
+
+    <div class="section">Cargar Icono</div>
+    <div class="inner-wrap" style="width: 100%">
+
+        <table width="100%" border="0" align="center" style="height:10px; ">
+            <tbody>
+                <tr>
+                    <td colspan="2" width="60%">
+                        <input type="file" name="choose_file" id="choose_file7" class="inputfile7 custom" accept="image/png, .jpeg, .jpg," />
+                        <label for="choose_file7">
+                            <span id="file_name7" tooltip="Sólo imagen JPG PNG">Imagen</span><strong style="color: #FFFFFF">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" style="color: #FFFFFF "><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                            </strong>
+                        </label>
+                    </td>
+                    <td width="20%" valign="middle">
+                        <div class="compose-block" style="background: none">
+                            <div class="button-section compose compose-bottom" align="right">
+                                <button id="btSubirIcono" class="compose compose-bottom" tooltip="Guardar imagen" onclick="SubirIE('Icono', @Model.Item1.idEvento)">Subir</button>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td width="20%" valign="middle">
+                        <div class="compose-block" style="background: none">
+                            <div class="button-section compose compose-bottom" align="right">
+                                <button onclick="VistaPreviaIconoE('@Model.Item1.nombre')" class="compose compose-bottom" tooltip="Ver Icono">Icono</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+    <div class="section">Cargar plantilla de Excel </div>
+    <div class="inner-wrap">
+
+        <table width="100%" border="0" align="center" style="height:10px; ">
+            <tbody>
+                <tr>
+
+                    <td colspan="2" width="60%">
+                        <input type="file" name="choose_file" id="choose_file8" class="inputfile8 custom" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                        <label for="choose_file8">
+                            <span id="file_name8" tooltip="Sólo Archivo Excel">Archivo</span><strong style="color: #FFFFFF">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" color="#FFFFFF" style="color: #FFFFFF "><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                            </strong>
+                        </label>
+                    </td>
+                    <td width="20%" valign="middle">
+                        <div class="compose-block" style="background: none">
+                            <div class="button-section compose compose-bottom" align="right">
+                                <button id="btSubirExcel" onclick="SubirIE('Excel', @Model.Item1.idEvento)" class="compose compose-bottom" tooltip="Guardar Archivo">Subir</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td width="20%" valign="middle">
+                        <div class="compose-block" style="background: none">
+                            <div class="button-section compose compose-bottom" align="right">
+                                <button class="compose compose-bottom" onclick="DescargaExcelPlantillaE('@Model.Item1.nombre')" tooltip="Descargar Excel">Excel</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+
+    </div>
+
+
+    <hr>
+
+    <br>
+
+    <div class="section">Vigencias</div>
+    <div class="inner-wrap" style="padding-top: -50px">
+
+        <table width="100%">
+            <tbody>
+                <tr>
+                    Vigencia del evento
+                    <td width="35%"> Inicio<input type="date" id="VEImod" value="@Model.Item1.fVigenciaInicio.ToString("yyyy-MM-dd")" name="Inicio" class="" style="border: none; resize: none; width: 100%"></td>
+                    <td width="15%" style="padding-left: 5px; padding-right: 5px">&shy;&shy;&shy;</td>
+                    <td width="35%"> Termino <input type="date" id="VEFmod" value="@Model.Item1.fVigenciaFin.ToString("yyyy-MM-dd")" name="Termino" class="" style="border: none; resize: none; width: 100%"></td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+
+
+
+        <table width="100%">
+            <tbody>
+                <tr>
+                    Vigencia de Registro
+                    <td width="35%"> Inicio<input type="date" id="VRImod" value="@Model.Item1.fRegistroInicio.ToString("yyyy-MM-dd")" name="Inicio" class="" style="border: none; resize: none; width: 100%"></td>
+                    <td width="15%" style="padding-left: 5px; padding-right: 5px">&shy;&shy;&shy;</td>
+                    <td width="35%"> Termino <input type="date" id="VRFmod" value="@Model.Item1.fRegistroFin.ToString("yyyy-MM-dd")" name="Termino" class="" style="border: none; resize: none; width: 100%"></td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <hr>
+    <br>
+
+    <div class="section">Tipo de Evento  </div>
+    <div class="inner-wrap">
+        <select name="Evento" value="Evento" id="selectTEmod">
+
+
+            @if (Model.Item1.tipoEvento == "Público")
+            {
+                <option value="" selected>Público</option>
+                <option value="">Restringido</option>
+            }
+            else
+            {
+                <option value="">Público</option>
+                <option value="" selected>Restringido</option>
+            }
+
+
+
+
+
+        </select>
+
+
+
+
+
+
+    </div>
+
+    <hr>
+    <br>
+
+
+    <div class="inner-wrap">
+
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <td width="220px">
+                        <div style="position: static; pointer-events: none;" id="DatosSelectMuni">
+                            Municipio donde se realiza el evento:
+
+
+                            <!-- Multiple Select -->
+                            @*<select multiple="multiple" class="text-box-dark" id="select4">*@
+                            <select id="select4" name="select4" multiple>
+
+
+                                @foreach (var item in Model.Item2.listMunicipios)
+                                {
+                                    <option value="@item.idMunicipio"> @item.nombreMunicipio</option>
+                                }
+
+
+
+                            </select>
+
+
+
+                        </div>
+
+                    </td>
+                    <td width="10%">&nbsp;</td>
+                    <td width="45%">
+                        <div style="position: static">
+
+                            Campo de registro para los participantes:
+
+
+                            <select id="select5" name="select5" multiple onchange="DatosHabilitarSelect()">
+
+
+                                <option>CCT</option>
+                                <option>Nombre del plantel</option>
+                                <option>Municipio</option>
+                                <option>Región SEG</option>
+                                <option>Nivel</option>
+                                <option>Institución/Subsistema</option>
+                                <option>CURP</option>
+                                <option>Nombre (s)</option>
+                                <option>Primer apellido</option>
+                                <option>Segundo apellido</option>
+                                <option>Correo electrónico</option>
+                                <option>Teléfono de contacto</option>
+                                <option>Sexo</option>
+                                <option>Función</option>
+                                <option>Mesa de trabajo</option>
+                            </select>
+
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <br>
+    <hr style="z-index: -1000">
+
+
+    <div class="inner-wrap">
+
+
+        <div style="position: static; pointer-events: none;" id="DatosSelectFuncion">
+
+            Funciones asigandas:
+
+
+            <select id="select6" name="select6" multiple>
+                <option>Docente</option>
+                <option>Directivo</option>
+                <option>Administrativo</option>
+                <option>Coordinador académico</option>
+                <option>Director de plantel</option>
+                <option>Alumno</option>
+                <option>Padre ó tutor</option>
+
+            </select>
+
+
+        </div>
+
+
+    </div>
+
+    <br>
+
+    <hr style="z-index: -1000">
+
+    <div class="section">Restringir el número de participantes por Subsistema:  </div>
+    <div class="inner-wrap">
+
+
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <td width="40%">
+                        <select name="Subsistema" value="Subsistema" id="cbxSubsistemaCant">
+
+                            <option selected="selected">CAED</option>
+                            <option>BBM</option>
+                            <option>CEB</option>
+                            <option>CBTA</option>
+                            <option>CECYT IPN</option>
+                        </select>
+                    </td>
+                    <td width="10%">&shy;</td>
+                    <td width="30%"><label>Cantidad: <input class="autor" style="border: none; resize: none; width: 100%" type="number" required id="txtCantSubsis" />	</label></td>
+                    <td width="20%" align="right">
+                        <div class="compose-block" style="background: none; text-align:right">
+                            <div class="button-section compose compose-bottom" align="right">
+                                <button id="btAddSubSis" onclick="AgregarSubSisE(@Model.Item1.idEvento)" class="compose compose-bottom">Agregar</button>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <br>
+
+        <div align="center" id="TablaCantSubSis">
+            @Html.Partial("_VPSeccionEvento/_TablaCantSubSis",Model.Item3)
+        </div>
+
+
+
+
+
+    </div>
+
+    <br>
+
+    <hr style="z-index: -1000">
+
+    <div class="section">Restringir el número de participantes por Escuela:  </div>
+    <div class="inner-wrap">
+
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <td width="40%">CCT:<input type="text" id="txtCCTcant" onfocusout="ValidarCCT()"></td>
+                    <td width="10%">&shy;</td>
+                    <td width="30%">Cantidad: <input id="txtCantidadCCT" class="autor" style="border: none; resize: none; width: 100%" type="number" required />	</td>
+                    <td width="20%" align="right">
+                        <div class="compose-block" style="background: none; text-align:right">
+                            <div class="button-section compose compose-bottom" align="right">
+                                <button id="btAddEscuela" onclick="AgregarEscuelaE(@Model.Item1.idEvento)" class="compose compose-bottom">Agregar</button>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+        <br>
+
+        <div align="center" id="TablaCantEscuela">
+            @Html.Partial("_VPSeccionEvento/_TablaCantEscuela",Model.Item4)
+        </div>
+
+
+
+
+
+    </div>
+
+    <br>
+
+    <hr style="z-index: -1000">
+
+
+    <div id="mesaT">
+        <div class="section">Mesa de trabajo:  </div>
+        <div class="inner-wrap">
+
+
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td colspan="4">Nombre/Descripción: <input type="text" id="txtDescriMT"></td>
+
+                    </tr>
+                    <tr>
+                        <td colspan="2">&shy;</td>
+                        <td width="30%">Cantidad: <input id="txtCantMT" class="autor" style="border: none; resize: none; width: 100%" type="number" required />	</td>
+                        <td width="20%" align="right">
+                            <div class="compose-block" style="background: none; text-align:right">
+                                <div class="button-section compose compose-bottom" align="right">
+                                    <button id="btAddMT" onclick="AgregarMT(@Model.Item1.idEvento)" class="compose compose-bottom">Agregar</button>
+                                </div>
+                            </div>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+           
+            <div align="center" id="TablaCantMT">
+                @*@Html.Partial("_VPSeccionEvento/_TablaCantMT")*@
+            </div>
+
+
+
+
+
+        </div>
+
+
+    </div>
+    <br>
+
+    <hr style="z-index: -1000">
+
+
+
+    <div class="compose-block" style="background: none">
+        <div class="button-section compose compose-bottom" align="right">
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td width="55%">&nbsp;</td>
+                        <td width="20%" align="right"><button id="btCancelarE" onclick="EstadoActualizar('CANCELADO',@Model.Item1.idEvento)"  class="compose compose-bottom" tooltip="¿Desea Cancelar el evento?" style="width: 100%">Cancelar Evento</button></td>
+                        <td width="5%">&nbsp;</td>
+                        <td width="20%" align="right"><button id="btGuardarE" onclick="EstadoActualizar('GUARDADO',@Model.Item1.idEvento)" class="compose compose-bottom" tooltip="Guardar evento" style="width: 100%">Guardar Evento</button></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <br>
+
+                        <td width="55%">&nbsp;</td>
+                        <td colspan="3" align="center"><button id="btPublicarE" onclick="EstadoActualizar('PUBLICADO',@Model.Item1.idEvento)" class="compose compose-bottom" tooltip="Listo para Publicarse" style="width: 100%">Publicar Evento</button> </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+
+     //Seleccionar del select checkBox el item activado
+
+
+    (function () {
+        //alert("ID " +ViewBag.idEventoTD);
+        $.ajax({
+            type: "POST",
+        url: '@Url.Action("SeleccionarCheckSelect", "ModuloEventoAdmin")',
+        data: { idE: @ViewBag.idEventoTD},//ViewBag.idEventoTD
+        //dataType: "html",
+                success: function (data)
+                {
+                    //alert(data);
+                    var municipios = data.split(",");
+                    var idSelect;
+
+                    for (var i = 0; i < municipios.length; i++) {
+                        if (municipios[i] == "muni") {
+                            idSelect = "select4";
+                        } else if (municipios[i] == "campo") {
+                            idSelect = "select5";
+                        }else if(municipios[i] == "func"){
+                            idSelect = "select6";
+                        }
+
+                        if (idSelect == "select4") {
+                            setSelectedIndex(document.getElementById('select4'), municipios[i]);
+                        } else if (idSelect == "select5") {
+                            setSelectedIndex(document.getElementById('select5'), municipios[i]);
+                            if (municipios[i] == "Municipio")
+                                document.getElementById("DatosSelectMuni").style.pointerEvents = "auto";
+                            if (municipios[i] == "Función")
+                                document.getElementById("DatosSelectFuncion").style.pointerEvents = "auto";
+                        }else if (idSelect == "select6") {
+                            setSelectedIndex(document.getElementById('select6'), municipios[i]);
+                            //alert("funcion " + municipios[i]);
+                        }
+
+                    }
+
+                },
+                error: function (data) {
+                    alert("Error regresar a pag.");
+                }
+        });
+
+        CargarTablaCantMT(@ViewData["idEvento"].ToString());
+        //DatosHabilitarSelect();
+
+
+        })();
+
+
+        function RegresarTablaE(m) {
+
+        $("body").css("cursor", "progress");
+        $("button").css("cursor", "progress");
+        $('button').prop('disabled', true);
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("SeccionEventos", "ModuloEventoAdmin")',
+        data: { seccion: m },
+        dataType: "html",
+        success: function (response)
+        {
+
+        $('#eventos').html(response);
+        $("body").css("cursor", "default");
+        $("button").css("cursor", "pointer");
+        $('button').prop('disabled', false);
+
+
+        },
+        error: function (response) {
+        alert("Error en cargar la sección.");
+        }
+        });
+    }
+
+    //Bloquear los botones con base en el estado del Evento
+    $(document).ready(function () {   //$(document).ready se ejecuta cuando carga la pagina
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("EstadoEvento", "ModuloEventoAdmin")',
+        //data: { idEvento: m },
+        //dataType: "html",
+        success: function (data)
+        {
+            if (data == "CANCELADO" || data == "FINALIZADO") {
+                document.getElementById('btSubirIcono').disabled = true;
+                document.getElementById('btSubirExcel').disabled = true;
+                document.getElementById('btAddSubSis').disabled = true;
+                document.getElementById('btAddEscuela').disabled = true;
+                document.getElementById('btAddMT').disabled = true;
+                document.getElementById('btCancelarE').disabled = true;
+                document.getElementById('btGuardarE').disabled = true;
+                document.getElementById('btPublicarE').disabled = true;
+            } else if (data == "PUBLICADO") {
+                document.getElementById('btSubirIcono').disabled = true;
+                document.getElementById('btSubirExcel').disabled = true;
+                document.getElementById('btAddSubSis').disabled = true;
+                document.getElementById('btAddEscuela').disabled = true;
+                document.getElementById('btAddMT').disabled = true;
+                document.getElementById('btGuardarE').disabled = true;
+                document.getElementById('btPublicarE').disabled = true;
+            }
+        },
+        error: function (response) {
+        alert("Error en obtener el estado del evento.");
+        }
+        });
+
+    });
+
+        function setSelectedIndex(s, v) {
+
+            for (var i = 0; i < s.options.length; i++) {
+
+                if (s.options[i].text == v) {
+
+                    s.options[i].selected = true;
+
+                    return;
+
+                }
+
+            }
+
+        }
+
+    function SubirIE(s, id) {
+        var i = "";
+        if (s == "Icono") {
+            i = "choose_file7";
+        } else {
+            i = "choose_file8";
+        }
+
+        var input = document.getElementById(i);
+        var fReader = new FileReader();
+        fReader.readAsDataURL(input.files[0]);
+        fReader.onloadend = function (event) {
+            $("body").css("cursor", "progress");
+            $("button").css("cursor", "progress");
+            $('button').prop('disabled', true);
+            var ruta2 = event.target.result;
+
+                $.ajax({
+                    url: "@Url.Action("SubirIE", "ModuloEventoAdmin")",
+                    method: "POST",
+                    data: { seccion: s, ruta: ruta2, archivo: input.value, idE:id },
+                    datatype: "html",
+                    success: function (data) {
+                        alert(data);
+                        $("body").css("cursor", "default");
+                        $("button").css("cursor", "pointer");
+                        $('button').prop('disabled', false);
+                    },
+                    error: function () {
+                        alert("Error. entro");
+                        $("body").css("cursor", "default");
+                        $("button").css("cursor", "pointer");
+                        $('button').prop('disabled', false);
+                    }
+                });
+        }
+    }
+
+    function AgregarSubSisE(idE) {
+        var su = document.getElementById("cbxSubsistemaCant");
+        var subsis = su.options[su.selectedIndex].text;
+        var cant = $('#txtCantSubsis').val();
+        if (cant != "") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AgregarSubSisE", "ModuloEventoAdmin")',
+                data: { idEvento: idE, subsistema: subsis, cantidad: cant },
+                dataType: "html",
+                success: function (response) {
+
+                    $('#TablaCantSubSis').html(response);
+                    document.getElementById('txtCantSubsis').value = "";
+                    document.getElementById('txtCantSubsis').focus();
+                },
+                error: function (response) {
+                    alert("Error en cargar tabla Cantidad Subsistemas");
+                }
+            });
+        } else {
+            alert("Campo obligatorio vacío");
+        }
+
+    }
+
+    function AgregarEscuelaE(idE) {
+        var cct = $('#txtCCTcant').val();
+        var cant = $('#txtCantidadCCT').val();
+        if (cant != "" && cct!="") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AgregarEscuelaE", "ModuloEventoAdmin")',
+                data: { idEvento:idE, CCT:cct, cantidad:cant },
+                dataType: "html",
+                success: function (response) {
+
+                    $('#TablaCantEscuela').html(response);
+                    document.getElementById('txtCCTcant').value = "";
+                    document.getElementById('txtCantidadCCT').value = "";
+                    //document.getElementById('txtCCTcant').focus();
+                },
+                error: function (response) {
+                    alert("Error en cargar tabla Cantidad Escuela");
+                }
+            });
+        } else {
+            alert("Campo obligatorio vacío");
+        }
+    }
+
+    function AgregarMT(idE) {
+        var ndMT = $('#txtDescriMT').val();
+        var cant = $('#txtCantMT').val();
+        if (ndMT != "" && cant!="") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("AgregarMT", "ModuloEventoAdmin")',
+                data: { idEvento:idE, mesaTrabajo:ndMT, cantidad:cant },
+                dataType: "html",
+                success: function (response) {
+
+                    $('#TablaCantMT').html(response);
+                    document.getElementById('txtDescriMT').value = "";
+                    document.getElementById('txtCantMT').value = "";
+                    document.getElementById('txtDescriMT').focus();
+                },
+                error: function (response) {
+                    alert("Error en cargar tabla Mesa de trabajo");
+                }
+            });
+        } else {
+            alert("Campo obligatorio vacío");
+        }
+    }
+
+
+
+    function VistaPreviaIconoE(nomE) {
+        window.open("../ModuloEventoAdmin/VistaPreviaIcono?evento=" + nomE, "Vista previa", "width=600, height=400");
+    }
+
+    function DescargaExcelPlantillaE(nombreE) {
+            var url = "@Url.Action("DescargaPlantillaExcel", "ModuloEventoAdmin", new { nombreEve = "nomEvent" })";
+            url = url.replace("nomEvent", nombreE);
+            window.location.href = url;
+    }
+
+    function EstadoActualizar(est, id) {
+        var funcionHabilitada = "false";
+        var municipioHabilitado = "false";
+        var mun = document.getElementById("select4").options;
+        var muni = getSelected(mun);
+        var munis = "";
+        for (var item in muni)
+            munis += muni[item].value + "|"; //El | es el delimitador
+
+        var scamp = document.getElementById("select5").options;
+        var campo = getSelected(scamp);
+        var campos = "";
+        for (var item in campo) {
+            if (campo[item].value == "Municipio")
+                municipioHabilitado = "true";
+            if (campo[item].value == "Función")
+                funcionHabilitada = "true";
+            campos += campo[item].value + "|";
+        }
+
+        var f = document.getElementById("select6").options;
+        var fu = getSelected(f);
+        var func = "";
+        for (var item in fu)
+            func += fu[item].value + "|";
+
+        var fechaVEI = $('#VEImod').val();
+        var fechaVEF = $('#VEFmod').val();
+        var fechaVRI = $('#VRImod').val();
+        var fechaVRF = $('#VRFmod').val();
+
+        var nombreEvento = $('#txtNewNomEventomod').val();
+        var objetivo = $('#txtANewobjemod').val();
+
+        var te = document.getElementById("selectTEmod");
+        var tipEve = te.options[te.selectedIndex].text;
+
+
+        if (fechaVEI == "" || fechaVEF == "" || fechaVRI == "" || fechaVRF == "" || nombreEvento == "" || objetivo == "" || campos == "" || (munis == "" && municipioHabilitado == "true") || (func == "" && funcionHabilitada == "true")) {
+                    alert("Campos obligatorios vacíos.");
+                } else {
+                    //Validar que las fechas de inicio sean menores a las de fin
+                    if (Date.parse(fechaVEI) > Date.parse(fechaVEF) || Date.parse(fechaVRI) > Date.parse(fechaVRF)) {
+                        alert("Fechas incorrectas.");
+                    } else {
+                        //Agregar evento
+                        $.ajax({
+        type: "POST",
+        url: '@Url.Action("ActualizarEvento", "ModuloEventoAdmin")',
+                            data: { idEvento:id,estado:est,nombreE: nombreEvento, objetivoE: objetivo, fvi: fechaVEI, fvf: fechaVEF, fri: fechaVRI, frf: fechaVRF, tipoEvento: tipEve, municipios: munis, campos: campos, funciones: func},
+        //datatype: "josn",
+        success: function (data)
+        {
+            if (data == "Evento "+est) {
+                alert(data);
+                var m = "Evento";
+                if (est != "GUARDADO") {
+                    RegresarTablaE('Evento');
+                }
+
+            }else
+                alert(data);
+
+        },
+        error: function () {
+            alert("Error en crear Evento.");
+          }
+        });
+                    }
+                }
+
+
+
+    }
+
+    function CargarTablaCantMT(id) {
+        //alert("entra");
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("CargarTablaCantMT", "ModuloEventoAdmin")',
+        data: { idEvento: id },
+        dataType: "html",
+        success: function (response)
+        {
+            $('#TablaCantMT').html(response);
+        },
+        error: function (response) {
+        alert("Error en cargar tabla Cantidad Mesa Trabajo");
+        }
+        });
+    }
+
+
+
+    function ValidarCCT() {
+        var ct = document.getElementById("txtCCTcant").value;
+       $.ajax({
+                    url: "@Url.Action("ValidarCCT", "ModuloEventoAdmin")",
+                    method: "POST",
+                    data: { CCT: ct},
+                    datatype: "json",
+                    success: function (data)
+                    {
+                        if (data != "True") {
+                            alert("Clave CT incorrecta.");
+                            document.getElementById("txtCCTcant").value = "";
+
+                        }
+
+
+                        //document.getElementById("escCCT").value = "ERROR CCT";
+                    }
+                })
+    }
+
+
+    function DatosHabilitarSelect() {
+        var scamp = document.getElementById("select5").options;
+        var campo = getSelected(scamp);
+        var existeMunicipio = "false";
+        var existeFuncion = "false";
+        for (var item in campo) {
+            if (campo[item].value == "Municipio") {
+                document.getElementById("DatosSelectMuni").style.pointerEvents = "auto";
+                existeMunicipio = "true";
+            }
+            if (campo[item].value == "Función") {
+                document.getElementById("DatosSelectFuncion").style.pointerEvents = "auto";
+                existeFuncion = "true";
+            }
+        }
+        if (existeMunicipio == "false")
+            document.getElementById("DatosSelectMuni").style.pointerEvents = "none";
+        if (existeFuncion == "false")
+            document.getElementById("DatosSelectFuncion").style.pointerEvents = "none";
+
+    }
+</script>

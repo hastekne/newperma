@@ -1,0 +1,44 @@
+﻿@model Tuple<DesarrolloProyDSP.Models.Global.CEOViewModel, DesarrolloProyDSP.Models.ModuloBP.EjeViewModel, DesarrolloProyDSP.Models.Global.MunicipioViewModel, DesarrolloProyDSP.Models.ModuloBP.FuncionDesarrolloViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+<h1>Cecilia Actualizado</h1>
+@using (Html.BeginForm("Index"))
+{
+    <select id="selectCEO" name="selectCEO" class="btn btn-secondary btn-block">
+        @foreach (var item in Model.Item1.listCEO)
+        {
+            <option id="@item.idCEO" name="@item. idCEO">@item.claveCentroTrabajo</option>
+        }
+    </select>
+    <br />
+    <select id="selectEje" name="selectEje" class="btn btn-secondary btn-block">
+        @foreach (var item in Model.Item2.listaEjes)
+        {
+            <option id="@item.idEje" name="@item.idEje">@item.nombre</option>
+        }
+    </select>
+    <br />
+    <select id="selectMunicipio" name="selectMunicipio" class="btn btn-secondary btn-block">
+        @foreach (var item in Model.Item3.listMunicipios)
+        {
+            <option id="@item.idMunicipio" name="@item.idMunicipio">@item.nombreMunicipio</option>
+        }
+    </select>
+    <br />
+    <select id="selectFuncion" name="selectFuncion" class="btn btn-secondary btn-block">
+        @foreach (var item in Model.Item4.listFunciones)
+        {
+            <option id="@item.idFuncionD" name="@item.idFuncionD">@item.nombreFunc</option>
+        }
+    </select>
+    <br />
+    <input type="text" id="titulo" name="titulo" value="" class="form-control">
+    <input type="submit" id="agregar" name="agregar">
+
+
+}
+<script>
+
+</script>

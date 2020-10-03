@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "eventos";
+}
+<script type="text/javascript">
+    window.onload = function () {
+        var variable1 =@Session["var"];
+        if (variable1 ==1){
+            document.getElementById("but").value = "CECILIA";
+        }
+        $("#des").prop("disabled", true);
+    }
+</script>
+<h2>Eventos</h2>
+
+<input type="button" value="Revision" id="but"/>
+<input type="button" value="Deshabilitado" id="des" name="des" />
+

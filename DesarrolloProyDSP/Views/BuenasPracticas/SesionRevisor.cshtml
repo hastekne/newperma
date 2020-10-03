@@ -1,0 +1,361 @@
+﻿@using PagedList.Mvc
+@model Tuple<DesarrolloProyDSP.Models.ModuloBP.BuenaPracticaViewModel, PagedList.IPagedList<BusinessModel.Models.ModuloBP.BPRevisionTable>>
+
+@{
+    Layout = null;
+    ViewBag.Title = "SesionRevisor";
+    HttpContext.Current.User.Identity.Name.Equals("");
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sesión Revisor</title>
+    @Html.Partial("../ViewPartialPrincipales/_ScriptsLink")
+    
+</head>
+<body>
+    @using (Html.BeginForm("SesionRevisor", "BuenasPracticas", FormMethod.Post, new { id = "formSR", name = "formSR" }))
+    {
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                @Html.Partial("../ViewPartialPrincipales/_Header")
+
+                <div class="clearfix"> </div>
+            </div>
+            <!--heder end here-->
+            <!-- script-for sticky-nav -->
+            <script>
+                $(document).ready(function () {
+                    var navoffeset = $(".header-main").offset().top;
+                    $(window).scroll(function () {
+                        var scrollpos = $(window).scrollTop();
+                        if (scrollpos >= navoffeset) {
+                            $(".header-main").addClass("fixed");
+                        } else {
+                            $(".header-main").removeClass("fixed");
+                        }
+                    });
+
+                });
+            </script>
+            <!-- /script-for sticky-nav -->
+            <!--inner block start here-->
+
+            <div class="inner-block" style="margin-top: -20px">
+                <!--market updates updates-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="chit-chat-layer1" style="margin-top: -50px">
+
+
+
+                    <div class="col-md-12 mailbox-content  tab-content tab-content-in" style="padding-right: 30px; padding-top: 10px">
+
+                        <div class="col-md-4 compose">
+                            <div class="compose-block" style="width:400px; " align="right">
+
+                                <div class="compose-bottom">
+
+                                    <div style="padding-top: 8px; padding-left: 10px; text-align: left" class="chit-chat-heading"> Revisar Buena Práctica</div>
+
+                                    <select name="RevisarBP" id="RevisarBP" class="search-box search1" style="width: 100%; z-index: auto">
+                                        @foreach (var item in Model.Item1.listaBP)
+                                        {
+                                            <option id="@item.idBuenaPractica" name="@item.idBuenaPractica">@item.tituloBP</option>
+                                        }
+                                        @if (Model.Item1.listaBP.Count == 0)
+                                        {
+                                            <option>Sin BP pendientes.</option>
+                                        }
+
+                                    </select>
+
+
+
+                                </div>
+                                <br><br>
+
+
+                                <a onclick="CorreccionesDocumento()" style="margin-right: -230px">Continuar</a>
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="col-md-8 mailbox-content  tab-content tab-content-in" align="right">
+                            <div>
+                                <div class="header-left">
+
+
+                                    <div class="mailbox-border">
+                                        <div class="mail-toolbar clearfix">
+                                            <div>
+                                                <!--search-box-->
+                                                <style>
+                                                    .container-4 {
+                                                        width: 800px;
+                                                        text-align: left;
+                                                    }
+
+                                                    .search1 {
+                                                        border-radius: 15px;
+                                                    }
+                                                </style>
+                                                <div class="box compose-block" style="background-color:#FFFFFF">
+                                                    <div class="container-4">
+                                                        <input type="search" id="palabraClave" style="z-index: auto" class="search1 search-box" placeholder="Palabra clave..." />
+                                                        <a onclick="BuscarReviPC()" class="hvr-icon-rotate-search " style="align-content: center; width:120px">Buscar</a>
+
+
+
+                                                    </div>
+                                                </div>
+                                                <!--//end-search-box-->
+
+
+                                                <div class="clearfix"> </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+
+                                <div class="clearfix"> </div>
+                                <div style="padding-top: 8px; padding-left: 10px; text-align: left" class="chit-chat-heading"> BUENAS PRÁCTICAS </div>
+                                @*<span class="text-muted m-r-sm">Mostrar 5 of 20 </span>
+
+                                <div class="btn-group">
+                                    <a class="btn btn-default"><i class="fa fa-angle-left"></i></a>
+                                    <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
+                                </div>*@
+                                <div class="clearfix"> </div>
+                            </div>
+
+
+                            <!--inicia contenido correos-->
+                            @*<table class="table tab-border" style="text-decoration-color: #000000">
+
+                                <tr>
+
+                                    <th>Título de la Práctica</th>
+
+                                    <th>Eje temático</th>
+                                    <th align="center" style="text-align: center">Tipo de archivo</th>
+                                    <th>Estado</th>
+
+                                </tr>
+                                <tbody>
+                                    <tr class="unread checked">
+                                        <td class="hidden-xs">
+                                            Cuidado del medio ambiente
+                                        </td>
+                                        <td>
+                                            Ciencias
+                                        </td>
+                                        <td align="center"></td>
+                                        <td>
+                                            revisión
+                                        </td>
+                                    </tr>
+                                    <tr class="unread checked">
+                                        <td class="hidden-xs">
+                                            Buenas acciones sociales
+                                        </td>
+                                        <td>
+                                            Humanidades
+                                        </td>
+                                        <td align="center"></td>
+                                        <td>
+                                            revisión
+                                        </td>
+                                    </tr>
+                                    <tr class="unread checked">
+                                        <td class="hidden-xs">
+                                            Ejercicio y salud mental
+                                        </td>
+                                        <td>
+                                            Ciencias
+                                        </td>
+                                        <td align="center">
+                                            <i class="fa fa-paperclip"></i>
+                                        </td>
+                                        <td>
+                                            revisión
+                                        </td>
+                                    </tr>
+                                    <tr class="unread checked">
+                                        <td class="hidden-xs">
+                                            Proyecto de vida
+                                        </td>
+                                        <td>
+                                            Humanidades
+                                        </td>
+                                        <td align="center">
+                                            <i class="fa fa-paperclip"></i>
+                                        </td>
+                                        <td>
+                                            revisión
+                                        </td>
+                                    </tr>
+                                    <tr class="read checked">
+                                        <td class="hidden-xs">
+                                            Promotores de salud bucal
+                                        </td>
+                                        <td>
+                                            Ciencias
+                                        </td>
+                                        <td align="center">
+                                            <i class="fa fa-paperclip"></i>
+                                        </td>
+                                        <td>
+                                            revisión
+                                        </td>
+                                    </tr>
+
+
+
+
+                                </tbody>
+                            </table>*@
+                            <div id="resultTable">
+                                @Html.Partial("_TablaSesionRevisor", Model.Item2)
+                            </div>
+                            <!--termina contenido correos-->
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="clearfix"> </div>
+        </div>
+        <!--main page chit chating end here-->
+
+        <div class="clearfix"> </div>
+
+
+
+
+
+        <!--inner block end here-->
+        <!--copy rights start here-->
+        @*<div class="copyrights">
+
+            <img src=@Url.Content("~/image/gto.png") class="imgRedonda" style="display:inline" alt="GTO" width="100">
+
+            <br><br>
+            <p>SECRETAR&Iacute;A DE EDUCACI&Oacute;N DE GUANAJUATO</p>
+
+            <p style="font-size: 12px">
+                Pozuelos: Conjunto Administrativo Pozuelos S/N Guanajuato, Gto. (473) 735-1000
+                Puentecillas: Carretera Guanajuato-Puentecillas km 9.5 Guanajuato, Gto. (473) 735-1200
+                Profesiones: Carretera Guanajuato-Juventino Rosas km 6.5 Esq. Jazm&iacute;n, Col. Arroyo Verde (473) 10 20 200
+
+                01 800 890 30 80
+            </p>
+
+            <a href="mailto:comunicacion_seg@seg.guanajuato.gob.mx?subject=Email%20Subject">comunicacion_seg@seg.guanajuato.gob.mx</a>
+
+
+
+
+
+            <ul class="social-buttons" id="demo3">
+                <li>
+                    <a href="http://www.youtube.com/user/EducacionGuanajuato" class="brandico-youtube"><img src="http://hopedalebuilders.com/files/2018/01/youtube-icon-white.png" width="70%"></a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/pages/Secretar%C3%ADa-de-Educaci%C3%B3n-de-Guanajuato-SEG/340786939279382?ref=hl" class="brandico-facebook"><img src="https://amcboise.com/wp-content/uploads/2017/11/facebook.png" width="80%"></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/ComunicacionSEG" class="brandico-twitter-bird"><img src="https://www.bh-bims.org/wp-content/uploads/2017/12/twitter-icon-white-e1513102680550.png" width="90%"></a>
+                </li>
+
+
+            </ul>
+
+        </div>*@
+        @Html.Partial("../ViewPartialPrincipales/_Footer")
+    </div>
+            <!--COPY rights end here-->
+
+
+
+
+            <div class="clearfix"> </div>
+
+            <!--slide bar menu end here-->
+            <!--scrolling js-->
+            <script src="Administrador/js/jquery.nicescroll.js"></script>
+            <script src="Administrador/js/scripts.js"></script>
+            <!--//scrolling js-->
+            <script src="Administrador/js/bootstrap.js"></script>
+            <!-- mother grid end here-->
+            }
+    </body>
+</html>
+
+<script type="text/javascript">
+    function BuscarReviPC() {
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("SesionRevisorP", "BuenasPracticas")', // don't hard code url's
+        data: { palabraClave: $('#palabraClave').val()},
+        dataType: "html",
+            success: function (response) // lowercase (not Success)
+            {
+                $('#resultTable').html(response);
+                document.getElementById("palabraClave").select();
+             },
+            error: function () {
+                alert("Error en el filtro de la tabla.");
+            }
+        });
+    }
+
+    function CorreccionesDocumento() {
+        var tit = document.getElementById("RevisarBP").value;
+                $.ajax({
+                    url: "@Url.Action("ValorSession", "BuenasPracticas")",
+                    method: "POST",
+                    data: { tituloBP: tit},//tituloBP: tit
+                    datatype: "json",
+                    success: function () 
+                    {
+                        window.location.assign("RevisionBP");
+                        
+                    },
+                    error: function () {
+                        alert("Error.");
+                    }
+        })
+    }
+</script>

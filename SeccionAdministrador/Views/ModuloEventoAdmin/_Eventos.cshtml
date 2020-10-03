@@ -1,0 +1,79 @@
+﻿@using PagedList.Mvc
+@model Tuple<PagedList.IPagedList<BusinessModel.Models.ModuloEvento.EventoEnlace>>
+
+<style>
+    .sinformato {
+        text-decoration: none !important;
+        background-color: transparent !important;
+        color: #3e5569 !important;
+        text-align: left !important;
+        padding: 0px 0px 0px 0px !important;
+        font-size: 1em !important;
+        display: none;
+    }
+
+    .container-4 {
+        width: 800px;
+        text-align: left;
+    }
+
+    .search1 {
+        border-radius: 15px;
+    }
+
+    .sinformatoboton {
+        color: #797878;
+        text-decoration: none;
+        background: none;
+        border-radius: none;
+    }
+</style>
+
+
+<div style="padding-top: 20px; padding-left: 10px; text-align: left" class="chit-chat-heading"> Eventos registrados </div>
+<!--search-box-->
+<div>
+
+    <div class="box compose-block" style="background-color:#FFFFFF" align="left">
+        <div class="container-4" align="left">
+            <input type="search" id="palabraClave" style="z-index: auto" class="search1 search-box" placeholder="Palabra Clave Nombre del Evento..." />
+            <a onclick="TabFilterEvento()" class="hvr-icon-rotate-search " style="align-content: center; width:120px">Buscar</a>
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+<!--//end-search-box-->
+
+
+
+<div class="compose compose-block" style="background-color: #FFFFFF">
+    <div id="vpTablaEventos">
+        @Html.Partial("_VPSeccionEvento/_TablaEventos", Model.Item1)
+
+    </div>
+
+</div>
+
+<script>
+    function TabFilterEvento() {
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("VistaEventoFiltro", "ModuloEventoAdmin")', // don't hard code url's
+        data: { palabraclave: $('#palabraClave').val()},
+        dataType: "html",
+            success: function (response) // lowercase (not Success)
+            {
+                $('#vpTablaEventos').html(response);
+                document.getElementById("palabraClave").select();
+             },
+            error: function (response) {
+                alert("Error en el filtro de la tabla.");
+            }
+        });
+    }
+</script>

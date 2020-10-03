@@ -1,0 +1,45 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<BusinessModel.Models.ModuloBP.BPHomeTable>
+
+<div class="float-right" align="right">
+    <span class="text-muted m-r-sm">
+        Mostrar @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        de @Model.PageCount
+    </span>
+
+    <div class="btn-group">
+        @Html.PagedListPager(Model, page => Url.Action("Practica", new { page }))
+    </div>
+</div>
+
+<table class="table tab-border">
+
+    <tr>
+
+        <th>Título de la practica</th>
+
+        <th>Eje temático</th>
+        <th>Ver</th>
+        <th>Publicado</th>
+
+    </tr>
+    <tbody>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr class="unread checked">
+                <td class="hidden-xs">
+                    @Model[i].tituloBP
+                </td>
+                <td>
+                    @Model[i].eje
+                </td>
+                <td align="center">
+                    <i class="fa fa-paperclip"></i>
+                </td>
+                <td>
+                    @Model[i].fechaPublicacion.Value.ToString("dd/MM/yyyy")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,170 @@
+﻿@model Tuple<SeccionAdministrador.Models.UsuarioViewModel, BusinessModel.Models.Usuario.UsuariosRBP>
+
+<style>
+    .sinformato {
+        text-decoration: none;
+        color: black;
+    }
+</style>
+<!--pop up strat here-->
+<script src="@Url.Content("~/Scripts/jquery.magnific-popup.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.popup-with-zoom-anim').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+
+
+
+</script>
+@*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+@Html.ValidationMessage("TabMsjRevi", new { @class = "text-danger" })
+<!--pop-up-grid-->
+
+<table class="table tab-border" style="text-decoration-color: #000000" align="center">
+
+    <tr align="center">
+
+        <th>Nombre completo del Autor</th>
+
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Subsistema</th>
+        <th align="center">Estado</th>
+
+    </tr>
+    <tbody>
+
+        @foreach (var item in Model.Item2.listaInfo)
+        {
+            <tr class="unread checked">
+
+                <td class="hidden-xs">
+                    <a onclick="PopUpRevisor('@item.user')" class="popup-with-zoom-anim sinformato"><div>  @item.nombre @item.apP @item.apM</div></a>
+                    
+                    
+                    <!--Pop UP-->
+                    <div id="PopRevisorDiv" align="center">
+
+                    </div>
+                    
+
+
+                    
+                </td>
+
+                <td>
+                    @item.email
+                </td>
+                <td>
+                    @item.tel
+                </td>
+                <td>
+                    @item.instSub
+                </td>
+                <td align="left">
+                    <ul>
+                        @if (item.estado == true)
+                        {
+                            <i onclick="EstadoRevisor('@item.user','false')" class="glyphicon glyphicon-ok-circle" aria-hidden="true" style="color:green;"></i>
+                        }
+                        else
+                        {
+                            <i onclick="EstadoRevisor('@item.user','true')" class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="color:red;"></i>
+                        }
+
+
+                    </ul>
+                </td>
+            </tr>
+        }
+
+
+
+
+
+    </tbody>
+</table>
+<div align="right"> <p style="font-size:9pt; color:dimgrey;">Doble clik sobre nombre para modificar datos del revisor</p></div>
+
+<script type="text/javascript">
+    function EstadoRevisor(user,e) {
+        var es = false;
+        if (e == "true") {
+            es = true;
+        }
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("EstadoRevisor", "Admin")',
+            data: { usuario: user, estado:es},
+        dataType: "html",
+        success: function (response)
+        {
+            $('#TabRevisoresBP').html(response);
+            //alert("actualizado");
+        },
+        error: function (response) {
+        alert("Error al actualizar estado del revisor.");
+        }
+        });
+    }
+
+    @*function ActualizarRevi(u,nom,apP,apM,c,t,s)
+    {
+        var nomA = document.getElementById(nom).value;
+        var apeP = document.getElementById(apP).value;
+        var apeM = document.getElementById(apM).value;
+        var email = document.getElementById(c).value;
+        var tel = document.getElementById(t).value;
+        var e = document.getElementById(s);
+        var insSub = e.options[e.selectedIndex].text;
+        //alert(nomA + " " + apeP + " " + apeM + " " + email + " " +tel);
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("ActualizarRevi", "Admin")',
+            data: { usuario: u, nomU: nomA, apPU: apeP, apMU: apeM, emailU: email, telU: tel, insSu: insSub},
+        dataType: "html",
+        success: function (response)
+        {
+            $('#TabRevisoresBP').html(response);
+            //alert("actualizado");
+        },
+        error: function (response) {
+        alert("Error al actualizar datos del Revisor.");
+        }
+        });
+    }*@
+
+    function PopUpRevisor(u) {
+        
+       $.ajax({
+        type: "POST",
+        url: '@Url.Action("_PopUpRevisor", "Admin")',
+            data: { usu: u},
+        dataType: "html",
+        success: function (response)
+        {
+            //document.getElementById("PopRevisorDiv").className = "popup-with-zoom-anim sinformato";
+            $('#PopRevisorDiv').html(response);
+            
+           
+            
+        },
+        error: function (response) {
+        alert("Error al cargar Pop-Up Revisor");
+        }
+        });
+    }
+
+   
+</script>

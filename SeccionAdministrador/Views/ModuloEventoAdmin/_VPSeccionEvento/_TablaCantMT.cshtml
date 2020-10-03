@@ -1,0 +1,89 @@
+﻿@model SeccionAdministrador.Models.Eventos.MesaEventoViewModel
+
+<table class="table tab-border" style="text-decoration-color: #000000; align-content: center" align="center">
+
+    <tr class="unread checked">
+
+        <th align="center" style="text-align: center">Nombre mesa de trabajo</th>
+
+
+        <th align="center" style="text-align: center">Cantidad</th>
+
+        <th align="center" style="text-align: center"> Eliminar</th>
+
+    </tr>
+    <tbody>
+        @foreach(var item in Model.listaMesasEvento)
+        {
+        <tr class="unread checked">
+            <td align="center">
+                <a onclick="PopUpModifMT(@item.idMesaTrab,@item.idEvento)" class="popup-with-zoom-anim sinformatoboton" style=" color: #3f5569; text-decoration: none; background:none; border-radius:none;">
+                    <div> @item.nombreMT</div>
+                </a>
+                <!--Pop UP-->
+                <div id="PopUpModifMT" align="center">
+
+                </div>
+            </td>
+            <td align="center">
+                @item.cantidad
+            </td>
+
+            <td align="center">
+                <ul>
+                    @*<i class="glyphicon_x glyphicon-trash" aria-hidden="true"></i>*@
+                    @if (item.estado == true)
+                    {
+                        <i onclick="EstadoMT(@item.idMesaTrab,'false',@item.idEvento)" class="glyphicon glyphicon-ok-circle" aria-hidden="true" style="color:green;"></i>
+                    }
+                    else
+                    {
+                        <i onclick="EstadoMT(@item.idMesaTrab,'true',@item.idEvento)" class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="color:red;"></i>
+                    }
+
+                </ul>
+            </td>
+        </tr>
+        }
+        
+
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function PopUpModifMT(idMT,idE) {
+       $.ajax({
+        type: "POST",
+        url: '@Url.Action("_PopUpModifEvento", "ModuloEventoAdmin")',
+           data: { idMesaT:idMT,idEvento:idE},
+        dataType: "html",
+        success: function (response)
+        {
+            //document.getElementById("PopRevisorDiv").className = "popup-with-zoom-anim sinformato";
+            $('#PopUpModifMT').html(response);
+
+
+
+        },
+        error: function (response) {
+        alert("Error al cargar Pop-Up Modificar Mesa de trabajo");
+        }
+        });
+    }
+
+    function EstadoMT(idMT, est,idE) {
+         $.ajax({
+                type: "POST",
+                url: '@Url.Action("EstadoMT", "ModuloEventoAdmin")',
+                data: { idMesaT:idMT, estado:est,idEvento:idE },
+                dataType: "html",
+                success: function (response) {
+                    $('#TablaCantMT').html(response);
+                },
+                error: function (response) {
+                    alert("Error en cargar tabla Mesa de trabajo");
+                }
+            });
+    }
+</script>

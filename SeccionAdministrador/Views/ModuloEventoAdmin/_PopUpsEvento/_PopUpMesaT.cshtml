@@ -1,0 +1,82 @@
+﻿@model SeccionAdministrador.Models.Eventos.MesaEventoViewModel
+
+<!--Cambio style del DIV abajo-->
+<div style="position: fixed; z-index: 999; width: 100%; height: 100%; text-align: center; top: 0; left: 0; background: rgba(0,0,0,0.8)">
+    <!--Cambio style del DIV abajo-->
+    <div  style="background: white; padding: 10px 0 10px 0; height:300px; max-width: 629px; max-height:900px; margin: 40px auto; position: relative; border-radius: 5px; z-index:1000; -moz-opacity: !important 1; opacity:!important 1; filter: alpha(opacity=100); ">
+        <!--Cambio style del DIV abajo-->
+        <div class="pop_up">
+            <button title="Cerrar" type="button" class="mfp-close" onclick="CerrarPopUpMesaT()">×</button>
+            <div class="container">
+              
+                <div style="padding-top: 30px; padding-left: 10px; text-align: left; margin-left: 15px; margin-right: 15px" class="chit-chat-heading">
+                <br />Actualizar Mesa de Trabajo</div>
+
+            </div>
+            <div class="form-style-10" style="width: 100%; height:300px; padding-top: -55px; margin-top: -55px">
+
+                <div class="inner-wrap" align="left" style="padding-top:-55px">
+
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="60%">&nbsp;Nombre: <input id="txtDescriMTmod" value="@Model.nombreMT" class="autor" style="border: none; resize: none; width: 100%" type="text" required /></td>
+                                <td width="5%">&nbsp;</td>
+                                <td width="35%">
+                                    <div class="compose-block" style="background: none; text-align:right">
+                                        <div class="button-section compose compose-bottom" align="right">
+                                            <button class="compose compose-bottom" onclick="ModificarDatosMT(@Model.idMesaTrab)">Actualizar</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="60%">Cantidad: <input id="txtCantMTmod" value="@Model.cantidad" class="autor" style="border: none; resize: none; width: 100%" type="number" required /></td>
+                                <td width="5%">&nbsp;</td>
+                                <td width="35%">&nbsp;</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+        <script type="text/javascript">
+            function CerrarPopUpMesaT() {
+                document.getElementById('PopUpModifMT').innerHTML = '';
+            }
+
+            function ModificarDatosMT(idMT) {
+                
+                var ndMT = $('#txtDescriMTmod').val();
+                var cant = $('#txtCantMTmod').val();
+                
+        if (ndMT != "" && cant!="") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ModificarDatosMT", "ModuloEventoAdmin")',
+                data: { idMesaT:idMT,nombreMT:ndMT,cantidad:cant },
+                //dataType: "html",
+                success: function (data) {
+                    alert(data);
+                    //$('#TablaCantMT').html(response);
+                    //document.getElementById('txtDescriMT').value = "";
+                    //document.getElementById('txtCantMT').value = "";
+                    //document.getElementById('txtDescriMT').focus();
+                },
+                error: function (data) {
+                    alert("Error en actualizar datos de la mesa de trabajo");
+                }
+            });
+        } else {
+            alert("Campo obligatorio vacío");
+        }
+            }
+        </script>
+

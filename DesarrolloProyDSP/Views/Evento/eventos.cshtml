@@ -1,0 +1,279 @@
+﻿@model Tuple<DesarrolloProyDSP.Models.ModuloEvento.EventoViewModel>
+@{
+    Layout = null;
+    ViewBag.Title = "Eventos";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Eventos</title>
+
+    @Html.Partial("../ViewPartialPrincipales/_ScriptsLink")
+
+
+
+
+</head>
+<body>
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                @Html.Partial("../ViewPartialPrincipales/_Header")
+                <div class="clearfix"> </div>
+            </div>
+            <!--heder end here-->
+            <!-- script-for sticky-nav -->
+            <script>
+                $(document).ready(function () {
+                    var navoffeset = $(".header-main").offset().top;
+                    $(window).scroll(function () {
+                        var scrollpos = $(window).scrollTop();
+                        if (scrollpos >= navoffeset) {
+                            $(".header-main").addClass("fixed");
+                        } else {
+                            $(".header-main").removeClass("fixed");
+                        }
+                    });
+
+                });
+            </script>
+            <!-- /script-for sticky-nav -->
+
+            <div class="inner-block">
+
+                <div class="price-block-main">
+                   
+                            <div class="slider">
+                                <ul>
+                                    @foreach (var i in Model.Item1.listaImagenes)
+                                    {
+                                        <li style="height:50%">
+                                            <a><img src="@Url.Action("Index","VisualizacionPrevia",new { archivo=i.imagen})" id="@i.idImgBanner" alt="" border=3 height=300 width=300></a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        
+
+                        <br />
+                        <div class="prices-head">
+                            <h2>Eventos</h2>
+                        </div>
+                        <br />
+                        <div class="price-tables">
+
+                            <!--comienzo del evento completo-->
+
+                            @foreach(var item in Model.Item1.listaEventosHome)
+                            {
+                                <div class="col-md-4 price-grid">
+                                    <div class="price-block" onclick="EnviarDatosEvento('@item.nombreEvento')">
+                                        @* Enviar al JS que hara el envio a la otra página en el onclick con idEvento onclick="javascript:window.open('la nueva pag','_blanck',);" *@
+                                                                        <div class="price-gd-top pric-clr1">
+
+                                                                            <div class="cabezal_Teventos">
+                                                                                <p class="Texto_Eventos">
+                                                                                    @item.nombreEvento
+                                                                                </p>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="price-gd-bottom">
+                                                                            @* AQUI NO PUEDO CHECAR COMO SE VE PODRIAS PONERLE UN 2 DESPUES DE OBJETFIT, PARA VER SI QUEDA MEJOR *@
+                                                                            <div class="price-gd-bottom">
+                                                                                <img style="width:100%; height:auto" src="@Url.Action("Index","VisualizacionPrevia",new { archivo=item.rutaImgIcono})" alt="" />
+                                                                            </div>
+                                                                            <div align="center" class="estado">
+                                                                                @if (item.tipoEvento == "Restringido")
+                                                                                {
+                                                                                    <img src="@Url.Content("~/image/icon__res.png")" width="8%" alt="" /> <p>Restringido</p>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <img src="@Url.Content("~/image/icon_pub.png")" width="8%" alt="" /> <p>Público</p>
+                                                                                }
+                                                                            </div>
+                                                                            <div class="price-list">
+                                                                                <div class="left">
+                                                                                    <ul class="price-list">
+                                                                                        <li class="fechas ">Fecha de Registro</li>
+                                                                                        @if (item.tipoFechaR == 1)
+                                                                                        {
+                                                                                            <li class="dia"><p>@item.dia1R <span>al</span>@item.dia2R</p></li>
+                                                                                            <li class="mes">@item.mes1R.ToUpper()</li>
+                                                                                        }
+                                                                                        else if (item.tipoFechaR == 2)
+                                                                                        {
+                                                                                            <li class="dia"><p>@item.dia1R <span>al</span>@item.dia2R</p></li>
+                                                                                            <li class="mes">@item.mes1R.ToUpper()-@item.mes2R.ToUpper()</li>
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <li class="dia"><p>@item.dia1R</p></li>
+                                                                                            <li class="mes">@item.mes1R.ToUpper()</li>
+                                                                                        }
+
+
+                                                                                    </ul>
+                                                                                </div>
+
+                                                                                <div class="left2">
+                                                                                    <ul class="price-list">
+                                                                                        <li class="fechas2">Fecha del evento</li>
+                                                                                        @if (item.tipoFechaE == 1)
+                                                                                        {
+                                                                                            <li class="dia2"><p>@item.dia1E <span>al</span>@item.dia2E</p></li>
+                                                                                            <li class="mes2">@item.mes1E.ToUpper()</li>
+                                                                                        }
+                                                                                        else if (item.tipoFechaE == 2)
+                                                                                        {
+                                                                                            <li class="dia2"><p>@item.dia1E <span>al</span>@item.dia2E</p></li>
+                                                                                            <li class="mes2">@item.mes1E.ToUpper()-@item.mes2E.ToUpper()</li>
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            <li class="dia2"><p>@item.dia1E</p></li>
+                                                                                            <li class="mes2">@item.mes1E.ToUpper()</li>
+                                                                                        }
+                                                                                    </ul>
+                                                                                </div>
+
+
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </div>
+                                </div>
+                            }
+
+                            <!--comienzo del evento completo-->
+                            @*<div class="col-md-4 price-grid">
+            <div class="price-block" onclick="javascript:window.open('la nueva pag','_blanck',);">
+                <div class="price-gd-top pric-clr2">
+
+                    <div class="cabezal_Teventos">
+                        <p class="Texto_Eventos">Mesa de trabajo la Proyección de la Educación en Guanajuato</p>
+                    </div>
+                </div>
+                <div class="price-gd-bottom">
+                    <div class="objetfit">
+                        <img src="@Url.Content("~/image/Constancia_aprendizajesclave.png")" width="100%" alt="" />
+                    </div>
+                    <div align="center" class="estado"> <img src="@Url.Content("~/image/icon__res.png")" width="8%" alt="" /> <p>Restringido</p></div>
+                    <div class="price-list">
+                        <div class="left">
+                            <ul class="price-list">
+                                <li class="fechas ">Fecha de Registro</li>
+                                <li class="dia"> 1</li>
+                                <li class="mes"> Marzo</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="left2">
+                            <ul class="price-list">
+                                <li class="fechas2">Fecha del evento</li>
+                                <li class="dia2"> 21</li>
+                                <li class="mes2"> Marzo</li>
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>*@
+
+                            <!--comienzo del evento completo-->
+                            @*<div class="col-md-4 price-grid">
+            <div class="price-block" onclick="javascript:window.open('la nueva pag','_blanck',);">
+                <div class="price-gd-top pric-clr3">
+
+                    <div class="cabezal_Teventos">
+                        <p class="Texto_Eventos">
+                            El destino de la educación en México en tiempos del COVID-19
+                        </p>
+                    </div>
+
+                </div>
+                <div class="price-gd-bottom">
+                    <div class="objetfit">
+                        <img src="@Url.Content("~/image/399263-PCOPG1-400.jpg")" alt="" />
+                    </div>
+                    <div align="center" class="estado"> <img src="@Url.Content("~/image/icon_pub.png")" width="8%" alt="" /> <p>Publico</p></div>
+                    <div class="price-list">
+                        <div class="left">
+                            <ul class="price-list">
+                                <li class="fechas ">Fecha de Registro</li>
+                                <li class="dia"> 15</li>
+                                <li class="mes"> Enero</li>
+
+                            </ul>
+                        </div>
+
+                        <div class="left2">
+                            <ul class="price-list">
+                                <li class="fechas2">Fecha del evento</li>
+                                <li class="dia2"> 22</li>
+                                <li class="mes2"> Marzo</li>
+
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+                            <div class="clearfix"> </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            <!--inner block end here-->
+            <!--copy rights start here-->
+            @Html.Partial("../ViewPartialPrincipales/_Footer")
+            <div class="clearfix"> </div>
+
+                   </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    function EnviarDatosEvento(nomEv) {
+        
+        
+        var url = "@Url.Action("DatosEvento", "Evento", new { nomE = "nombreEvento" })";
+        url = url.replace("nombreEvento", nomEv);
+            window.location.assign(url);
+        @*$.ajax({
+                    url: "@Url.Action("DatosEvento", "Evento")",
+                    method: "POST",
+                    data: { nomE: nomEv},
+                    datatype: "json",
+                    success: function () 
+                    {
+                        alert("bien");
+                        //window.location.assign("DatosEvento", new {nomE=nomEv});
+                        window.location.assign(@Url.Action("DatosEvento","Evento",new { nomE=nomEv}))
+                    }
+                })*@
+    }
+</script>

@@ -1,0 +1,52 @@
+﻿@model SeccionAdministrador.Models.Eventos.SubsistemaEventoViewModel
+
+<table class="table tab-border" style="text-decoration-color: #000000; align-content: center" align="center">
+
+    <tr class="unread checked">
+
+        <th align="center" style="text-align: center">Subsistema</th>
+
+
+        <th align="center" style="text-align: center">Cantidad</th>
+
+        <th align="center" style="text-align: center"> Eliminar</th>
+
+    </tr>
+    <tbody>
+        @foreach (var item in Model.listaSubsisEvento)
+        {
+            <tr class="unread checked" id="@item.idSubsistemaEv">
+                <td align="center">
+                    @item.nombreSubsistema
+                </td>
+                <td align="center">
+                    @item.cantidad
+                </td>
+
+                <td align="center">
+                    <ul>
+                        <i class="glyphicon_x glyphicon-trash" aria-hidden="true" onclick="EliminarSubsisCant(@item.idSubsistemaEv,@item.idEvento)"></i>
+                    </ul>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function EliminarSubsisCant(id,idEve) {
+        $.ajax({
+                type: "POST",
+                url: '@Url.Action("EliminarSubsisCant", "ModuloEventoAdmin")',
+                data: { idSubsistemaEv: id, idEvento: idEve},
+                dataType: "html",
+                success: function (response) {
+                    $('#TablaCantSubSis').html(response);
+                },
+                error: function (response) {
+                    alert("Error en cargar tabla Cantidad Subsistemas");
+                }
+            });
+    }
+</script>

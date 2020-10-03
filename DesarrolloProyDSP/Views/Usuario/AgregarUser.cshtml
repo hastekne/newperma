@@ -1,0 +1,153 @@
+﻿@*@model DesarrolloProyDSP.Models.Usuario.UsuarioViewModel*@
+@model Tuple<DesarrolloProyDSP.Models.Usuario.UsuarioViewModel, DesarrolloProyDSP.Models.Usuario.PerfilViewModel>
+
+@{
+    ViewBag.Title = "AgregarUser";
+
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Agregar user</title>
+</head>
+
+@using (Html.BeginForm("AgregarUser"))
+
+
+{
+    @Html.AntiForgeryToken()
+
+
+    <hr />
+
+
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+  
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item1.nombreUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Item1.nombreUsuario, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Item1.nombreUsuario)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item1.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Item1.nombre, new { htmlAttributes = new { @class = "form-control" } })
+            @*<input class="form-control" name="nombre" id="nombre" type="text/>*@
+            @Html.ValidationMessageFor(model => model.Item1.nombre, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item1.pApellido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @* @Html.EditorFor(model => model.<input class="form-control" name="nombre" id="nombre" type="text" value="@item.nombre" />, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.EditorFor(model => model.Item1.pApellido, new { htmlAttributes = new { @class = "form-control" } })
+            @*<input class="form-control" name="pApellido" id="pApellido" type="text" />*@
+            @Html.ValidationMessageFor(model => model.Item1.pApellido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item1.sApellido, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Item1.sApellido, new { htmlAttributes = new { @class = "form-control" } })
+            @*  <input class="form-control" name="sApellido" id="sApellido" type="text" />*@
+            @Html.ValidationMessageFor(model => model.Item1.sApellido, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item1.contrasenia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @* <input class="form-control" name="contrasenia" id="contrasenia" type="text" />*@
+
+            @Html.EditorFor(model => model.Item1.contrasenia, new { htmlAttributes = new { @class = "form-control", @id = "contrasenia" } })
+            @Html.ValidationMessageFor(model => model.Item1.contrasenia, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Confirma Contrasenia</label>
+        <div class="col-md-10">
+            <input class="form-control" name="Confirma" id="Confirma" type="text" />
+            <input class="btn btn-primary" type="button" id="pass" name="pass" value="Generar Contrasenia" onclick="GenPass();" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item1.correoElectronico, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Item1.correoElectronico, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Item1.correoElectronico, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Item1.telefono, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Item1.telefono, new { htmlAttributes = new { @class = "form-control" } })
+            @*  <input class="form-control" name="telefono" id="telefono" type="text">*@
+            @Html.ValidationMessageFor(model => model.Item1.telefono, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    //------------------------------QUITE EL CHECKBOX, AL CREAR UN USUARIO EL ESTADO SIEMPRE SERA TRUE-----------
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.estado, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+
+                    <label class="checkbox pull-left">
+                        <input type="checkbox" id="estado" name="estado" value="true" checked>
+                        <input name="estado" type="hidden" value="false">
+                    </label>
+
+                    @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
+    <select id="selectPerfil" name="selectPerfil">
+        @foreach (var item in Model.Item2.listaPerfil)
+        {
+            <option id="@item.idPerfil" name="@item.idPerfil">@item.perfil</option>
+        }
+    </select>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Agregar" class="btn btn-default" />
+            @*  <input type="button" id="Editar" value="Actualizar" onclick="location.href='@Url.Action("Editar","Usuario")'" />*@
+        </div>
+    </div>
+
+
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script language="javascript" type="text/javascript">
+
+    function GenPass() {
+        var r = Math.random().toString(36).substring(3);
+        r = r.substring(0, 6) + "1A";
+        window.document.getElementById("contrasenia").value = r;
+        window.document.getElementById("Confirma").value = r;
+
+    }
+
+</script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

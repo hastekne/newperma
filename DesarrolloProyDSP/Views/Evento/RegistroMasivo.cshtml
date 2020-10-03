@@ -1,0 +1,302 @@
+﻿@model DesarrolloProyDSP.Models.ModuloEvento.EventoViewModel
+@{
+
+    Layout = null;
+    ViewBag.Title = "RegistroMasivo";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>RegistroMasivo</title>
+
+    @Html.Partial("../ViewPartialPrincipales/_ScriptsLink")
+
+    <link href="@Url.Content("~/css/style.css")" rel="stylesheet" type="text/css" media="all">
+
+    <!--pop up strat here-->
+    <script src="@Url.Content("~/Scripts/jquery.magnific-popup.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+        });
+    </script>
+
+    <style>
+
+        #loging {
+            background: white;
+            padding: 10px 0 10px 0;
+            text-align: left;
+            max-width: 629px;
+            margin: 40px auto;
+            position: relative;
+            text-align: center;
+            height: 300px;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                @Html.Partial("../ViewPartialPrincipales/_Header")
+
+
+
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <!--heder end here-->
+        <!-- script-for sticky-nav -->
+        <script>
+            $(document).ready(function () {
+                var navoffeset = $(".header-main").offset().top;
+                $(window).scroll(function () {
+                    var scrollpos = $(window).scrollTop();
+                    if (scrollpos >= navoffeset) {
+                        $(".header-main").addClass("fixed");
+                    } else {
+                        $(".header-main").removeClass("fixed");
+                    }
+                });
+
+            });
+        </script>
+        <!-- /script-for sticky-nav -->
+        <!--- script para que cambie el noimbre del archivo 1 --->
+        <script>
+            'use strict';
+            $(function () {
+                $('.inputfile').each(function () {
+                    var $input = $(this);
+                    $input.on('change', function (e) {
+                        var fileName = '';
+                        if (e.target.value) {
+                            fileName = e.target.value.split('\\').pop();
+                        }
+                        if (fileName) {
+                            var $fileName = $('#file_name');
+                            $fileName.html(fileName);
+                        } else {
+                            $fileName.html('');
+                        }
+                    });
+                });
+            });</script>
+
+
+        <!-- script para restringir letras en input text numeros-->
+        <script>
+            function justNumbers(e) {
+                var keynum = window.event ? window.event.keyCode : e.which;
+                if ((keynum == 8) || (keynum == 46))
+                    return true;
+
+                return /\d/.test(String.fromCharCode(keynum));
+            }
+
+        </script>
+
+
+
+
+        <!--inner block start here-->
+
+        <div class="inner-block" style="margin-top: -20px">
+            <!--market updates updates-->
+
+
+            <div class="clearfix"> </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="chit-chat-layer1 ">
+
+                <div class="col-md-2 chit-chat-layer1-left ">
+
+
+
+                </div>
+
+                <div class="col-md-8 chit-chat-layer1-left ">
+                    <div class="work-progres ">
+
+                        <div class="table-responsive">
+
+                            <div class="blog-slider__Bienvenida" style="text-align: center; margin-top:-5px; margin-bottom: -30px; z-index: 0">Registro masivo al evento</div>
+
+
+
+
+                            <div class="form-style-10" style="width: 720px">
+
+
+
+
+                                <div class="Titulo_Eventos up" align="center"><textarea rows="3" maxlength="100" readonly="readonly" class="shadow-none" id="txtAreaNombreEReg">@Model.nombre</textarea></div>
+
+
+                                <table width="95%" border="0" align="center" style="height:10px; padding-top: -10px; ">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="1" width="40%">
+
+                                                <div class="EventoFecha" align="center" style="vertical-align: middle; padding-bottom: 5px">Cantidad total de participantes:</div>
+                                            </td>
+                                            <td colspan="1" width="20%">
+
+                                                <input id="txtCantidadRE" type="text" required class="autor" style="border: none; resize: none;" onkeypress="return justNumbers(event);" placeholder="Número exacto" maxlength="4" align="right" />
+                                            </td>
+                                            <td width="40%">
+                                                <div class="compose-block" style="background: none">
+                                                    <div class="button-section compose compose-bottom" align="right" style="padding-bottom: 10px">
+                                                        <button class="compose compose-bottom" tooltip="Descargar plantilla" onclick="DescargaPlantillaEReg('@Model.nombre')">Plantilla Excel</button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table width="95%" border="0" align="center" style="height:10px; margin-top: -10px; ">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2" width="100%">
+                                                <br>
+                                                <input type="file" style="border: none; resize: none; width: 100%; height: 80px; padding-top: 0px" name="choose_file" id="choose_file" class="inputfile custom" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                                                <!-- DE ESTA FORMA PUSE EL DE EL REGISTRO DE LA BUENA PRACTICA NO SE SI FUNCIONE ASÍ; O SI SEA MEJOR PONERLO accept=".xls,.xlsx,.xlsm-->
+                                                <label for="choose_file">
+                                                    <span id="file_name" tooltip="Sólo Archivo Excel">Archivo</span><strong style="color: #FFFFFF">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" color="#FFFFFF" style="color: #FFFFFF "><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                                                    </strong>
+                                                </label>
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+
+
+
+
+                                <div class="compose-block" style="background: none;">
+                                    <button class="" onclick="RegistroEMasivoUser('@Model.nombre')" style="width: 100%;" tooltip="Enviar el registro">Registrarse</button>
+                                </div>
+
+
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 chit-chat-layer1-rit">
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+
+        </div>
+        <!--inner block end here-->
+        <!--copy rights start here-->
+        @Html.Partial("../ViewPartialPrincipales/_Footer")
+        <div class="clearfix"> </div>
+
+
+    </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    function DescargaPlantillaEReg(evento) {
+      
+
+        if (evento == "") {
+            alert("Error al desacargar plantilla... Vuelva a la página de Eventos.");
+        } else {
+            var url = "@Url.Action("DescargaPlantillaEReg", "Evento", new { nombreEve = "nomEvent" })";
+            url = url.replace("nomEvent", evento);
+            window.location.href = url;
+           
+        }
+    }
+
+    function RegistroEMasivoUser(evento) {
+        var cantidadP = $('#txtCantidadRE').val();
+        var fileExcel = document.getElementById("choose_file");
+        var fReaderExcel = new FileReader();
+        fReaderExcel.readAsDataURL(fileExcel.files[0]);
+
+        fReaderExcel.onloadend = function (event) {
+            var rutaExcelReg = event.target.result;
+            if (parseInt(cantidadP)<=0||cantidadP==""||cantidadP % 1 != 0 || cantidadP.includes("e") || cantidadP.includes(".")) {
+                alert("Cantidad introducida incorrecta.");
+                document.getElementById("txtCantidadRE").focus();
+                document.getElementById("txtCantidadRE").select();
+            } else {
+                //alert("correcto comenzar con registro masivo");
+                //Comenzar registro masivo
+                 $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("RegistroEMasivoUser", "Evento")',
+                     data: { cantParticipantes: cantidadP, rutaExcel: rutaExcelReg, archivoExcel: fileExcel.value, nombreEve: evento},
+                     //datatype: "json",
+                    success: function (data)
+                    {
+                        //alert("Registro exitoso");
+                        //alert(data);
+                        if (data == "Error") {
+                            alert("Error al realizar registro masivo.")
+                        } else {
+                            var itr = data;
+                            
+                            var url = '@Html.Raw(Url.Action("DescargaRegistroMasivo", "Evento", new { nombreE = "nomE", itr = "idTR",t="11"}))';
+                            var params = url.replace('nomE', evento).replace('idTR', itr).replace('11',"1");
+                            window.location.href = params;
+                        }
+                      //  window.location.assign("/ModuloEventoAdmin/RegistroMasivo");
+                    },
+                    error: function () {
+                        alert("Error en el registro");
+                    }
+                 });
+
+            }
+        }
+
+    }
+</script>

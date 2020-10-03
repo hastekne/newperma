@@ -1,0 +1,839 @@
+﻿@model Tuple<DesarrolloProyDSP.Models.ModuloBP.BuenaPracticaViewModel, DesarrolloProyDSP.Models.ModuloBP.RevisionBPViewModel, PagedList.IPagedList<BusinessModel.Models.ModuloBP.TabImagenBP>>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RevisionBP</title>
+    @Html.Partial("../ViewPartialPrincipales/_ScriptsLink")
+   
+</head>
+<body>
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                @Html.Partial("../ViewPartialPrincipales/_Header")
+                <div class="clearfix"> </div>
+            </div>
+            <!--heder end here-->
+            <!-- script-for sticky-nav -->
+            <script>
+                $(document).ready(function () {
+                    var navoffeset = $(".header-main").offset().top;
+                    $(window).scroll(function () {
+                        var scrollpos = $(window).scrollTop();
+                        if (scrollpos >= navoffeset) {
+                            $(".header-main").addClass("fixed");
+                        } else {
+                            $(".header-main").removeClass("fixed");
+                        }
+                    });
+
+                });
+            </script>
+
+            <!--inner block start here-->
+
+            <div class="inner-block" style="margin-top: -20px">
+                <!--market updates updates-->
+
+
+                <div class="clearfix"> </div>
+
+
+
+
+
+
+
+
+
+
+
+                <div class="chit-chat-layer1 ">
+
+                    <div class="col-md-8 chit-chat-layer1-left ">
+                        <div class="work-progres ">
+
+                            <div class="table-responsive">
+
+
+
+
+                                <div class="form-style-10">
+                                    <h1>Documentaci&oacute;n de la Buena Pr&aacute;ctica</h1>
+                                    <form>
+
+                                        <div class="section"><span>a</span>Título de la Buena Práctica</div>
+
+
+                                        <div class="inner-wrap">
+                                            <label>@Model.Item1.tituloBP</label>
+                                            <label class="alert-info" style="padding: 8px"><strong>COMENTARIO SOBRE EL TÍTULO DE LA BUENA PRÁCTICA</strong></label>
+                                            @*<input name="" type="text" required maxlength="200" value="" />*@
+                                            <textarea id="txtTitulo" name="txtTitulo" class="bio" maxlength="1500" style="border: none; resize: none; height: 80px">@Model.Item2.comentarioTituloBP</textarea><br>
+
+                                        </div>
+
+                                        <div class="section"><span>b</span>Situación que quiso mejorar.</div>
+                                        <div class="inner-wrap">
+                                            <label>@Model.Item1.situacionMejora</label>
+                                            <label class="alert-info" style="padding: 8px"><strong>COMENTARIO SOBRE SITUACIÓN QUE QUISO MEJORAR</strong></label>
+
+                                            <textarea id="txtSituacion" name="txtSituacion" maxlength="2000" class="bio" style="border: none; resize: none">@Model.Item2.comentarioSituacionMejora</textarea>
+
+                                            <br>
+
+
+
+
+
+                                        </div>
+
+                                        <div class="section"><span>c</span>Diagnostico que realizó. </div>
+                                        <div class="inner-wrap">
+                                            <label>@Model.Item1.diagnosticoRealizo</label>
+
+                                            <label class="alert-info" style="padding: 8px"><strong>COMENTARIO SOBRE DIAGNOSTICO QUE REALIZÓ</strong></label>
+                                            <textarea id="txtDiagnostico" name="txtDiagnostico" class="bio" maxlength="3000" style="border: none; resize: none">@Model.Item2.comentarioDiagnosticoRealizo</textarea><br>
+
+
+                                        </div>
+
+
+
+
+                                        <div class="section"><span>d</span>Características del contexto. </div>
+                                        <div class="inner-wrap">
+                                            <label>@Model.Item1.caracteristicasContexto</label>
+
+                                            <label class="alert-info" style="padding: 8px"><strong>COMENTARIO SOBRE CARACTERÍSTICAS DEL CONTEXTO</strong></label>
+                                            <textarea id="txtCaracteristicas" name="txtCaracteristicas" class="bio" maxlength="3000" style="border: none; resize: none">@Model.Item2.comentarioCaracteristicasContexto</textarea><br>
+
+
+                                        </div>
+
+
+
+
+                                        <div class="section"><span>e</span>Descripción de las actividades realizadas.  </div>
+                                        <div class="inner-wrap">
+                                            <label>@Model.Item1.descripcionActividadesRealizadas</label>
+
+                                            <label class="alert-info" style="padding: 8px"><strong>COMENTARIO SOBRE DESCRIPCIÓN DE LAS ACTIVIDADES REALIZADAS</strong></label>
+                                            <textarea id="txtActividadesR" name="ActividadesR" class="bio" maxlength="9000" style="border: none; resize: none">@Model.Item2.comentarioDescripcionActividadesRealizadas</textarea><br>
+
+
+                                        </div>
+
+
+                                        <div class="section"><span>f</span>Elemento innovador.   </div>
+                                        <div class="inner-wrap">
+                                            <label>@Model.Item1.elementoInnovador</label>
+
+                                            <label class="alert-info" style="padding: 8px"><strong>COMENTARIO SOBRE ELEMENTO INNOVADOR</strong></label>
+                                            <textarea id="txtInnovador" name="txtInnovador" class="bio" maxlength="3000" style="border: none; resize: none">@Model.Item2.comentarioElementoInnovador</textarea><br>
+
+
+                                        </div>
+
+                                        <div class="section"><span>g</span>Resultados obtenidos.    </div>
+                                        <div class="inner-wrap">
+                                            <label>@Model.Item1.resultadosObtenidos</label>
+
+                                            <label class="alert-info" style="padding: 8px"><strong>COMENTARIO SOBRE RESULTADOS OBTENIDOS</strong></label>
+                                            <textarea id="txtResultadosObt" name="txtResultadosObt" class="bio" maxlength="3000" style="border: none; resize: none">@Model.Item2.comentarioResultadosObtenidos</textarea><br>
+
+
+                                        </div>
+
+                                        <div class="section"><span>h</span>Observaciones.   </div>
+                                        <div class="inner-wrap">
+                                            <label>@Model.Item1.observacionesBP</label>
+
+                                            <label class="alert-info" style="padding: 8px"><strong>COMENTARIO SOBRE OBSERVACIONES</strong></label>
+                                            <textarea id="txtObservaciones" name="txtObservaciones" class="bio" maxlength="1500" style="border: none; resize: none; height: 80px">@Model.Item2.comentarioObservacionesBP</textarea><br>
+
+
+                                        </div>
+
+
+                                        <div class="section"><span>i</span>Fuentes de información.    </div>
+                                        <div class="inner-wrap">
+                                            <label>@Model.Item1.fuentesInformacion</label>
+
+
+                                            @*<input type="text">*@
+                                            <label class="alert-info" style="padding: 8px"><strong>COMENTARIO SOBRE LAS FUENTES DE INFORMACIÓN</strong></label>
+                                            <textarea id="txtFuentesInf" name="txtFuentesInf" class="bio" maxlength="1500" style="border: none; resize: none; height: 80px">@Model.Item2.comentarioFuenteInformacion</textarea><br>
+                                        </div>
+
+                                        <div class="section"><span>j</span>Comentarios Generales Revisor    </div>
+                                        <div class="inner-wrap">
+                                            @*<label>En caso de que haya consultado fuentes de información que sustenten su Práctica, anótelos utilizando el formato de la Asociación Americana de Psicología (APA, por sus siglas en inglés). Si requiere mayor información, puede buscar</label>*@
+
+                                            @* <input type="text">*@
+
+                                            <textarea id="txtGenerales" name="txtGenerales" class="bio" maxlength="1500" style="border: none; resize: none; height: 80px">@Model.Item2.comentarioGeneral</textarea><br>
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 chit-chat-layer1-left ">
+
+                        <div class="col-md-4 compose">
+                            <div class="compose-block" style="width:400px; height:200px; border-radius: 5px; text-align: right " align="right">
+
+                                <div class="chit-chat-heading" align="center"> Panel Buena Práctica </div><br>
+
+                                <table width="100%" border="0" align="left">
+                                    <tbody>
+                                        <tr align="right">
+                                            <td width="46%"><a href="#autores" style="background-color: #FF8200" class="popup-with-zoom-anim">  &shy; Datos Autores  &shy;</a></td>
+                                            <td width="54%"><a href="#datosG" style="background-color: #FF8200" class="popup-with-zoom-anim">Datos Generales</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>&nbsp;</td>
+
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr align="right">
+                                            <td><a href="#archivo" style="background-color: #FF8200" class="popup-with-zoom-anim">Archivos BP</a></td>
+                                            <td><a href="@Url.Action("Archivos","BuenasPracticas")" style="background-color: #FF8200">  &shy;    &shy; &shy;Subir Archivos  &shy;</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <!--pop-up-grid-->
+                                <div id="Dautores">
+                                    <div id="autores" class="mfp-hide" style="background: white; padding: 10px 0 10px 0; max-width: 629px; margin: 40px auto; position: relative; height:300px; border-radius: 5px;">
+                                        <div class="pop_up">
+                                            <div class="container">
+                                                <div id="title">
+
+                                                    <div style="padding-top: 8px; padding-left: 10px; text-align: left; margin-left: 15px; margin-right: 15px" class="chit-chat-heading">DATOS DE AUTORES</div><br>
+
+                                                </div>
+                                                <div class="multitab-section">
+                                                    @* Poner FOR para las pestañas *@
+                                                    <ul class="multitab-widget multitab-widget-content-tabs-id">
+                                                        <li class="multitab-tab cap"><a href="#multicolumn-widget-id0">★ AR</a></li>
+
+                                                        @for (int i = 1; i <= Model.Item1.autoresBP.Count; i = i + 1)
+                                                        {
+                                                            <li class="multitab-tab cap"><a href="#@i">@i</a></li>
+                                                        }
+
+                                                    </ul>
+
+                                                    <div class="multitab-widget-content-widget-id" id="multicolumn-widget-id0">
+                                                        <div class="inner-wrap" id="sidebartab1" preferred="yes">
+                                                            <p> </p>
+
+                                                            <br>
+                                                            @foreach (var item in Model.Item1.autorResponsableBP)
+                                                            {
+                                                                <p> <img src="~/image/user1.png" width="15" height="15" alt="" /> @item.nombreCompleto </p>
+                                                                <p><img src="~/image/tel.png" width="10%" height="10%" alt="" /> @item.telefono</p>
+                                                                <p><img src="~/image/mail.png" width="8%" height="8%" alt="" /> @item.email</p>
+                                                            }
+                                                        </div>
+                                                    </div>
+
+                                                    @for (int i = 1; i <= Model.Item1.autoresBP.Count; i = i + 1)
+                                                    {
+                                                        <div class="multitab-widget-content-widget-id" id="@i">
+                                                            <div class="inner-wrap" id="sidebartab1" preferred="yes">
+                                                                <p> </p>
+
+                                                                <br>
+
+                                                                <p> <img src="~/image/user1.png" width="15" height="15" alt="" /> @Model.Item1.autoresBP[i - 1].nombreCompleto </p>
+                                                                <p><img src="~/image/tel.png" width="10%" height="10%" alt="" /> @Model.Item1.autoresBP[i - 1].telefono</p>
+                                                                <p><img src="~/image/mail.png" width="8%" height="8%" alt="" /> @Model.Item1.autoresBP[i - 1].email</p>
+
+                                                            </div>
+                                                        </div>
+                                                    }
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <!--pop-up-grid-->
+                                <!--pop-up-grid-->
+                                <div id="Dgenerales">
+                                    <div id="datosG" class="mfp-hide" style="background: white; padding: 10px 0 10px 0; max-width: 629px; margin: 40px auto; position: relative; height:auto; border-radius: 5px;">
+                                        <div class="pop_up">
+                                            <div style="padding: 20px 40px 20px 40px">
+                                                <div id="title3">
+
+                                                    <div style="padding-top: 8px; padding-left: 10px; text-align: left" class="chit-chat-heading">DATOS GENERALES</div><br>
+
+                                                </div>
+                                                <div class="form-style-10" style="width: 100%; height: 250px; padding-top: -20px; margin-top: -20px">
+                                                    <div class="section">@Model.Item1.tituloBP</div>
+                                                    @foreach (var item in Model.Item1.datosGeneralesBP)
+                                                    {
+                                                        <label>Eje temático: @item.eje</label>
+
+                                                        <label>Municipio: @item.municipio</label>
+
+                                                        <label>Clave CT: @item.claveCT</label>
+
+                                                        <label>Nombre CT *donde se realiza la Pr&aacute;ctica: @item.nombreCT </label>
+
+                                                        <label>Función desde la que desarrolló la Pr&aacute;ctica: @item.funcion </label>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                                <!--pop-up-grid-->
+                                <style>
+
+                                    .container {
+                                        max-width: 90%;
+                                        margin: 0% auto;
+                                        padding: 0;
+                                        box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.1);
+                                    }
+                                    /* Multi Tab Sidebar */
+
+                                    .cap {
+                                        text-transform: uppercase;
+                                    }
+
+                                    .multitab-section {
+                                        display: inline-block;
+                                        width: 100%;
+                                    }
+
+                                        .multitab-section p {
+                                            display: inline-block;
+                                            background: #fff;
+                                            font-size: 14px;
+                                            padding: 20px;
+                                            margin: 0;
+                                        }
+
+                                        .multitab-section label {
+                                            text-align: left;
+                                            text-decoration: none;
+                                            background: #fff;
+                                            font-size: 14px;
+                                            padding: 20px;
+                                            margin: 0;
+                                        }
+
+                                    .multitab-widget {
+                                        list-style: none;
+                                        margin: 0 0 10px;
+                                        padding: 0
+                                    }
+
+                                        .multitab-widget li {
+                                            list-style: none;
+                                            padding: 0;
+                                            margin: 0;
+                                            float: left
+                                        }
+
+                                            .multitab-widget li a {
+                                                background: #FF8200;
+                                                color: #fff;
+                                                display: block;
+                                                padding: 15px;
+                                                font-size: 13px;
+                                                text-decoration: none
+                                            }
+
+                                    .multitab-tab {
+                                        width:20%;
+                                        text-align: center
+                                    }
+
+                                    .multitab-section h2,
+                                    .multitab-section h3,
+                                    .multitab-section h4,
+                                    .multitab-section h5,
+                                    .multitab-section h6 {
+                                        display: none;
+                                    }
+
+                                    .multitab-widget li a.multitab-widget-current {
+                                        padding-bottom: 20px;
+                                        margin-top: -10px;
+                                        background: #fff;
+                                        color: #444;
+                                        text-decoration: none;
+                                        border-top: 5px solid #FF8200;
+                                        font-size: 14px;
+                                        text-transform: capitalize
+                                    }
+                                </style>
+
+                                <script>
+                                    //<![CDATA[
+                                    jQuery(document).ready(function ($) { $(".multitab-widget-content-widget-id").hide(); $("ul.multitab-widget-content-tabs-id li:first a").addClass("multitab-widget-current").show(); $(".multitab-widget-content-widget-id:first").show(); $("ul.multitab-widget-content-tabs-id li a").click(function () { $("ul.multitab-widget-content-tabs-id li a").removeClass("multitab-widget-current a"); $(this).addClass("multitab-widget-current"); $(".multitab-widget-content-widget-id").hide(); var activeTab = $(this).attr("href"); $(activeTab).fadeIn(); return false; }); });
+                                    //]]></script>
+
+                            </div>
+
+                            <!--pop-up-grid-->
+                            <div id="archivos">
+                                <div id="archivo" class="mfp-hide" style="background: white; padding: 10px 0 10px 0; max-width: 629px; margin: 40px auto; position: relative; height:auto; border-radius: 5px;">
+                                    <div class="pop_up">
+                                        <div class="container">
+                                            <div class="tab-content tab-content-in" align="right">
+                                                <div>
+                                                    <div class="header-left">
+
+
+
+
+
+
+
+                                                    </div>
+
+
+                                                    @*<div class="clearfix"> </div>
+                                            <div style="padding-top: 8px; padding-left: 10px; text-align: left" class="chit-chat-heading"> ARCHIVOS DE LA BUENA PRÁCTICA </div>
+                                            <span class="text-muted m-r-sm">Mostrar 5 of 10 </span>
+
+                                            <div class="btn-group">
+                                                <a class="btn btn-default"><i class="fa fa-angle-left"></i></a>
+                                                <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
+                                            </div>
+                                            <div class="clearfix"> </div>*@
+                                                </div>
+
+
+                                                <!--inicia contenido correos-->
+                                                @*<table class="table tab-border" style="text-decoration-color: #000000">
+
+                                            <tr>
+
+                                                <th width="14%" align="center" style="text-align: center">Figura</th>
+
+                                                <th width="51%">Título</th>
+                                                <th width="21%" align="center" style="text-align: center">Previsualización</th>
+
+
+                                            </tr>
+                                            <tbody>
+                                                <tr class="unread checked">
+                                                    <td align="center">
+                                                        1
+                                                    </td>
+                                                    <td>
+                                                        Ciencias en el aula
+                                                    </td>
+                                                    <td align="center">
+                                                        <a class="popup-with-zoom-anim" href="#Figura1"><i class="fa fa-paperclip"></i></a>
+
+                                                        <!--pop-up-grid-->
+                                                        <div id="popup">
+                                                            <div id="Figura1" class="mfp-hide" style="background: white; padding: 10px 0 10px 0; max-width: 629px; margin: 40px auto; position: relative; height:300px; border-radius: 5px;">
+                                                                <div class="pop_up">
+                                                                    <div class="payment-online-form-left">
+                                                                        <img src="image/Constancia_aprendizajesclave.png" width="100%" height="100%" alt="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <!--pop-up-grid-->
+                                                    </td>
+
+                                                </tr>
+                                                <tr class="unread checked">
+                                                    <td align="center" class="hidden-xs">
+                                                        2
+                                                    </td>
+                                                    <td>
+                                                        Humanidades
+                                                    </td>
+                                                    <td align="center">
+                                                        <a class="popup-with-zoom-anim" href="#Figura2"><i class="fa fa-paperclip"></i></a>
+
+                                                        <!--pop-up-grid-->
+                                                        <div id="popup2">
+                                                            <div id="Figura2" class="mfp-hide" style="background: white; padding: 10px 0 10px 0; max-width: 629px; margin: 40px auto; position: relative; height:300px; border-radius: 5px;">
+                                                                <div class="pop_up">
+                                                                    <div class="payment-online-form-left">
+                                                                        <img src="image/1.jpg" width="100%" height="100%" alt="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <!--pop-up-grid-->
+                                                    </td>
+                                                </tr>
+                                                <tr class="unread checked">
+                                                    <td align="center" class="hidden-xs">
+                                                        3
+                                                    </td>
+                                                    <td>
+                                                        Ciencias
+                                                    </td>
+                                                    <td align="center">
+                                                        <a class="popup-with-zoom-anim" href="#Figura3"><i class="fa fa-paperclip"></i></a>
+
+                                                        <!--pop-up-grid-->
+                                                        <div id="popup3">
+                                                            <div id="Figura3" class="mfp-hide" style="background: white; padding: 10px 0 10px 0; max-width: 629px; margin: 40px auto; position: relative; height:300px; border-radius: 5px;">
+                                                                <div class="pop_up">
+                                                                    <div class="payment-online-form-left">
+                                                                        <img src="image/Constancia_aprendizajesclave.png" width="100%" height="100%" alt="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <!--pop-up-grid-->
+                                                    </td>
+                                                </tr>
+                                                <tr class="unread checked">
+                                                    <td align="center" class="hidden-xs">
+                                                        4
+                                                    </td>
+                                                    <td>
+                                                        Humanidades
+                                                    </td>
+                                                    <td align="center">
+                                                        <a class="popup-with-zoom-anim" href="#Figura4"><i class="fa fa-paperclip"></i></a>
+
+                                                        <!--pop-up-grid-->
+                                                        <div id="popup4">
+                                                            <div id="Figura4" class="mfp-hide" style="background: white; padding: 10px 0 10px 0; max-width: 629px; margin: 40px auto; position: relative; height:300px; border-radius: 5px;">
+                                                                <div class="pop_up">
+                                                                    <div class="payment-online-form-left">
+                                                                        <img src="image/Constancia_aprendizajesclave.png" width="100%" height="100%" alt="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <!--pop-up-grid-->
+                                                    </td>
+
+                                                </tr>
+                                                <tr class="read checked">
+                                                    <td align="center" class="hidden-xs">
+                                                        5
+                                                    </td>
+                                                    <td>
+                                                        Ciencias
+                                                    </td>
+                                                    <td align="center">
+                                                        <a class="popup-with-zoom-anim" href="#Figura5"><i class="fa fa-paperclip"></i></a>
+
+                                                        <!--pop-up-grid-->
+                                                        <div id="popup5">
+                                                            <div id="Figura5" class="mfp-hide" style="background: white; padding: 10px 0 10px 0; max-width: 629px; margin: 40px auto; position: relative; height:300px; border-radius: 5px;">
+                                                                <div class="pop_up">
+                                                                    <div class="payment-online-form-left">
+                                                                        <img src="image/Constancia_aprendizajesclave.png" width="100%" height="100%" alt="" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+
+                                                        <!--pop-up-grid-->
+                                                    </td>
+                                                </tr>
+
+
+
+
+
+                                            </tbody>
+                                        </table>*@
+                                                <div id="tabArchivos">
+                                                    @Html.Partial("_TablaArchivos", Model.Item3)
+                                                </div>
+
+                                                <!--termina contenido correos-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!--pop-up-grid-->
+                        </div>
+
+
+                        <div class="inner-block chit-chat-layer1 compose-right" align="right">
+                            <input type="button" value="Descargar Buena Práctica PDF" class="hvr-icon-sink" onclick="document.getElementById('PDFtoPrint').focus(); document.getElementById('PDFtoPrint').contentWindow.print();" style="margin-top: 30px; margin-right: -45px; text-align: center; width: 100%">
+                            <style>
+                                .compose-right input[type="button"] {
+                                    font-size: 0.9em;
+                                    background-color: #32AA00;
+                                    border: none;
+                                    color: #fff;
+                                    padding: 0.8em 1.5em;
+                                    margin-top: 1em;
+                                    outline: none;
+                                }
+
+                                    .compose-right input[type="button"]:hover {
+                                        background-color: #FF8200;
+                                        transition: 0.5s all;
+                                        -webkit-transition: 0.5s all;
+                                        -moz-transition: 0.5s all;
+                                        -o-transition: 0.5s all;
+                                    }
+                            </style>
+                        </div>
+
+                        <br>
+
+                        <table width="100%" style="margin-top: -90px">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="inner-block chit-chat-layer1 compose-right" align="right">
+
+                                            <button onclick="EnviarCorreccion()" class="hvr-icon-wobble-vertical" style="margin-right: -45px; text-align: right">Enviar Correcciones</button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="inner-block chit-chat-layer1 compose-right" align="right">
+                                            <button onclick="GuardarRevisionBP()" class="hvr-icon-spin" style="margin-right: -45px; text-align: right">Guardar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+
+
+
+                        <div class="col-md-4 compose">
+                            <div class="compose-block " style="width:400px; border-radius: 5px; text-align: right; background-color: #FFFFFF; margin-top: -50px" align="right">
+
+
+                                <button onclick="ListaParaPublicar()" class="hvr-icon-fade2">Lista para ser publicada &shy; </button>
+
+
+
+                            </div>
+
+
+
+
+
+                        </div><!--este es el div novisible que contiene la vista q debe llamarse-->
+                        <div class="form-style-10" style="width: 100%; margin-top: -30px; visibility:hidden;">
+                            <h1 style="margin-top: -10px">Previsualización</h1>
+                            <!--esta es la vista q debe llamarse PDF_sinEstilo.cshtml   que es la q ya se agrego --> @*<iframe src="@Url.Content("~/PDF_sinEstilo.cshtml")" id="PDFtoPrint" width="100%" height="600px"></iframe>*@
+                            <iframe src="@Url.Action("PDF_sinEstilo","BuenasPracticas")" id="PDFtoPrint" width="100%" height="600px"></iframe>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <!--main page chit chating end here-->
+                <!--main page chart layer2--><!--inner block end here-->
+                <!--copy rights start here-->
+                @*<div class="copyrights">
+
+            <img src=@Url.Content("~/image/gto.png") class="imgRedonda" style="display:inline" alt="GTO" width="100">
+
+            <br><br>
+            <p>SECRETAR&Iacute;A DE EDUCACI&Oacute;N DE GUANAJUATO</p>
+
+            <p style="font-size: 12px">
+                Pozuelos: Conjunto Administrativo Pozuelos S/N Guanajuato, Gto. (473) 735-1000
+                Puentecillas: Carretera Guanajuato-Puentecillas km 9.5 Guanajuato, Gto. (473) 735-1200
+                Profesiones: Carretera Guanajuato-Juventino Rosas km 6.5 Esq. Jazm&iacute;n, Col. Arroyo Verde (473) 10 20 200
+
+                01 800 890 30 80
+            </p>
+
+            <a href="mailto:comunicacion_seg@seg.guanajuato.gob.mx?subject=Email%20Subject">comunicacion_seg@seg.guanajuato.gob.mx</a>
+
+
+
+
+
+            <ul class="social-buttons" id="demo3">
+                <li>
+                    <a href="http://www.youtube.com/user/EducacionGuanajuato" class="brandico-youtube"><img src="http://hopedalebuilders.com/files/2018/01/youtube-icon-white.png" width="70%"></a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/pages/Secretar%C3%ADa-de-Educaci%C3%B3n-de-Guanajuato-SEG/340786939279382?ref=hl" class="brandico-facebook"><img src="https://amcboise.com/wp-content/uploads/2017/11/facebook.png" width="80%"></a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/ComunicacionSEG" class="brandico-twitter-bird"><img src="https://www.bh-bims.org/wp-content/uploads/2017/12/twitter-icon-white-e1513102680550.png" width="90%"></a>
+                </li>
+
+
+            </ul>
+
+        </div>*@
+                @Html.Partial("../ViewPartialPrincipales/_Footer")
+                <!--COPY rights end here-->
+
+
+
+
+                <div class="clearfix"> </div>
+
+                <!--slide bar menu end here-->
+                <!--scrolling js-->
+                <script src="Administrador/js/jquery.nicescroll.js"></script>
+                <script src="Administrador/js/scripts.js"></script>
+                <!--//scrolling js-->
+                <script src="Administrador/js/bootstrap.js"></script>
+                <!-- mother grid end here-->
+
+</body>
+</html>
+<script type="text/javascript">
+    function GuardarRevisionBP() {
+        $("body").css("cursor", "progress");
+        $("button").css("cursor", "progress");
+        var tit = document.getElementById("txtTitulo").value;
+        var sit = document.getElementById("txtSituacion").value;
+        var diag = document.getElementById("txtDiagnostico").value;
+        var carac = document.getElementById("txtCaracteristicas").value;
+        var actiR = document.getElementById("txtActividadesR").value;
+        var inn = document.getElementById("txtInnovador").value;
+        var resulObt = document.getElementById("txtResultadosObt").value;
+        var obse = document.getElementById("txtObservaciones").value;
+        var fuenInf = document.getElementById("txtFuentesInf").value;
+        var general = document.getElementById("txtGenerales").value;
+        
+        $.ajax({
+            url: "@Url.Action("GuardarRevisionBP", "BuenasPracticas")",
+            method: "POST",
+            data: { cTitulo: tit, cSituacion: sit, cDiagnostico: diag, cCaracteristicas: carac, cActividadesR: actiR, cInnovador: inn, cResultadosObt: resulObt, cObservaciones: obse, cFuentesInf: fuenInf, cGenerales: general },
+            datatype: "json",
+            success: function (data) {
+                $("body").css("cursor", "default");
+                $("button").css("cursor", "pointer");
+                if (data == "False")
+                    alert("Error al guardar los comentarios de la revisión.")
+                else
+                    alert("Guardado");
+            },
+            error: function (response) {
+                $("body").css("cursor", "default");
+                $("button").css("cursor", "pointer");
+                alert("Error en metodo");
+            }
+
+        });
+    }
+
+    function EnviarCorreccion() {
+        $("body").css("cursor", "progress");
+        $("button").css("cursor", "progress");//progress
+        var tit = document.getElementById("txtTitulo").value;
+        var sit = document.getElementById("txtSituacion").value;
+        var diag = document.getElementById("txtDiagnostico").value;
+        var carac = document.getElementById("txtCaracteristicas").value;
+        var actiR = document.getElementById("txtActividadesR").value;
+        var inn = document.getElementById("txtInnovador").value;
+        var resulObt = document.getElementById("txtResultadosObt").value;
+        var obse = document.getElementById("txtObservaciones").value;
+        var fuenInf = document.getElementById("txtFuentesInf").value;
+        var general = document.getElementById("txtGenerales").value;
+
+        //Falt poner diag en el IF
+        
+        $.ajax({
+            url: "@Url.Action("EnviarCorreccion", "BuenasPracticas")",
+            method: "POST",
+            data: { titulo: tit, situacion: sit, diagnostico: diag, caracteristicas: carac, actividadesR: actiR, innovador: inn, resultadosObt: resulObt, observaciones: obse, fuentesInf: fuenInf, cGenerales: general },
+            datatype: "json",
+            success: function (data) {
+                $("body").css("cursor", "default");
+                $("button").css("cursor", "pointer");
+                if (data == "true") {
+                    window.location.assign("SesionRevisor");
+                } else {
+                    alert("No se puedieron enviar las correcciones.");
+                }
+
+                $("body").css("cursor", "default");
+                $("button").css("cursor", "pointer");
+
+            },
+            error: function () {
+                alert("Error.");
+                $("body").css("cursor", "default");
+                $("button").css("cursor", "pointer");
+            }
+        });
+       
+    }
+
+    function ListaParaPublicar() {
+        $("body").css("cursor", "progress");
+        $("button").css("cursor", "progress");
+        $.ajax({
+                    url: "@Url.Action("EnviarListaParaPublicar", "BuenasPracticas")",
+                    method: "POST",
+                    datatype: "json",
+                    success: function (data)
+                    {
+                        $("body").css("cursor", "default");
+                        $("button").css("cursor", "pointer");
+                        if (data == "true") {
+                            window.location.assign("SesionRevisor");
+                        } else {
+                            alert("No se pudo establecer la BP como LISTO para publicar");
+                        }
+                    },
+                    error: function () {
+                        alert("Error.");
+                        $("body").css("cursor", "default");
+                        $("button").css("cursor", "pointer");
+                    }
+        })
+    }
+</script>

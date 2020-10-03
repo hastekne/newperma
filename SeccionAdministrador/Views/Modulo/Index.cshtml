@@ -1,0 +1,164 @@
+﻿@*@model SeccionAdministrador.Models.ModuloViewModel*@
+@model Tuple<SeccionAdministrador.Models.ModuloViewModel, SeccionAdministrador.Models.ImagenModuloBannerViewModel>
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("", "Modulo", FormMethod.Post, new { id = "demoForm", name = "demoForm" }))
+{
+
+
+    <h2>Index</h2>
+    <select id="soloModulos" name="soloModulos" onchange="SelectedIndexChanged()" class="btn btn-secondary btn-block">
+        @*@foreach (var item in ((SelectList)ViewData["listSoloModulos"]).Items)*@
+        @*@foreach (SelectListItem item in ViewBag.listSoloModulos)*@
+        @foreach (var item in Model.Item1.soloModulos)
+        {
+            if ((string)Session["itemSelect"].ToString() == item)
+            {
+                <option id="@item" name="@item" selected>@item</option>
+            }
+            else
+            {
+                <option id="@item" name="@item">@item</option>}
+        }
+    </select><br />
+    using (Html.BeginForm("EditarTitulo", "Modulo"))
+    {
+
+        <div class="display-label">
+            <h1> <input type="text" id="nombreModulo" name="nombreModulo" value="@Model.Item1.nombreModulo" class="form-control" disabled></h1>
+            <input type="text" id="titulo" name="titulo" value="@Model.Item1.titulo" class="form-control">
+        </div>
+        <br />
+
+        <input id="Actualizar" type="button" name="Actualizar" value="Actualizar" onclick="edAjax()" /> @*onclick = "edAjax()"*@
+
+        <input id="subir" name="subir" value="" type="file" /> @*//Accept para limitar la extension para la seleccion*@
+
+        <input id="Actualizar2" type="button" name="Actualizar2" value="Actualizar2" onclick="edAjax2()" /> @*onclick = "pruFTP()"*@
+
+        <input id="Descargar" type="button" name="Descargar" value="Descargar" onclick="edAjax3()" />
+
+        <input id="Actualizar3" type="button" name="Actualizar3" value="Actualizar3" onclick="edAjax4()" />
+        <br />
+        <br />
+
+
+
+
+        <body>
+            <form>
+                <div class="col-md-10">
+                    este?
+                    <input id="inputFile" name="inputFile" type="file" onchange="CargarImagen()" />
+                </div>
+                <div class="col-md-6" style="font-size:medium">
+                    <img id="ImgCarga" name="ImgCarga" align="middle" style="width:300px;height:auto" src="~/favicon.ico" alt="Me">
+                </div>
+            </form>
+        </body>
+
+    }
+    <select id="soloModulos" name="soloModulos" onchange="SelectedIndexChanged()" class="btn btn-secondary btn-block">
+        @foreach (var item in Model.Item2.listaImagenes)
+        {
+            <option id="@item.idImgBanner" name="@item.idImgBanner">@item.imagen</option>
+        }
+    </select><br />
+}
+<script type="text/javascript">
+            function edAjax4()
+            {
+                //Para subir un documento
+                var mod = document.getElementById("nombreModulo").value;
+
+                $.ajax({
+                    url: "@Url.Action("SubirIntroduccion2", "Modulo")",
+                    method: "POST",
+                    data: { modulo: mod},
+                    datatype: "json",
+                 })
+            }
+</script>
+
+<script type="text/javascript">
+    function CargarImagen() {
+        var mod = document.getElementById("nombreModulo").value;
+        var input = document.getElementById("inputFile");        
+        var fReader = new FileReader();
+        fReader.readAsDataURL(input.files[0]);
+        fReader.onloadend = function (event) {
+            var img = document.getElementById("ImgCarga");
+            img.src = event.target.result;
+            var txtBox = document.getElementById("titulo");
+            txtBox.value = event.target.result;
+            var ruta2 = event.target.result;
+            $.ajax({
+                    url: "@Url.Action("SubirIntroduccion2", "Modulo")",
+                    method: "POST",
+                data: { modulo: mod, rutaO: ruta2, archivoO:input.value},
+                    datatype: "json",
+                    })
+        }
+    }
+</script>
+
+<script type="text/javascript">
+            function edAjax()
+            {
+                var mod = document.getElementById("nombreModulo").value;
+                var tit = document.getElementById("titulo").value;
+                $.ajax({
+                    url: "@Url.Action("EditarTitulo", "Modulo")",
+                    method: "POST",
+                    data: { modulo: mod, titulo: tit },
+                    datatype: "json",
+
+                    })
+            }
+</script>
+
+<script type="text/javascript">
+             function edAjax2()
+             {
+                 //Para subir un documento
+                var mod = document.getElementById("nombreModulo").value;
+                 var ruta = document.getElementById("subir").value;
+                $.ajax({
+                    url: "@Url.Action("SubirIntroduccion", "Modulo")",
+                    method: "POST",
+                    data: { modulo: mod, rutaOrigen: ruta },
+                    datatype: "json",
+
+                    })
+            }
+</script>
+
+<script type="text/javascript">
+            function edAjax3()
+             {
+                 var mod = document.getElementById("nombreModulo").value;
+                $.ajax({
+                    url: "@Url.Action("DescargarIntroduccion", "Modulo")",
+                    method: "POST",
+                    data: { modulo: mod},
+                    datatype: "json",
+                })
+            }
+</script>
+
+
+
+<script type="text/javascript">
+    function SelectedIndexChanged() {
+        document.demoForm.submit();
+    }
+</script>
+
+
+

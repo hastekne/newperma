@@ -1,0 +1,45 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<BusinessModel.Models.ModuloBP.BPInformacion>
+
+<span class="text-muted m-r-sm" style="z-index:auto;">
+    Mostrar @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    de @Model.PageCount
+</span>
+
+<div class="btn-group" style="z-index:auto;">
+    @Html.PagedListPager(Model, page => Url.Action("Sesion", new { page}))
+</div>
+<table class="table tab-border" style="text-decoration-color: #000000" id="tabBP">
+
+    <tr>
+
+        <th>Título de la practica</th>
+
+        <th>Eje temático</th>
+        <th>Tipo de archivo</th>
+        <th>Estado</th>
+
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr class="unread checked">
+            <td class="hidden-xs">@item.titulo</td>
+            <td>@item.eje</td>
+
+            @if (item.estado.Equals("PUBLICADO"))
+            {
+            <td><i class="fa fa-paperclip"></i></td>
+            }
+            else
+            {
+            <td>-</td>
+            }
+
+            <td>@item.estado</td>
+        </tr>
+
+        }
+
+    </tbody>
+</table>

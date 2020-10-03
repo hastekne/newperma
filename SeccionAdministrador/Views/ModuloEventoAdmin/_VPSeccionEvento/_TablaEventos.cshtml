@@ -1,0 +1,160 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<BusinessModel.Models.ModuloEvento.EventoEnlace>
+
+<style>
+    .sinformato {
+        text-decoration: none !important;
+        background-color: transparent !important;
+        color: #3e5569 !important;
+        text-align: left !important;
+        padding: 0px 0px 0px 0px !important;
+        font-size: 1em !important;
+        display: none;
+    }
+
+    .container-4 {
+        width: 800px;
+        text-align: left;
+    }
+
+    .search1 {
+        border-radius: 15px;
+    }
+
+    .sinformatoboton {
+        color: #797878;
+        text-decoration: none;
+        background: none;
+        border-radius: none;
+    }
+</style>
+
+
+<div class="float-right" align="right" style="margin-right:18px">
+    <span class="text-muted m-r-sm" style="z-index:auto;">
+        Mostrar @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+        de @Model.PageCount
+    </span>
+
+    <div class="btn-group" style="z-index:auto;" id="contentPager">
+        @*@Html.PagedListPager(Model, page => Url.Action("VistaEventoFiltro", "ModuloEventoAdmin", new { page = page ,palabraclave = ViewBag.palabraClave}), PagedListRenderOptions.OnlyShowFivePagesAtATime)*@
+
+        @*@Html.PagedListPager(Model, page => Url.Action("VistaEvento", "ModuloEventoAdmin",
+        new { page, palabraclave = ViewBag.palabraClave }), PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(PagedListRenderOptions.PageNumbersOnly,
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            UpdateTargetId = "vpTablaEventos"
+        }))*@
+
+        
+        @Html.PagedListPager(Model, page => Url.Action("VistaEventoFiltro", new { page , palabraclave = ViewBag.palabraClave }),
+        PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "vpTablaEventos" }))
+
+    </div>
+</div>
+
+    <div align="center">
+        <table class="table tab-border" style="text-decoration-color: #000000; align-content: center" align="center">
+
+            <tr class="unread checked">
+
+                <th align="center" width="80%" style="text-align: center">Evento</th>
+
+                <th align="center" width="10%" style="text-align: center">Estado</th>
+                <th align="center" width="10%" style="text-align: center">Participantes</th>
+
+            </tr>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="unread checked">
+
+                        <td align="left">
+
+                            <a class="popup-with-zoom-anim sinformato" tooltip="Ver datos del evento" onclick="DatosEvento(@item.idEvento)"><div>@item.nombre</div></a>
+
+                        </td>
+
+                        <td align="center">
+                            @item.estado
+                        </td>
+                        <td align="center">
+                            @if (item.estado == "PUBLICADO" || item.estado == "FINALIZADO")
+                            {
+                                <a class="sinformato" tooltip="Descargar lista de participantes" align="center" onclick="DescargarExcelParticipantes(@item.idEvento)"><img src="@Url.Content("~/image/icon_E-01.png")" alt="" style="align-content: center; width:20px" /></a>
+                            }
+
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <script type="text/javascript">
+    function DatosEvento(m) {
+        $("body").css("cursor", "progress");
+        $("button").css("cursor", "progress");
+        $('button').prop('disabled', true);
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("SeccionDatosEvento", "ModuloEventoAdmin")',
+        data: { idEvento: m },
+        dataType: "html",
+        success: function (response)
+        {
+
+        $('#eventos').html(response);
+        $("body").css("cursor", "default");
+        $("button").css("cursor", "pointer");
+        $('button').prop('disabled', false);
+
+
+        },
+        error: function (response) {
+        alert("Error en cargar la sección.");
+        }
+        });
+        }
+
+        @*$(document).on("click", "#contentPager a", function () {
+            $.ajax({
+                url: $(this).attr("href"),
+                type: 'POST',
+                cache: false,
+                success: function (result) {
+                    //alert("Entro" + @ViewBag.page);
+                    $('#vpTablaEventos').html(result);
+                    
+                }
+            });
+            return false;
+        });*@
+        $(document).ready(function () {
+            $(document).on("click", "#contentPager a[href]", function () {
+                $.ajax({
+                    url: $(this).attr("href"),
+                    type: 'GET',
+                    cache: false,
+                    success: function (result) {
+                        $('#vpTablaEventos').html(result);
+                    }
+                });
+                return false;
+            });
+        });
+
+        function DescargarExcelParticipantes(id) {
+           var url = "@Url.Action("DescargarExcelParticipantes", "ModuloEventoAdmin", new { idEvento = 3 })";
+           url = url.replace(3, id);
+           window.location.href = url;
+        }
+
+        
+
+    </script>

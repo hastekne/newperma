@@ -1,0 +1,89 @@
+﻿@using System.Data
+@model Tuple<DesarrolloProyDSP.Models.ModuloEvento.EventoViewModel, DesarrolloProyDSP.Models.ModuloEvento.RegistroEventoViewModel,DataTable>
+@{
+    Layout = null;
+    ViewBag.Title = "pdf_RegistroM";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>pdf_RegistroM</title>
+
+    <link href="@Url.Content("~/css/PDF_RegistroMasivo.css")" rel="stylesheet" type="text/css" media="all">
+</head>
+<body marginwidth="0" marginheight="0">
+
+    <div id="footer">Registro masivo al evento</div>
+
+    <h1><label id="tituloEvento">@Model.Item1.nombre</label></h1>
+
+    <div>
+        @if (Model.Item1.fVigenciaInicio.ToString("dd") != Model.Item1.fVigenciaFin.ToString("dd") && Model.Item1.fVigenciaInicio.ToString("MMM") == Model.Item1.fVigenciaFin.ToString("MMM"))
+        {
+            <p>Fecha del evento: <span>@Model.Item1.fVigenciaInicio.ToString("dd")</span> al <span>@Model.Item1.fVigenciaFin.ToString("dd")</span> de <span>@Model.Item1.fVigenciaInicio.ToString("MMMM").ToLower()</span></p>
+        }
+        else if ((Model.Item1.fVigenciaInicio.ToString("dd") == Model.Item1.fVigenciaFin.ToString("dd") || Model.Item1.fVigenciaInicio.ToString("dd") != Model.Item1.fVigenciaFin.ToString("dd")) && Model.Item1.fVigenciaInicio.ToString("MMM") != Model.Item1.fVigenciaFin.ToString("MMM"))
+        {
+            <p>Fecha del evento: <span>@Model.Item1.fVigenciaInicio.ToString("dd")</span> de <span>@Model.Item1.fVigenciaInicio.ToString("MMMM").ToLower()</span> al <span>@Model.Item1.fVigenciaFin.ToString("dd")</span> de <span>@Model.Item1.fVigenciaFin.ToString("MMMM").ToLower()</span></p>
+        }
+        else if (Model.Item1.fVigenciaInicio.ToString("dd") == Model.Item1.fVigenciaFin.ToString("dd") && Model.Item1.fVigenciaInicio.ToString("MMM") == Model.Item1.fVigenciaFin.ToString("MMM"))
+        {
+            <p>Fecha del evento: <span>@Model.Item1.fVigenciaInicio.ToString("dd")</span> de <span>@Model.Item1.fVigenciaInicio.ToString("MMMM").ToLower()</span></p>
+        }
+
+        @*<p>Fecha del evento: <span>22</span> al <span>25</span> <span>Marzo</span></p>*@
+
+
+    </div>
+
+
+
+    @*<table width="100%" cellpadding="8" rules="all" border="2" bordercolor="#003A7D" class="salto_tabla">
+        <tbody>
+            <tr style="background-color:#003A7D" valign="top" align="center">
+                <th scope="col" width="5%" class="topTabla">Folio</th>
+                <th scope="col" width="20%" class="topTabla">CURP</th>
+                <th scope="col" width="35%" class="topTabla">Nombre</th>
+                <th scope="col" width="30%" class="topTabla">Email</th>
+                <th scope="col" width="10%" class="topTabla">Tel</th>
+            </tr>
+            <tr align="center">
+                <td><label id="folio">0020</label></td>
+                <td><label id="curp">DELA860912MGTLPD09</label></td>
+                <td><label id="A1">Delgado</label> <label id="A2">López</label> <label id="nombres">Adriana del Rocío</label></td>
+                <td><label id="email">ar.delgado@seg.guanajuato.gob.mx</label></td>
+                <td><label id="tel">4731171769</label></td>
+            </tr>
+
+
+        </tbody>
+    </table>*@
+
+    <table  width="100%" cellpadding="8" rules="all" border="2" bordercolor="#003A7D" class="salto_tabla">
+        <tbody>
+            <tr  style="background-color:#003A7D" valign="top" align="center">
+                @for (int i = 0; i < Model.Item3.Columns.Count; i++)
+                {
+                    <th scope="col" width="5%" class="topTabla">@Model.Item3.Columns[i].ColumnName</th>
+                }
+            </tr>
+            @for (int i = 0; i < Model.Item3.Rows.Count; i++)
+            {
+                <tr  align="center">
+                    @for (int j = 0; j < Model.Item3.Columns.Count; j++)
+                    {
+                        <td>@Model.Item3.Rows[i][j]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+</body>
+</html>

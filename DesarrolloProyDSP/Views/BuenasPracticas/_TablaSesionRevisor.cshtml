@@ -1,0 +1,56 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<BusinessModel.Models.ModuloBP.BPRevisionTable>
+
+<span class="text-muted m-r-sm" style="z-index:auto;">
+    Mostrar @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)
+    de @Model.PageCount
+</span>
+
+<div class="btn-group" style="z-index:auto;">
+    @Html.PagedListPager(Model, page => Url.Action("Sesion", new { page }))
+</div>
+
+
+<table class="table tab-border" style="text-decoration-color: #000000">
+
+    <tr>
+
+        <th>Título de la Práctica</th>
+
+        <th align="center">Solicitud Revisión</th>
+        @*<th align="center" style="text-align: center">Tipo de archivo</th>*@
+        <th align="center">Lista para Publicación</th>
+        <th>Estado</th>
+
+    </tr>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr class="unread checked">
+            <td class="hidden-xs">
+                @item.titulo
+            </td>
+            <td>
+                @item.fechaSolicitud.Value.ToString("dd/MM/yyyy")
+            </td>
+            
+                @if (item.fechaListaP != null)
+                {
+            <td>
+                @item.fechaListaP.Value.ToString("dd/MM/yyyy")
+                </td>
+                }
+                else
+                {
+<td >-</td>
+            }
+
+                
+                <td>
+                    @item.estado
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,71 @@
+﻿@*@model BusinessModel.Models.ModuloBP.BPInformacion*@
+
+@using PagedList.Mvc
+@*@model  PagedList.IPagedList<BusinessModel.Models.ModuloBP.BPInformacion>*@
+@model Tuple<PagedList.IPagedList<BusinessModel.Models.ModuloBP.BPInformacion>, DesarrolloProyDSP.Models.ModuloBP.EjeViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   
+    <meta name="viewport" content="width=device-width" />
+    <title>SesionPag</title>
+</head>
+<body>
+    @{
+        Html.RenderPartial("_Layout");
+    }
+    @using (Html.BeginForm())
+    {
+    <div>
+        @RenderBody()
+        <table>
+            <tr>
+
+                <th>Título de la practica</th>
+
+                <th>Eje temático</th>
+                <th>Tipo de archivo</th>
+                <th>Estado</th>
+
+            </tr>
+            <tbody>
+                @*@foreach (var item in Model.listaInfo)
+                {
+                    <tr class="unread checked">
+                        <td class="hidden-xs">
+                            @item.titulo
+                        </td>
+                        <td>
+
+                            @item.eje
+                        </td>
+                        <td> </td>
+                        <td>
+                            @item.estado
+                        </td>
+                    </tr>
+                }*@
+                @for (int i = 0; i < Model.Item1.Count; i++)
+                {
+                    <tr style="border:1px solid red">
+                        <td>@Model.Item1[i].titulo</td>
+                        <td>@Model.Item1[i].eje</td>
+                        <td>@Model.Item1[i].estado</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+        <div class="pagination" style="margin-left: 400px">
+            Page @(Model.Item1.PageCount < Model.Item1.PageNumber ? 0 : Model.Item1.PageNumber)
+            of @Model.Item1.PageCount   @Html.PagedListPager(Model.Item1, page => Url.Action("SesionPag", new { page }))
+        </div>
+    }
+</body>
+</html>

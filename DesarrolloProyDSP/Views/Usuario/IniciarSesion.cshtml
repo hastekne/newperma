@@ -1,0 +1,19 @@
+﻿@model DesarrolloProyDSP.Models.Usuario.UsuarioViewModel
+
+@{
+    ViewBag.Title = "IniciarSesion";
+    HttpContext.Current.User.Identity.Name.Equals("");
+}
+@using (Html.BeginForm("ValidarIS", "Usuario"))
+{
+    <h2>Iniciar Sesion</h2>
+    <fieldset>
+        <input type="text" id="userName" name="userName">
+        <input type="text" id="pass" name="pass">
+        @*<input type="button" id="iniciar" name="iniciar" value="iniciar" onclick="location.href='@Url.Action("ValidarIS","Usuario")?Value=' + $('#userName').val()" />*@
+        @*<input type="button" id="iniciar" name="iniciar" value="Iniciar" onclick="IniciarSesion()" />*@
+        <button id="btnIngresar">Ingresar</button>
+        }
+    </fieldset>
+}
+

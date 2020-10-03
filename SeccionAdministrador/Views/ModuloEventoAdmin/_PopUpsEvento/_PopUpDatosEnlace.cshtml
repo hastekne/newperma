@@ -1,0 +1,176 @@
+﻿@model Tuple<SeccionAdministrador.Models.UsuarioViewModel, SeccionAdministrador.Models.PerteneceInsSisViewModel>
+<!--Cambio style del DIV abajo-->
+<div style="position: fixed; z-index: 999; width: 100%; height: 100%;text-align: center; top: 0; left: 0; background: rgba(0,0,0,0.8)">
+    <!--Cambio style del DIV abajo-->
+    <div style="background: white; padding: 10px 0 10px 0; max-width: 629px; max-height:900px; margin: 40px auto; position: relative; border-radius: 5px; z-index:1000; -moz-opacity: !important 1; opacity:!important 1; filter: alpha(opacity=100); ">
+        <!--Cambio style del DIV abajo-->
+        <div class="pop_up">
+            <button title="Cerrar" type="button" class="mfp-close" onclick="Cerrar()">×</button>
+            <div class="form-style-10" style="width: 100%; padding-top: 25px; margin-top: 25px; height:480px">
+                <div style="padding-left: 10px; text-align: left; margin-left: 15px; margin-right: 15px;" class="chit-chat-heading">Modificar datos</div>
+                <div class="inner-wrap" align="left" style="padding-top:-20px; padding-bottom:-20px">
+                    <!---->
+                    <span id="msjErrorPopUpEnlace" class="text-danger"></span><!-- text-success -->
+                    <table width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="45%">&nbsp;<label>Nombre: <input id="txtNombreEn" value="@Model.Item1.nombre" class="autor" style="border: none; resize: none; width: 100%" type="text" required /></label></td>
+                                <td width="5%">&nbsp;</td>
+                                <td width="45%">&nbsp;<label>Primer Apellido: <input id="txtApPEn" value="@Model.Item1.pApellido" class="autor" style="border: none; resize: none; width: 100%" type="text" required /></label></td>
+                            </tr>
+                            <tr>
+                                <td width="45%"><label>Segundo Apellido: <input id="txtApMEn" value="@Model.Item1.sApellido" class="autor" style="border: none; resize: none; width: 100%" type="text" /></label></td>
+                                <td width="5%">&nbsp;</td>
+                                <td width="45%"><label>Correo electr&oacute;nico: <input id="txtEmailEn" value="@Model.Item1.correoElectronico" class="autor" style="border: none; resize: none; width: 100%" type="email" required /></label></td>
+                            </tr>
+
+                            <tr>
+
+                                <td width="45%">
+                                    <label>Telefono: <input id="txtTelEn" value="@Model.Item1.telefono" class="autor" style="border: none; resize: none; width: 100%" type="tel" pattern="(\[0-9]{10}\) " title="El número de telefono es invalido, recuerde sólo teclear los 10 dígitos sin ningun otro signo" required /></label>
+
+                                </td>
+                                <td width="5%">&nbsp;</td>
+                                <td width="45%">
+                                    <label>
+                                        Institución / Subsistema: <select id="selectInsSisEn" class="autor" style="border: none; resize: none; width: 100%">
+
+                                        
+                                            @foreach (var item2 in Model.Item1.listaInsSis)
+                                                {
+                                                    if (item2 == Model.Item2.institucionSistema)
+                                                    {
+                                                        <option value="" selected="selected">@item2</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="">@item2</option>
+                                                    }
+
+                                                }
+                                        </select>
+
+
+                                    </label>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <table align="right">
+                        <tbody>
+                            <tr>
+                                <td align="right">
+                                    <div class="compose-block" style="background: none; text-align:right">
+                                        <div class="button-section compose compose-bottom" align="right">
+                                            <a class="compose compose-bottom" onclick="ReenviarEmailEnlace('@Model.Item1.nombreUsuario')">Reenviar correo</a>@*'@Model.Item1.nombreUsuario'*@
+                                        </div>
+                                    </div>
+                                </td>
+                                <td align="right">
+                                    <div class="compose-block" style="background: none; text-align:right">
+                                        <div class="button-section compose compose-bottom" align="right">
+                                            <a class="compose compose-bottom" onclick="ActualizarEnlace('@Model.Item1.nombreUsuario')">Guardar</a>@*'@Model.Item1.nombreUsuario'*@
+                                        </div>
+                                    </div>
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function Cerrar() {
+        document.getElementById('PopEnlaceDiv').innerHTML = '';
+    }
+
+
+    function ActualizarEnlace(u)
+    {
+        var nomA = document.getElementById("txtNombreEn").value;
+        var apeP = document.getElementById("txtApPEn").value;
+        var apeM = document.getElementById("txtApMEn").value;
+        var email = document.getElementById("txtEmailEn").value;
+        var tel = document.getElementById("txtTelEn").value;
+        var e = document.getElementById("selectInsSisEn");
+        var insSub = e.options[e.selectedIndex].text;
+       // alert(u);
+        //alert(nomA + " " + apeP + " " + apeM + " " + email + " " +u);
+        if (nomA != "" && apeP != "" && email != "" && tel != "") {
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("ActualizarEnlace", "ModuloEventoAdmin")',
+                data: { usuario: u, nomU: nomA, apPU: apeP, apMU: apeM, emailU: email, telU: tel, insSu: insSub },
+                dataType: "html",
+                success: function (response) {
+                    //alert(u);
+                    //$('#gameModal').modal('hide');
+                    $('#TablaDatosEnlace').html(response);
+
+                    //alert("actualizado");
+                },
+                error: function () {
+                    $('#msjErrorPopUpEnlace').html("Captura de datos incorrecta.");
+                }
+            });
+        } else {
+            $('#msjErrorPopUpEnlace').html("Campos obligatorios vacíos.");
+            //alert("Hay campos obligatorios vacios.")
+        }
+
+
+    }
+
+    function ReenviarEmail(u) {
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("ReenviarEmail", "Admin")',
+            data: { usu: u},
+        //dataType: "html",
+        success: function (response)
+        {
+            //document.getElementById("PopRevisorDiv").className = "popup-with-zoom-anim sinformato";
+            //$('#PopRevisorDiv').html(response);
+            alert("Correo reeinviado");
+
+
+
+        },
+        error: function (response) {
+        alert("Error al enviar el correo");
+        }
+        });
+    }
+
+    function ReenviarEmailEnlace(u) {
+        $.ajax({
+        type: "POST",
+        url: '@Url.Action("ReenviarEmailEnlace", "ModuloEventoAdmin")',
+        data: { usu: u},
+        //dataType: "html",
+        success: function (response)
+        {
+            //document.getElementById("PopRevisorDiv").className = "popup-with-zoom-anim sinformato";
+            //$('#PopRevisorDiv').html(response);
+            alert("Correo reeinviado");
+            
+           
+            
+        },
+        error: function (response) {
+        alert("Error al enviar el correo");
+        }
+        });
+    }
+</script>

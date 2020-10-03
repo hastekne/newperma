@@ -1,0 +1,95 @@
+﻿@model DesarrolloProyDSP.Models.ModuloBP.BuenaPracticaViewModel
+
+@{
+    ViewBag.Title = "SegundaParteBP";
+}
+
+<h2>--------------Documentación de buena practica--------------</h2>
+@using (Html.BeginForm("GuardarBP", "BuenasPracticas"))
+{
+    <label class="form-control">Titulo:</label>
+    <input class="form-control" type="text" id="txtTitulo" name="txtTitulo" value="@Model.tituloBP" />
+
+    <label class="form-control">Situación que quiso mejorar:</label>
+    <textarea class="form-control" id="txtSituacion" name="txtSituacion" style="width:100%; max-width:100%; max-height:60%;">@Model.situacionMejora</textarea>
+    
+
+    <label class="form-control">Diagnóstico que realizó:</label>
+<textarea class="form-control" id="txtDiagnostico" name="txtDiagnostico" style="width:100%; max-width:100%; max-height:60%;">@Model.diagnosticoRealizo</textarea>
+
+    <label class="form-control">Características del contexto:</label>
+<textarea class="form-control" id="txtCaracteristicas" name="txtCaracteristicas" style="width:100%; max-width:100%; max-height:60%;">@Model.caracteristicasContexto</textarea>
+
+    <label class="form-control">Descripción de las actividades realizadas:</label>
+<textarea class="form-control" id="txtActividadesR" name="txtActividadesR" style="width:100%; max-width:100%; max-height:60%;">@Model.descripcionActividadesRealizadas</textarea>
+
+    <label class="form-control">Elemento innovador:</label>
+<textarea class="form-control" id="txtInnovador" name="txtInnovador" style="width:100%; max-width:100%; max-height:60%;">@Model.elementoInnovador</textarea>
+
+    <label class="form-control">Resultados obtenidos:</label>
+<textarea class="form-control" id="txtResultadosObt" name="txtResultadosObt" style="width:100%; max-width:100%; max-height:60%;">@Model.resultadosObtenidos</textarea>
+
+    <label class="form-control">Observaciones:</label>
+<textarea class="form-control" id="txtObservaciones" name="txtObservaciones" style="width:100%; max-width:100%; max-height:60%;">@Model.observacionesBP</textarea>
+
+    <label class="form-control">Fuentes de información:</label>
+<textarea class="form-control" id="txtFuentesInf" name="txtFuentesInf" style="width:100%; max-width:100%; max-height:60%;">@Model.fuentesInformacion</textarea>
+
+    <input type="button" value="Guardar" class="btn btn-default" onclick="GuardarBP()">
+    <input type="button" value="Enviar correcciones" class="btn btn-default" onclick="EnviarCorrecciones()">
+    <input type="button" value="Crear PDF" class="btn btn-default" onclick="CrearPDF()">
+}
+
+
+
+
+<script type="text/javascript">
+    function GuardarBP() {
+        //Datos de la BP
+        DatosBP();
+
+        // subir imagen correspondiente al campo de la BP.
+
+    }
+
+    function DatosBP() {
+        var tit = document.getElementById("txtTitulo").value;
+        var sit = document.getElementById("txtSituacion").value;
+        var diag = document.getElementById("txtDiagnostico").value;
+        var carac = document.getElementById("txtCaracteristicas").value;
+        var actiR = document.getElementById("txtActividadesR").value;
+        var inn = document.getElementById("txtInnovador").value;
+        var resulObt = document.getElementById("txtResultadosObt").value;
+        var obse = document.getElementById("txtObservaciones").value;
+        var fuenInf = document.getElementById("txtFuentesInf").value;
+                $.ajax({
+                    url: "@Url.Action("GuardarBP", "BuenasPracticas")",
+                    method: "POST",
+                    data: { titulo: tit, situacion: sit, diagnostico: diag, caracteristicas: carac, actividadesR: actiR, innovador: inn, resultadosObt: resulObt, observaciones: obse, fuentesInf: fuenInf },
+                    datatype: "json",
+        })
+    }
+    function CrearPDF() {
+        $.ajax({
+                    url: "@Url.Action("crearPDF", "BuenasPracticas")",
+
+        })
+    }
+    function EnviarCorrecciones() {
+        var tit = document.getElementById("txtTitulo").value;
+        var sit = document.getElementById("txtSituacion").value;
+        var diag = document.getElementById("txtDiagnostico").value;
+        var carac = document.getElementById("txtCaracteristicas").value;
+        var actiR = document.getElementById("txtActividadesR").value;
+        var inn = document.getElementById("txtInnovador").value;
+        var resulObt = document.getElementById("txtResultadosObt").value;
+        var obse = document.getElementById("txtObservaciones").value;
+        var fuenInf = document.getElementById("txtFuentesInf").value;
+                $.ajax({
+                    url: "@Url.Action("crearWordServer", "BuenasPracticas")",
+                    method: "POST",
+                    data: { titulo: tit, situacion: sit, diagnostico: diag, caracteristicas: carac, actividadesR: actiR, innovador: inn, resultadosObt: resulObt, observaciones: obse, fuentesInf: fuenInf },
+                    datatype: "json",
+        })
+    }
+</script>

@@ -1,0 +1,422 @@
+﻿@model Tuple<DesarrolloProyDSP.Models.ModuloBP.BuenaPracticaViewModel,DesarrolloProyDSP.Models.ModuloBP.ImagenBPViewModel, DesarrolloProyDSP.Models.ModuloBP.RevisionBPViewModel, DesarrolloProyDSP.Models.ModuloBP.ImagenRevisionViewModel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/PDF_sinEstilo.css" rel="stylesheet" type="text/css" media="all" />
+    <title>Guardar PDF / Imprimir</title>
+
+    <script type="text/php">
+
+        if ( isset($pdf) ) {
+
+        $font = Font_Metrics::get_font("verdana");;
+        $size = 6;
+        $color = array(0,0,0);
+        $text_height = Font_Metrics::get_font_height($font, $size);
+
+        $foot = $pdf->open_object();
+
+        $w = $pdf->get_width();
+        $h = $pdf->get_height();
+
+        // Dibuja una línea en la parte inferior.
+        $y = $h - $text_height - 24;
+        $pdf->line(16, $y, $w - 16, $y, $color, 0.5);
+
+        $pdf->close_object();
+        $pdf->add_object($foot, "all");
+
+        $text = "Page {PAGE_NUM} of {PAGE_COUNT}";
+
+        // Centra el texto
+        $width = Font_Metrics::get_text_width("Page 1 of 2", $font, $size);
+        $pdf->page_text($w / 2 - $width / 2, $y, $text, $font, $size, $color);
+
+        }
+    </script>
+
+
+</head>
+
+<body marginwidth="0" marginheight="0">
+
+    <div id="header">
+        <table>
+            <tbody>
+                <tr>
+                    <td><label>@Model.Item1.tituloBP</label></td>
+                    @foreach (var item in Model.Item1.autorResponsableBP)
+                    {
+                        <td style="text-align: right;"><label>@item.nombreCompleto</label></td>
+                    }
+                </tr>
+            </tbody>
+        </table>       
+    </div>
+
+    <div id="footer">
+        <div class="page-number"></div>
+    </div>
+    @if (ViewBag.perfil == "Revisor")
+    {
+        <h1><label>@Model.Item1.tituloBP</label></h1>
+    }
+    else
+    {
+        <h2><label>Comentarios por sección de la BP</label></h2><br />
+        <h2>Título de la BP</h2><br />
+        <p>
+            <label>@Model.Item3.comentarioTituloBP</label>
+        </p>
+
+        foreach (var item in Model.Item4.listArchivoTitulo)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <br />
+        <br />
+        <br />
+    }
+
+    <h2><label>Situación que quiso mejorar</label></h2>
+    <p>
+        
+            @if (ViewBag.perfil == "Revisor")
+            {
+        <textarea cols="80" style="border:none;">@Model.Item1.situacionMejora</textarea>
+            }
+            else
+            { <label>
+    @Model.Item3.comentarioSituacionMejora
+  
+</label>}
+       
+    </p>
+
+    <!--Poner imagenes de la sección correspondiente-->
+    @if (ViewBag.perfil == "Revisor")
+    {
+        foreach (var item in Model.Item2.listArvhivoSMT)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <!---->
+        <hr>
+    }
+    else
+    {
+        foreach (var item in Model.Item4.listArvhivoCSM)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <br />
+        <br />
+        <br />
+    }
+
+
+
+
+    <h2><label>Diagnóstico que realizó</label></h2>
+    <p>
+
+        <label>
+            @if (ViewBag.perfil == "Revisor")
+            {
+                @Model.Item1.diagnosticoRealizo
+            }
+            else
+            {
+                @Model.Item3.comentarioDiagnosticoRealizo
+            }
+
+
+        </label>
+    </p>
+    @if (ViewBag.perfil == "Revisor")
+    {
+        foreach (var item in Model.Item2.listArvhivoDR)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index","VisualizacionPrevia",new { archivo=item.imagen})" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <hr>
+    }
+    else
+    {
+        foreach (var item in Model.Item4.listArvhivoCDR)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <br />
+    }
+
+
+
+
+
+
+
+    <h2><label>Características del contexto</label></h2>
+
+
+    <p>
+        <label>
+            @if (ViewBag.perfil == "Revisor")
+            {
+                @Model.Item1.caracteristicasContexto
+            }
+            else
+            {
+                @Model.Item3.comentarioCaracteristicasContexto
+            }
+
+        </label>
+    </p>
+    @if (ViewBag.perfil == "Revisor")
+    {
+        foreach (var item in Model.Item2.listArvhivoCC)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index","VisualizacionPrevia",new { archivo=item.imagen})" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <hr>
+    }
+    else
+    {
+        foreach (var item in Model.Item4.listArvhivoCCC)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <br />
+    }
+
+
+
+    <!--Imagenes-->
+    @*<table border="0" cellspacing="3" rules="rows">
+            <tbody>
+                <tr align="center">
+                    <td width="30%"><img src="../image/ij5.jpg" width="50%" style="float: inherit; margin: 0.5em;" /></td>
+                    <td width="30%"><img src="../image/ij6.jpg" width="50%" style="float: inherit; margin: 0.5em;" /></td>
+                    <td width="30%"><img src="../image/ij2.jpg" width="50%" style="float: inherit; margin: 0.5em;" /></td>
+                </tr>
+                <tr align="center">
+                    <td><label>Archivo 1. </label><label>Aprendizaje conjunto</label></td>
+                    <td><label>Archivo 2. </label><label>Aprendizaje conjunto</label></td>
+                    <td><label>Archivo 3. </label><label>Aprendizaje conjunto</label></td>
+                </tr>
+            </tbody>
+        </table><br>*@
+    <!---->
+
+
+    <h2><label>Descripción de las actividades realizadas</label></h2>
+    <p>
+        <label>
+            @if (ViewBag.perfil == "Revisor")
+            {
+                @Model.Item1.descripcionActividadesRealizadas
+            }
+            else
+            {
+                @Model.Item3.comentarioDescripcionActividadesRealizadas
+            }
+
+        </label>
+    </p>
+    @if (ViewBag.perfil == "Revisor")
+    {
+        foreach (var item in Model.Item2.listArvhivoDAR)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index","VisualizacionPrevia",new { archivo=item.imagen})" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <hr>
+    }
+    else
+    {
+        foreach (var item in Model.Item4.listArvhivoCDAR)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <br />
+    }
+
+
+
+    <h2><label>Elemento innovador</label></h2>
+    <p>
+        @if (ViewBag.perfil == "Revisor")
+        {
+            @Model.Item1.elementoInnovador
+        }
+        else
+        {
+            @Model.Item3.comentarioElementoInnovador
+        }
+
+    </p>
+    @if (ViewBag.perfil == "Revisor")
+    {
+        foreach (var item in Model.Item2.listArvhivoEI)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index","VisualizacionPrevia",new { archivo=item.imagen})" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <hr>
+    }
+    else
+    {
+        foreach (var item in Model.Item4.listArvhivoCEI)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <br />
+
+    }
+
+
+
+    <h2><label>Resultados obtenidos</label></h2>
+    <p>
+        @if (ViewBag.perfil == "Revisor")
+        {
+            @Model.Item1.resultadosObtenidos
+        }
+        else
+        {
+            <br />
+            @Model.Item3.comentarioResultadosObtenidos
+        }
+
+    </p>
+    @if (ViewBag.perfil == "Revisor")
+    {
+        foreach (var item in Model.Item2.listArvhivoRO)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index","VisualizacionPrevia",new { archivo=item.imagen})" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <hr>
+    }
+    else
+    {
+        foreach (var item in Model.Item4.listArvhivoCRO)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <br />
+        <br />
+        <br />
+    }
+
+
+
+    <h2><label>Observaciones</label></h2>
+    <p>
+        @if (ViewBag.perfil == "Revisor")
+        {
+            @Model.Item1.observacionesBP
+        }
+        else
+        {
+            @Model.Item3.comentarioObservacionesBP
+        }
+
+    </p>
+    @if (ViewBag.perfil == "Colaborador")
+    {
+        foreach (var item in Model.Item4.listArvhivoCO)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <br />
+    }
+    else
+    {
+        <hr>
+    }
+
+
+
+    <h2><label>Fuentes de información</label></h2>
+    <p>
+        @if (ViewBag.perfil == "Revisor")
+        {
+            @Model.Item1.fuentesInformacion
+        }
+        else
+        {
+            @Model.Item3.comentarioFuenteInformacion
+        }
+
+    </p>
+    @if (ViewBag.perfil == "Colaborador")
+    {
+        <!--Imagen que subio el revisor-->
+        foreach (var item in Model.Item4.listArvhivoCFI)
+        {
+            @*<img src="../image/Constancia_aprendizajesclave.png" style="float: inherit; margin: 0.5em;"><br>*@
+            <img src="@Url.Action("Index", "VisualizacionPrevia", new { archivo = item.imagen })" style="float: inherit; margin: 0.5em;"><br>
+            <label>Imagen @item.enumeracion.</label><label>@item.titulo</label><br>
+
+        }
+        <br />
+    }
+
+
+    @if (ViewBag.perfil == "Colaborador")
+    {
+        <h2><label>Comentarios Generales</label></h2>
+        <p><label>@Model.Item3.comentarioGeneral</label></p>
+    }
+
+
+    <!--Url.Action("Index","VisualizacionPrevia",new { archivo=item.imagen})" style="float: inherit; margin: 0.5em;"><br></a>-->
+</body>
+</html>
+

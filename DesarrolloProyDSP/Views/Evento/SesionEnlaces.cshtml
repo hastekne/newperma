@@ -1,0 +1,308 @@
+﻿@using PagedList.Mvc
+@model Tuple<PagedList.IPagedList<BusinessModel.Models.ModuloEvento.SesionEnlace>>
+
+@{
+    Layout = null;
+    ViewBag.Title = "SesionEnlaces";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @Html.Partial("../ViewPartialPrincipales/_ScriptsLink")
+
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="~/css/bienvenida.css" rel="stylesheet" type="text/css" media="all">
+
+
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Registro Individual</title>
+    <style>
+
+        #Exitoso {
+            background: white;
+            padding: 10px 0 10px 0;
+            text-align: left;
+            max-width: 629px;
+            margin: 40px auto;
+            position: relative;
+            text-align: center;
+            height: 300px;
+            border-radius: 5px;
+        }
+
+        .form-style-10 select {
+            display: block !important;
+            box-sizing: border-box !important;
+            -webkit-box-sizing: border-box !important;
+            -moz-box-sizing: border-box !important;
+            width: 100% !important;
+            padding: 8px !important;
+            border-radius: 6px !important;
+            -webkit-border-radius: 6px !important;
+            -moz-border-radius: 6px !important;
+            border: 2px solid #fff !important;
+            box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33) !important;
+            -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33) !important;
+            -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33) !important;
+        }
+    </style>
+
+    <!--heder end here-->
+    <!-- script-for sticky-nav -->
+    <script>
+        $(document).ready(function () {
+            var navoffeset = $(".header-main").offset().top;
+            $(window).scroll(function () {
+                var scrollpos = $(window).scrollTop();
+                if (scrollpos >= navoffeset) {
+                    $(".header-main").addClass("fixed");
+                } else {
+                    $(".header-main").removeClass("fixed");
+                }
+            });
+
+        });
+    </script>
+    <!-- /script-for sticky-nav -->
+    <!-- script para restringir letras en input text numeros-->
+
+</head>
+<body>
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                @Html.Partial("../ViewPartialPrincipales/_Header")
+
+
+
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+
+
+
+
+        <!--inner block start here-->
+
+        <div class="inner-block" style="margin-top: -20px">
+            <!--market updates updates-->
+
+            <div class="chit-chat-layer1" style="margin-top: -50px">
+
+
+
+                <div class="col-md-12 mailbox-content  tab-content tab-content-in" style="padding-right: 30px; padding-top: 10px">
+
+                    <div class="col-md-2 compose">
+
+
+
+
+
+
+                    </div>
+
+                    <div class="col-md-8 mailbox-content  tab-content tab-content-in" align="right">
+                        <div>
+                            <div class="header-left">
+
+
+                                <div class="mailbox-border">
+                                    <div class="mail-toolbar clearfix">
+                                        <div>
+
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+                            <div class="clearfix"> </div>
+                            <div style="padding-top: 8px; padding-left: 10px; text-align: left" class="chit-chat-heading"> TUS REGISTROS A EVENTOS </div>
+                            @*<span class="text-muted m-r-sm">Mostrar 5 de 20 </span>
+
+        <div class="btn-group">
+            <a class="btn btn-default"><i class="fa fa-angle-left"></i></a>
+            <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
+        </div>*@
+                            <span class="text-muted m-r-sm" style="z-index:auto;">
+                                Mostrar @(Model.Item1.PageCount < Model.Item1.PageNumber ? 0 : Model.Item1.PageNumber)
+                                de @Model.Item1.PageCount
+                            </span>
+
+                            <div class="btn-group" style="z-index:auto;">
+                                @Html.PagedListPager(Model.Item1, page => Url.Action("SesionEnlaces", new { page }))
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+
+
+                        <!--inicia contenido correos-->
+                        <table class="table " style="text-decoration-color: #000000" align="center">
+
+
+                            <tbody>
+
+                                @foreach (var item in Model.Item1)
+                                {
+                                    <tr class="unread checked" align="center">
+                                        <th width="30%" align="center">
+                                            <a onclick="PrepararDivPDF('@item.nombreEvento','@item.idTipoEventoReg')" href="#"><img src="@Url.Action("Index","VisualizacionPrevia",new { archivo=item.rutaImg})" width="80%"></a>
+</th>
+                                        <th width="30%" align="center" style="text-align:center;">
+                                            <br>
+                                            @item.nombreEvento
+                                        </th>
+                                        <th width="20%" align="center" style="text-align:center">
+                                            <br>
+
+                                            @if (item.fechaInicio.ToString("dd") != item.fecahFin.ToString("dd") && item.fechaInicio.ToString("MMM") == item.fecahFin.ToString("MMM"))
+                                            {
+                                                <span>@item.fechaInicio.ToString("dd") al @item.fecahFin.ToString("dd")</span>
+                                                <br>
+                                                <span>de @item.fechaInicio.ToString("MMMM").ToLower() del @item.fechaInicio.ToString("yyyy")</span>
+                                            }
+                                            else if ((item.fechaInicio.ToString("dd") == item.fecahFin.ToString("dd") || item.fechaInicio.ToString("dd") != item.fecahFin.ToString("dd")) && item.fechaInicio.ToString("MMM") != item.fecahFin.ToString("MMM"))
+                                            {
+                                                <span>@item.fechaInicio.ToString("dd") de @item.fechaInicio.ToString("MMMM").ToLower() al</span>
+                                                <br>
+                                                <span>@item.fecahFin.ToString("dd") de @item.fecahFin.ToString("MMMM").ToLower()  del @item.fecahFin.ToString("yyyy")</span>
+                                            }
+                                            else if (item.fechaInicio.ToString("dd") == item.fecahFin.ToString("dd") && item.fechaInicio.ToString("MMM") == item.fecahFin.ToString("MMM"))
+                                            {
+                                                <span>@item.fechaInicio.ToString("dd") de</span>
+                                                <br>
+                                                <span>@item.fechaInicio.ToString("MMMM").ToLower() del @item.fechaInicio.ToString("yyyy")</span>
+                                            }
+                                        </th>
+                                      
+                                    </tr>
+                                }
+
+                                @*<tr class="unread checked" align="center">
+                                    <th width="30%" align="center">
+                                        <img src="~/image/bannerProvicional1.jpg" width="80%">
+                                    </th>
+                                    <th width="30%" align="center" style="text-align:center;">
+                                        <br>
+                                        El destino de la educación en México en tiempos del COVID-19
+                                    </th>
+                                    <th width="20%" align="center" style="text-align:center">
+                                        <br>
+                                        22 al 25
+                                        <br>
+                                        de marzo
+                                    </th>
+                                    <th width="10%" align="center">
+                                        <br>
+                                        <a href="" tooltip="Descargar zip"><img src="~/image/icon_R-01.png" width="40%"></a>
+                                    </th>
+                                    <th width="10%" align="center">
+                                        <br>
+                                        <a href="" tooltip="Imprimir PDF" onclick="document.getElementById('PDFtoPrint').focus(); document.getElementById('PDFtoPrint').contentWindow.print();" style="align-content: center; vertical-align: middle; text-align: center; cursor:pointer; cursor: hand"><img src="~/image/icon_PDF-02.png" width="40%"></a>
+                                    </th>
+                                </tr>
+                                <tr class="unread checked" align="center">
+                                    <th width="30%" align="center">
+                                        <img src="~/image/bannerProvicional1.jpg" width="80%">
+                                    </th>
+                                    <th width="30%" align="center" style="text-align:center">
+                                        <br>
+                                        El destino de la educación en México en tiempos del COVID-19
+                                    </th>
+                                    <th width="20%" align="center" style="text-align:center">
+                                        <br>
+                                        23 de marzo al
+                                        <br>
+                                        25 de mayo
+                                    </th>
+                                    <th width="10%" align="center">
+                                        <br>
+                                        <a href="" tooltip="Descargar zip"><img src="~/image/icon_R-01.png" width="40%"></a>
+                                    </th>
+                                    <th width="10%" align="center">
+                                        <br>
+                                        <a href="" tooltip="Imprimir PDF"><img src="~/image/icon_PDF-02.png" width="40%"></a>
+                                    </th>
+                                </tr>*@
+
+
+
+
+
+
+
+                            </tbody>
+                        </table>
+
+                        <!--termina contenido tabla-->
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-2 compose">
+
+
+
+
+
+            <!--este es el div novisible que contiene la vista q debe llamarse-->
+            <div class="form-style-10" style="width: 100%; margin-top: -30px; visibility: hidden">
+                <!--esta es la vista q debe llamarse PDF_sinEstilo.cshtml   que es la q ya se agrego -->
+                <iframe src="@Url.Action("pdf_RegistroM", "Evento", new { e = "Home evento 3 prueba de fechas ", itr = "oihxhedLDC" })" id="PDFtoPrint"></iframe>
+                @*src="@Url.Action("pdf_RegistroM", "Evento", new { e = "Home evento 3 prueba de fechas ", itr = "oihxhedLDC" })"*@
+                @*<iframe src="@Url.Action("pdf_RegistroM", "Evento", new { e = Model.Item1., itr = Model.Item2.idTipoRegistro })" id="PDFtoPrint"></iframe>*@
+
+
+
+            </div>
+
+
+
+        </div>
+
+        <div class="clearfix"> </div>
+
+        <!--main page chit chating end here-->
+        <div class="clearfix"> </div>
+
+
+        <!--inner block end here-->
+        <!--copy rights start here-->
+        @Html.Partial("../ViewPartialPrincipales/_Footer")
+        <div class="clearfix"> </div>
+
+
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+    function PrepararDivPDF(nomE,idTR) {
+        //document.getElementById('PDFtoPrint').src="Url.Action("pdf_RegistroM", "Evento", new { e = "Home evento 3 prueba de fechas ", itr = "oihxhedLDC" })";
+        //alert(idE + " " + idTE);
+        var url = '@Html.Raw(Url.Action("DescargaRegistroMasivo", "Evento", new { nombreE = "nomE", itr = "idTR",t="22"}))';
+                            var params = url.replace('nomE', nomE).replace('idTR', idTR).replace('22','2');
+                            window.location.href = params;
+        
+     }
+</script>

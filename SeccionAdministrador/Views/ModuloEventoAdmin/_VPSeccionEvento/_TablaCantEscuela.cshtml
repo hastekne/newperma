@@ -1,0 +1,56 @@
+﻿@model SeccionAdministrador.Models.Eventos.EscuelaEventoViewModel
+
+<table class="table tab-border" style="text-decoration-color: #000000; align-content: center" align="center">
+
+    <tr class="unread checked">
+
+        <th align="center" style="text-align: center">Escuela</th>
+
+
+        <th align="center" style="text-align: center">Cantidad</th>
+
+        <th align="center" style="text-align: center"> Eliminar</th>
+
+    </tr>
+    <tbody>
+        @foreach(var item in Model.tablaEscuelaCantida)
+        {
+        <tr class="unread checked" id="@item.idEscuela">
+            <td align="center">
+                @item.nombreEscuela
+            </td>
+            <td align="center">
+                @item.cantidad
+            </td>
+
+            <td align="center">
+                <ul>
+                    <i class="glyphicon_x glyphicon-trash" aria-hidden="true" onclick="EliminarCantEscuela(@item.idCCT,@item.idEvento)"></i>
+
+                </ul>
+            </td>
+        </tr>
+        }
+        
+
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function EliminarCantEscuela(cct, idEv) {
+        
+        $.ajax({
+                type: "POST",
+                url: '@Url.Action("EliminarCantEscuela", "ModuloEventoAdmin")',
+            data: { idCCT: cct, idEvento: idEv},
+                dataType: "html",
+            success: function (response) {
+                
+                    $('#TablaCantEscuela').html(response);
+                },
+                error: function (response) {
+                    alert("Error en cargar tabla Cantidad Escuela");
+                }
+            });
+    }
+</script>

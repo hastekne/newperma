@@ -1,0 +1,84 @@
+
+@page { 
+  margin: 0.25in 0.40in;
+}
+
+
+body {
+  font-family: sans-serif;
+	margin: 1.5cm 0;
+	text-align: justify;
+	padding-bottom: 20px;
+}
+
+
+#header,
+#footer {
+  position: fixed;
+  left: 0;
+	right: 0;
+	color: #aaa;
+	font-size: 1.0em;
+	background-color: #FFFFFF;
+	padding-right: 10px;
+}
+
+#header {
+  top: 0;
+	border-bottom: 0.1pt solid #30A0A8;
+}
+
+#footer {
+  bottom: 0;
+  border-top: 0.1pt solid #aaa;
+  text-align: center;
+
+
+}
+
+
+#header table,
+#footer table {
+	width: 100%;
+	border-collapse: collapse;
+	border: none;
+}
+
+#header td,
+#footer td {
+  padding: 0;
+	width: 50%;
+}
+
+
+hr {
+  page-break-after: always;
+  border: 0;
+	
+}
+h2{
+margin-bottom: 30px;
+	margin-top: 50px;
+		
+	}
+	
+
+#pageCounter {
+  counter-reset: pageTotal;
+}
+#pageCounter span {
+  counter-increment: pageTotal; 
+}
+#pageNumbers {
+  counter-reset: currentPage;
+}
+#pageNumbers div:before { 
+  counter-increment: currentPage; 
+  content: "Pág. " counter(currentPage) " de "; 
+	align-content: center;
+}
+#pageNumbers div:after { 
+  content: counter(pageTotal); 
+}
+
+

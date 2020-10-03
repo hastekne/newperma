@@ -1,0 +1,55 @@
+﻿@model SeccionAdministrador.Models.ImagenModuloBannerViewModel
+<div align="center">
+    <table class="table tab-border" style="text-decoration-color: #000000; align-content: center" align="center">
+
+        <tr class="unread checked">
+
+            <th align="center" style="text-align: center">Vista previa</th>
+
+
+            <th align="center" style="text-align: center">Eliminar</th>
+
+        </tr>
+        <tbody>
+        @foreach (var item in Model.listaImagenes)
+        {
+            <tr class="unread checked">
+                <td align="center">
+                    <img src="@Url.Action("Index","VisualizacionPrevia",new { archivo=item.imagen})" id="@item.idImgBanner" alt="" border=3 height=100 width=100></img>
+                </td>
+
+                <td align="center">
+                    <ul>
+                        <i onclick="EliminarEventoImgBanner(@item.idImgBanner)" class="glyphicon_x glyphicon-trash" aria-hidden="true"></i>
+
+                    </ul>
+                </td>
+            </tr>
+        }
+
+          
+
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    function EliminarEventoImgBanner(id) {
+        //alert("clic");
+        $.ajax({
+                    url: "@Url.Action("EliminarEventoImgBanner", "ModuloEventoAdmin")",
+                    method: "POST",
+            data: { idImg: id},
+                    datatype: "html",
+            success: function (response) {
+
+                $('#tblPartialBannerEvento').html(response);
+
+                    },
+                    error: function () {
+                        alert("Error al eliminar imagen.");
+                    }
+                });
+    }
+    
+</script>

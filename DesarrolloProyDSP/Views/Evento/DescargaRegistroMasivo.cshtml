@@ -1,0 +1,285 @@
+﻿@model Tuple<DesarrolloProyDSP.Models.ModuloEvento.EventoViewModel, DesarrolloProyDSP.Models.ModuloEvento.RegistroEventoViewModel>
+@{
+    Layout = null;
+    ViewBag.Title = "DescargaRegistroMasivo";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>Descarga Registro Masivo</title>
+
+    @Html.Partial("../ViewPartialPrincipales/_ScriptsLink")
+
+    <link href="@Url.Content("~/css/style.css")" rel="stylesheet" type="text/css" media="all">
+
+    <!--pop up strat here-->
+    <script src="@Url.Content("~/Scripts/jquery.magnific-popup.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+        });
+    </script>
+
+    <style>
+
+        #loging {
+            background: white;
+            padding: 10px 0 10px 0;
+            text-align: left;
+            max-width: 629px;
+            margin: 40px auto;
+            position: relative;
+            text-align: center;
+            height: 300px;
+            border-radius: 5px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                @Html.Partial("../ViewPartialPrincipales/_Header")
+
+
+
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+        <!--heder end here-->
+        <!-- script-for sticky-nav -->
+        <script>
+            $(document).ready(function () {
+                var navoffeset = $(".header-main").offset().top;
+                $(window).scroll(function () {
+                    var scrollpos = $(window).scrollTop();
+                    if (scrollpos >= navoffeset) {
+                        $(".header-main").addClass("fixed");
+                    } else {
+                        $(".header-main").removeClass("fixed");
+                    }
+                });
+
+            });
+        </script>
+        <!-- /script-for sticky-nav -->
+        <!--- script para que cambie el noimbre del archivo 1 --->
+        <script>
+            'use strict';
+            $(function () {
+                $('.inputfile').each(function () {
+                    var $input = $(this);
+                    $input.on('change', function (e) {
+                        var fileName = '';
+                        if (e.target.value) {
+                            fileName = e.target.value.split('\\').pop();
+                        }
+                        if (fileName) {
+                            var $fileName = $('#file_name');
+                            $fileName.html(fileName);
+                        } else {
+                            $fileName.html('');
+                        }
+                    });
+                });
+            });</script>
+
+
+        <!-- script para restringir letras en input text numeros-->
+        <script>
+            function justNumbers(e) {
+                var keynum = window.event ? window.event.keyCode : e.which;
+                if ((keynum == 8) || (keynum == 46))
+                    return true;
+
+                return /\d/.test(String.fromCharCode(keynum));
+            }
+
+        </script>
+
+
+
+
+        <!--inner block start here-->
+        <div class="inner-block" style="margin-top: -20px">
+            <!--market updates updates-->
+
+
+            <div class="clearfix"> </div>
+
+
+
+
+
+
+
+
+
+
+            <div class="chit-chat-layer1 ">
+
+                <div class="col-md-2 chit-chat-layer1-left ">
+
+
+
+                </div>
+
+                <div class="col-md-8 chit-chat-layer1-left ">
+                    <div class="work-progres ">
+
+                        <div class="table-responsive">
+
+                            @if (ViewData["tipo"].ToString() == "2")
+                            {
+                                <div class="blog-slider__Bienvenida" style="text-align: center; margin-top:-5px; margin-bottom: -30px; z-index: 0">Descarga .zip y PDF de tu registro</div>
+                            }
+                            else
+                            {
+                                <div class="blog-slider__Bienvenida" style="text-align: center; margin-top:-5px; margin-bottom: -30px; z-index: 0">Registro masivo completado</div>
+                            }
+
+                            <div class="form-style-10" style="width: 720px">
+
+
+                                <div class="Titulo_Eventos up" align="center"><textarea rows="3" maxlength="100" readonly="readonly" class="shadow-none">@Model.Item1.nombre</textarea></div>
+
+
+
+                                <div id="BotonesDescargaDIV">
+                                    <table width="95%" border="0" align="center" style="height:10px; padding-top: -20px; ">
+                                        <tbody>
+                                            <tr>
+
+                                                <td width="100%">
+                                                    <div class="compose-block" style="background: none">
+                                                        <div class="button-section compose compose-bottom" align="right" style="padding-bottom: 20px">
+                                                            <a class="compose compose-bottom" onclick="document.getElementById('PDFtoPrint').focus(); document.getElementById('PDFtoPrint').contentWindow.print();" tooltip="Previsulaizar la información de registro" style="width: 100%; align-content: center; vertical-align: middle; text-align: center; cursor:pointer; cursor: hand">PDF listado con Folios y datos de participantes</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <table width="95%" border="0" align="center" style="height:10px; margin-top: -70px; ">
+                                        <tbody>
+                                            <tr>
+
+                                                <td width="100">
+                                                    <div class="compose-block" style="background: none">
+                                                        <div class="button-section compose compose-bottom" align="right" style="padding-top: 85px">
+                                                            <button onclick="DescargaZipRegMasivo(@Model.Item1.idEvento,'@Model.Item2.idTipoRegistro')" class="compose compose-bottom" tooltip="Descarga de todos los PDF registrados" style="width: 100%; align-content: center; vertical-align: middle; text-align: center">Descargar los comprobantes de registro</button>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+
+
+
+                                <!--pop-up-grid-->
+                                <div id="popup2">
+                                    <div id="registro" class="mfp-hide">
+                                        <div class="pop_up">
+                                            <div class="payment-online-form-left">
+
+
+                                                <h4>Inicio de sesión</h4>
+
+
+                                                <ul>
+                                                    <li><input class="text-box-dark" type="text" value="Usuario" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Usuario';}" style="width: 100%;"></li>
+                                                    <li><input class="text-box-dark" type="password" value="Contraseña" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Contraseña';}" style="width: 100%"></li>
+                                                </ul>
+
+
+
+
+
+
+                                                <ul class="payment-sendbtns">
+
+                                                    <li><input type="button" value="Registrarte"></li>
+
+
+                                                    <li><input type="button" value="¿Olvidaste tu contraseña?"></li>
+
+                                                </ul>
+
+                                                <a href="#" class="order" style="width: 100%;">Iniciar seción</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 chit-chat-layer1-rit">
+
+                </div>
+                <div class="clearfix">
+
+                    <!--este es el div novisible que contiene la vista q debe llamarse-->
+                    <div class="form-style-10" style="width: 100%; margin-top: -30px; visibility: hidden">
+                        <!--esta es la vista q debe llamarse PDF_sinEstilo.cshtml   que es la q ya se agrego -->
+                        <iframe src="@Url.Action("pdf_RegistroM","Evento",new { e=Model.Item1.nombre,itr=Model.Item2.idTipoRegistro})" id="PDFtoPrint" width="100%" height="600px"></iframe>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!--inner block end here-->
+        <!--copy rights start here-->
+        @Html.Partial("../ViewPartialPrincipales/_Footer")
+        <div class="clearfix"> </div>
+
+
+    </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    function DescargaZipRegMasivo(evento, tipoR) {
+        //alert("entro");
+        document.getElementById("BotonesDescargaDIV").style.pointerEvents = "none";
+        document.body.style.cursor = 'wait';
+        window.location.href = '@Url.Action("PDFtoZIP", "Evento")?evento=' + evento + '&tr=' + tipoR;
+        setTimeout(function () { document.getElementById("BotonesDescargaDIV").style.pointerEvents = "auto"; document.body.style.cursor = 'default';},5000);
+
+    }
+
+</script>

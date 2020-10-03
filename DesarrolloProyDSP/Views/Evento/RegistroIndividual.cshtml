@@ -1,0 +1,118 @@
+﻿@*@model DesarrolloProyDSP.Models.ModuloEvento.EventoViewModel*@
+@model Tuple<DesarrolloProyDSP.Models.ModuloEvento.EventoViewModel, DesarrolloProyDSP.Models.ModuloEvento.FuncionParticipanteViewModel, DesarrolloProyDSP.Models.ModuloEvento.MesaEventoViewModel, DesarrolloProyDSP.Models.ModuloEvento.CampoEventoViewModel>
+
+@{
+    Layout = null;
+    ViewBag.Title = "RegistroIndividual";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @Html.Partial("../ViewPartialPrincipales/_ScriptsLink")
+
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" media="all">
+    <link href="~/css/bienvenida.css" rel="stylesheet" type="text/css" media="all">
+
+
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Registro Individual</title>
+    <style>
+
+        #Exitoso {
+            background: white;
+            padding: 10px 0 10px 0;
+            text-align: left;
+            max-width: 629px;
+            margin: 40px auto;
+            position: relative;
+            text-align: center;
+            height: 300px;
+            border-radius: 5px;
+        }
+
+        .form-style-10 select {
+            display: block !important;
+            box-sizing: border-box !important;
+            -webkit-box-sizing: border-box !important;
+            -moz-box-sizing: border-box !important;
+            width: 100% !important;
+            padding: 8px !important;
+            border-radius: 6px !important;
+            -webkit-border-radius: 6px !important;
+            -moz-border-radius: 6px !important;
+            border: 2px solid #fff !important;
+            box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33) !important;
+            -moz-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33) !important;
+            -webkit-box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33) !important;
+        }
+    </style>
+
+    <!--heder end here-->
+    <!-- script-for sticky-nav -->
+    <script>
+        $(document).ready(function () {
+            var navoffeset = $(".header-main").offset().top;
+            $(window).scroll(function () {
+                var scrollpos = $(window).scrollTop();
+                if (scrollpos >= navoffeset) {
+                    $(".header-main").addClass("fixed");
+                } else {
+                    $(".header-main").removeClass("fixed");
+                }
+            });
+
+        });
+    </script>
+    <!-- /script-for sticky-nav -->
+    <!-- script para restringir letras en input text numeros-->
+    <script>
+        function justNumbers(e) {
+            var keynum = window.event ? window.event.keyCode : e.which;
+            if ((keynum == 8) || (keynum == 46))
+                return true;
+
+            return /\d/.test(String.fromCharCode(keynum));
+        }
+
+    </script>
+</head>
+<body>
+    <div class="page-container">
+        <div class="left-content">
+            <div class="mother-grid-inner">
+                @Html.Partial("../ViewPartialPrincipales/_Header")
+
+
+
+                <div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+
+
+
+
+
+        <!--inner block start here-->
+
+        <div class="inner-block" style="margin-top: -20px">
+            <!--market updates updates-->
+
+
+            <div class="clearfix"> </div>
+             @Html.Partial("_CamposRegistroIndividual", Tuple.Create(Model.Item1, Model.Item2, Model.Item3, Model.Item4))
+            
+
+            <!--inner block end here-->
+            <!--copy rights start here-->
+            @Html.Partial("../ViewPartialPrincipales/_Footer")
+            <div class="clearfix"> </div>
+
+
+        </div>
+
+        

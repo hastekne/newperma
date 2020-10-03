@@ -1,0 +1,444 @@
+﻿@model Tuple<SeccionAdministrador.Models.Global.MunicipioViewModel>
+
+<!-- multiselector-->
+<script src="@Url.Content("~/Scripts/multi/jquery-3.4.1.min.js")"></script>
+<link rel="stylesheet" href="@Url.Content("~/Scripts/multi/multiple-select.min.css")">
+<script src="@Url.Content("~/Scripts/multi/multiple-select.min.js")"></script>
+<script src="@Url.Content("~/Scripts/multi/multipleselect.js")"></script>
+<!-- multiselector fin-->
+@*<form>*@
+
+<div class="section"><span>a</span>Nombre del Evento</div>
+
+<div class="inner-wrap">
+    <input id="txtNewNomEvento" name="" type="text" required maxlength="100" value="" />
+
+</div>
+
+
+<div class="section"><span>b</span>Objetivo del Evento</div>
+
+<div class="inner-wrap">
+    <textarea maxlength="500" id="txtANewobje"></textarea>
+
+</div>
+
+
+<div class="section"><span>c</span>Cargar Icono</div>
+<div class="inner-wrap" style="width: 100%">
+
+    <table width="100%" border="0" align="center" style="height:10px; ">
+        <tbody>
+            <tr>
+                <td colspan="2" width="100%">
+                    <br>
+
+                    <input type="file" style="border: none; resize: none; width: 100%" name="choose_file" id="choose_file" class="inputfile custom" accept="image/png, .jpeg, .jpg," />
+
+                    <label for="choose_file">
+                        <span id="file_name" tooltip="Sólo imagen JPG PNG">Imagen</span><strong style="color: #FFFFFF">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" color="#FFFFFF" style="color: #FFFFFF "><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                        </strong>
+                    </label>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+
+<div class="section"><span>d</span>Cargar plantilla de Excel </div>
+<div class="inner-wrap">
+
+    <table width="100%">
+        <tbody>
+            <tr>
+
+                <td colspan="2" width="100%">
+                    <br> <input type="file" name="choose_file" id="choose_file3" class="inputfile3 custom" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
+                    <label for="choose_file3">
+                        <span id="file_name3" tooltip="Sólo Archivo Excel">Archivo</span><strong style="color: #FFFFFF">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" color="#FFFFFF" style="color: #FFFFFF "><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg>
+                        </strong>
+                    </label>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+</div>
+
+
+<hr>
+
+<br>
+
+<div class="section"><span>e</span>Vigencias</div>
+<div class="inner-wrap" style="padding-top: -50px">
+
+    <table width="100%">
+        <tbody>
+            <tr>
+                Vigencia del evento
+                <td width="35%"> Inicio<input type="date" id="VEI" value="" min="2020-01-01" name="Inicio" class="" style="border: none; resize: none; width: 100%"></td>
+                <td width="15%" style="padding-left: 5px; padding-right: 5px">&shy;&shy;&shy;</td>
+                <td width="35%"> Termino <input type="date" id="VEF" value="" min="2020-01-01" name="Termino" class="" style="border: none; resize: none; width: 100%"></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+
+
+
+    <table width="100%">
+        <tbody>
+            <tr>
+                Vigencia de Registro
+                <td width="35%"> Inicio<input type="date" id="VRI" value="" min="2020-01-01" name="Inicio" class="" style="border: none; resize: none; width: 100%"></td>
+                <td width="15%" style="padding-left: 5px; padding-right: 5px">&shy;&shy;&shy;</td>
+                <td width="35%"> Termino <input type="date" id="VRF" value="" min="2020-01-01" name="Termino" class="" style="border: none; resize: none; width: 100%"></td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<hr>
+<br>
+
+<div class="section"><span>f</span>Tipo de Evento  </div>
+<div class="inner-wrap">
+    <select name="Evento" class="text-box-dark" value="Evento" id="selectTE">
+        <option value="">Público</option>
+        <option value="" selected="selected">Restringido</option>
+    </select>
+
+
+
+
+
+
+</div>
+
+<hr>
+<br>
+
+
+<div class="section"><span>g</span>Información sobre el Evento  </div>
+<div class="inner-wrap">
+
+    <table width="100%">
+        <tbody>
+            <tr>
+                <td width="220px">
+                    <div style="position: static">
+                        Municipio donde se realiza el evento:
+
+
+                        <br />
+                        <br />
+                        <!-- Multiple Select -->
+                        <div id="SelectMuni" style="pointer-events: none;">
+                            <select id="select" name="multistoree" class="text-box-dark" MULTIPLE>
+                                @*id="select" multiple="multiple" class="text-box-dark"*@
+                                @foreach (var item in Model.Item1.listMunicipios)
+                                {
+                                    <option value="@item.nombreMunicipio"> @item.nombreMunicipio </option>
+                                }
+                            </select>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                </td>
+                <td width="10%">&nbsp;</td>
+                <td width="45%">
+                    <div style="position: static">
+
+                        Campo de registro para los participantes:
+
+
+                        <select multiple="multiple" class="text-box-dark" id="select2" onchange="HabilitarSelect()">
+
+
+                            <option value="CCT">CCT</option>
+                            <option value="Nombre del plantel">Nombre del plantel</option>
+                            <option value="Municipio">Municipio</option>
+                            <option value="Región SEG">Región SEG</option>
+                            <option value="Nivel">Nivel</option>
+                            <option value="Institución/Subsistema">Institución/Subsistema</option>
+                            <option value="CURP">CURP</option>
+                            <option value="Nombre(s)">Nombre(s)</option>
+                            <option value="Primer apellido">Primer apellido</option>
+                            <option value="Segundo apellido">Segundo apellido</option>
+                            <option value="Correo electrónico">Correo electrónico</option>
+                            <option value="Teléfono de contacto">Teléfono de contacto</option>
+                            <option value="Sexo">Sexo</option>
+                            <option value="Función">Función</option>
+                            <option value="Mesa de trabajo">Mesa de trabajo</option>
+                        </select>
+
+
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<br>
+<hr style="z-index: -1000">
+
+<div class="section"><span>h</span>Roles de los participantes  </div>
+<div class="inner-wrap">
+
+
+    <div style="position: static; pointer-events: none;" id="SelectFuncion">
+
+        Funciones asigandas:
+
+
+        <select multiple="multiple" class="text-box-dark" id="select3">
+            <option>Docente</option>
+            <option>Directivo</option>
+            <option>Administrativo</option>
+            <option>Coordinador académico</option>
+            <option>Director de plantel</option>
+            <option>Alumno</option>
+            <option>Padre ó tutor</option>
+        </select>
+
+
+    </div>
+
+
+</div>
+
+<br>
+
+<br>
+<div class="compose-block" style="background: none">
+    <div class="button-section compose compose-bottom" align="right">
+
+        <button class="compose compose-bottom" tooltip="Crear evento" onclick="CrearEventoPS()">Crear Evento</button>
+    </div>
+</div>
+
+
+@*</form>*@
+
+<script type="text/javascript">
+    VEI.min = new Date().toISOString().split("T")[0];
+    VEF.min = new Date().toISOString().split("T")[0];
+    VRI.min = new Date().toISOString().split("T")[0];
+    VRF.min = new Date().toISOString().split("T")[0];
+</script>
+
+<script type="text/javascript">
+
+    (function () {
+        //document.getElementById('select').setAttribute("disabled", "disabled");
+    })();
+
+    function CrearEventoPS() {
+        var funcionHabilitada = "false";
+        var municipioHabilitado = "false";
+        var mun = document.getElementById("select").options;
+        var muni = getSelected(mun);
+        var munis = "";
+        for (var item in muni)
+            munis += muni[item].value + "|"; //El | es el delimitador
+
+        var scamp = document.getElementById("select2").options;
+        var campo = getSelected(scamp);
+        var campos = "";
+        for (var item in campo) {
+            if (campo[item].value == "Municipio")
+                municipioHabilitado = "true";
+            if (campo[item].value == "Función")
+                funcionHabilitada = "true";
+            campos += campo[item].value + "|";
+        }
+
+        var f = document.getElementById("select3").options;
+        var fu = getSelected(f);
+        var func = "";
+        for (var item in fu)
+            func += fu[item].value + "|";
+
+        var fechaVEI = $('#VEI').val();
+        var fechaVEF = $('#VEF').val();
+        var fechaVRI = $('#VRI').val();
+        var fechaVRF = $('#VRF').val();
+
+        var nombreEvento = $('#txtNewNomEvento').val();
+        var objetivo = $('#txtANewobje').val();
+
+        var te = document.getElementById("selectTE");
+        var tipEve = te.options[te.selectedIndex].text;
+
+        var fileIcon = document.getElementById("choose_file");
+        var fReaderIcon = new FileReader();
+        fReaderIcon.readAsDataURL(fileIcon.files[0]);
+        fReaderIcon.onloadend = function (event) {
+
+            var rutaicono = event.target.result;
+
+
+            var fileExcel = document.getElementById("choose_file3");
+            var fReaderExcel = new FileReader();
+            fReaderExcel.readAsDataURL(fileExcel.files[0]);
+            fReaderExcel.onloadend = function (event) {
+
+                var rutaExcel = event.target.result;
+                //alert(munis + " " + municipioHabilitado + " " + func + " " + funcionHabilitada);
+                
+                if (fechaVEI == "" || fechaVEF == "" || fechaVRI == "" || fechaVRF == "" || nombreEvento == "" || objetivo == "" || campos == ""|| (munis=="" && municipioHabilitado=="true")||(func=="" && funcionHabilitada=="true")) {
+                    alert("Campos obligatorios vacíos.");
+                } else {
+
+                    //Validar que las fechas de inicio sean menores a las de fin
+                    if (Date.parse(fechaVEI) > Date.parse(fechaVEF) || Date.parse(fechaVRI) > Date.parse(fechaVRF)) {
+                        alert("Fechas incorrectas.");
+                    } else {
+                        //Agregar evento
+                        $.ajax({
+        type: "POST",
+        url: '@Url.Action("CrearEventoPS", "ModuloEventoAdmin")', 
+                            data: { nombreE: nombreEvento, objetivoE: objetivo, rutaIconoE: rutaicono, rutaExcelE: rutaExcel, fvi: fechaVEI, fvf: fechaVEF, fri: fechaVRI, frf: fechaVRF, tipoEvento: tipEve, archivoIcono: fileIcon.value, archivoExcel: fileExcel.value, municipios: munis, campos: campos, funciones: func},
+        //datatype: "josn",
+        success: function (data) 
+        {
+            if (data == "Evento Creado.") {
+                alert("Evento Creado");
+                var m = "Crear";
+                $.ajax({
+        type: "POST",
+        url: '@Url.Action("SeccionEventos", "ModuloEventoAdmin")',
+        data: { seccion: m },
+        dataType: "html",
+        success: function (response)
+        {
+            $('#crearEvento').html(response);
+        },
+        error: function (response) {
+        alert("Error en cargar la sección.");
+        }
+        });
+            }else
+                alert(data);
+            
+        },
+        error: function () {
+            alert("Error en crear Evento.");
+          }
+        });
+                    }
+                }
+            }
+        }
+
+
+
+    }
+
+    function getSelected(opt) {
+        var selected = new Array();
+        var index = 0;
+        for (var intLoop = 0; intLoop < opt.length; intLoop++) {
+            if ((opt[intLoop].selected) ||
+                (opt[intLoop].checked)) {
+                index = selected.length;
+                selected[index] = new Object;
+                selected[index].value = opt[intLoop].value;
+                selected[index].index = intLoop;
+            }
+        }
+        return selected;
+    }
+
+    function HabilitarSelect() {
+        var scamp = document.getElementById("select2").options;
+        var campo = getSelected(scamp);
+        var existeMunicipio = "false";
+        var existeFuncion = "false";
+        for (var item in campo) {
+            if (campo[item].value == "Municipio") {
+                document.getElementById("SelectMuni").style.pointerEvents = "auto";
+                existeMunicipio = "true";
+            }
+            if (campo[item].value == "Función") {
+                document.getElementById("SelectFuncion").style.pointerEvents = "auto";
+                existeFuncion = "true";
+            }
+        }
+        if (existeMunicipio == "false") 
+            document.getElementById("SelectMuni").style.pointerEvents = "none";
+        if (existeFuncion == "false")
+            document.getElementById("SelectFuncion").style.pointerEvents = "none";
+        
+      }
+
+</script>
+
+
+<!--- script para que cambie el noimbre del archivo 1 --->
+<script>
+    'use strict';
+    $(function () {
+        $('.inputfile').each(function () {
+            var $input = $(this);
+            $input.on('change', function (e) {
+                var fileName = '';
+                if (e.target.value) {
+                    fileName = e.target.value.split('\\').pop();
+                }
+                if (fileName) {
+                    var $fileName = $('#file_name');
+                    $fileName.html(fileName);
+                } else {
+                    $fileName.html('');
+                }
+            });
+        });
+    });</script>
+<!--- script para que cambie el noimbre del archivo3 --->
+<script>
+    'use strict';
+    $(function () {
+        $('.inputfile3').each(function () {
+            var $input = $(this);
+            $input.on('change', function (e) {
+                var fileName = '';
+                if (e.target.value) {
+                    fileName = e.target.value.split('\\').pop();
+                }
+                if (fileName) {
+                    var $fileName = $('#file_name3');
+                    $fileName.html(fileName);
+                } else {
+                    $fileName.html('');
+                }
+            });
+        });
+    });</script>
+
